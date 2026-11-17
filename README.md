@@ -1,68 +1,128 @@
-# Feux de forêt en Occitanie — Projet HETIC MD5
+# Prévenir et détecter les feux de forêt en Occitanie
+### Aide à la décision pour le SDIS 31 — saison 2027
 
-> **Statut : dossier de cadrage pédagogique, en cours de validation collective.** Aucun résultat chiffré ni accès à une source n'est affirmé sans vérification.
+![Statut](https://img.shields.io/badge/Cadrage-valid%C3%A9-238636) ![Sources](https://img.shields.io/badge/Sources-%C3%A0_v%C3%A9rifier-orange) ![Projet](https://img.shields.io/badge/HETIC-MD5-blue)
 
-## 1. Contexte et commande
+> **Projet pédagogique HETIC — Mastère Data & IA, UE01 Stratégie Business Data-Driven (2026–2027).** Encadrement : Marine PROST. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
 
-Dans le cadre de l'UE01 « Stratégie business data-driven », volet « Modélisation et pipelines de données », le groupe répond à une commande fictive de la **direction du SDIS 31 (Haute-Garonne)**, pour préparer la saison 2027. Deux arbitrages structurent l'étude : **où concentrer les moyens humains et financiers** et **à partir de quel niveau de la Météo des forêts déclencher un dispositif renforcé**. Le commanditaire demande une comparaison avec les autres départements d'Occitanie et la France entière.
+## 🎯 Notre mission
 
-Le projet ne vise pas à prédire automatiquement chaque incendie. Il vise à produire des données documentées et des analyses utiles aux décisions, tout en explicitant les limites des observations.
+La Haute-Garonne prépare la saison des feux de forêt 2027 avec un risque d'activité comparable ou supérieur à 2026. Le SDIS ne peut pas renforcer toutes les patrouilles partout, tout l'été. Il doit répondre à deux décisions :
 
-## 2. Équipe
+1. **Où concentrer les moyens humains et financiers** pour prévenir et détecter les départs de feu ?
+2. **À quel niveau de la Météo des forêts** déclencher une surveillance renforcée, compte tenu des journées avec et sans départ de feu ?
 
-| Membre | Responsabilité proposée — à confirmer |
+Notre approche complète ce cadrage par la **capacité réelle de réponse** : délais d'intervention, composition et disponibilité des équipes, engins, équipements et scénarios de départs simultanés. Les résultats devront être confrontés aux autres départements d'Occitanie et aux données nationales, lorsque les sources le permettent.
+
+**Objectif :** transformer une commande opérationnelle en questions mesurables, données traçables, indicateurs explicables et recommandations argumentées. **Nous ne prétendons pas prédire individuellement chaque incendie.**
+
+## 👥 Équipe et responsabilités — VALIDÉES
+
+| Membre | Rôle confirmé | Responsabilités principales |
+|---|---|---|
+| **Steve Landry NONO** | Coordination / chef de projet | Planning, GitHub, tickets, points d'avancement, journal des décisions, cohérence des livrables |
+| **Maeva QUENUM** | Référente sources | Recherche des producteurs, fiches d'identité, inventaire et matrice questions × sources |
+| **Chantal CAMARA** | Référente qualité et conformité | Glossaire, définitions, contrôles qualité, licences, données personnelles et traçabilité |
+| **Stéphane DOMI** | Référent pipelines | Collecte, ingestion, transformations, reproductibilité, tests et historisation |
+| **Ludovic TUEKAM** | Référent modèle décisionnel | Modélisation, indicateurs, scénarios de seuil et restitution analytique |
+
+**Règle d'équipe :** les rôles structurent la responsabilité, mais **les analyses, les revues et la qualité finale sont collectives**. Chaque étudiant contribue sous son propre compte GitHub.
+
+## ❓ Questions décisionnelles — VALIDÉES POUR LE CADRAGE
+
+| ID | Question | Décision visée |
+|---|---|---|
+| **Q1** | Quels secteurs présentent la plus forte fréquence de départs de feu, rapportée à l'exposition forestière ? | Prioriser les territoires |
+| **Q2** | Quelle part des journées avec départ de feu serait couverte par chaque seuil de la Météo des forêts ? | Choisir le seuil d'activation |
+| **Q3** | Combien de journées de surveillance renforcée chaque seuil imposerait-il ? | Arbitrer la mobilisation et le budget |
+| **Q4** | Les résultats sont-ils stables dans le temps et comparables à ceux d'Occitanie et de France ? | Adapter ou généraliser la règle |
+| **Q5** | Où les délais et capacités de première intervention sont-ils insuffisants ? | Prépositionner et renforcer les équipes |
+| **Q6** | Quels effectifs, compétences et engins faut-il pour couvrir plusieurs départs simultanés ? | Dimensionner les renforts et le matériel |
+
+Les questions sont **validées comme périmètre analytique**. Leur faisabilité, les seuils chiffrés et les recommandations dépendront des données réellement accessibles. Voir [l'argumentaire collectif](docs/collectif/questions-retenues-proposition.md).
+
+## 🔎 Méthode
+
+```text
+Commande du SDIS 31
+       ↓
+Décisions à éclairer (territoires, seuil, moyens)
+       ↓
+Questions analytiques Q1 à Q6
+       ↓
+Définitions et données idéales (grain, période, fraîcheur, géographie)
+       ↓
+Inventaire et fiches des sources réellement examinées
+       ↓
+Contrôles qualité, rapprochements et historisation
+       ↓
+Modèle décisionnel, indicateurs et scénarios
+       ↓
+Recommandations argumentées et limites
+```
+
+### Principes de rigueur
+- **Danger météorologique ≠ départ de feu observé** : l'indice ne garantit ni l'occurrence ni l'absence d'un incendie.
+- **Surveillance sans feu ≠ dépense inutile** : elle peut répondre à un risque réel.
+- **Intervention ≠ événement incendie** : vérifier les identifiants, doublons et définitions.
+- **Disponibilité supposée ≠ disponibilité prouvée** : les données opérationnelles SDIS peuvent être internes.
+- **Comparaison territoriale** : vérifier les périodes, les grains, les référentiels et les dénominateurs (notamment la surface forestière).
+- **Coût estimé ≠ coût constaté** : documenter les hypothèses de simulation.
+
+## 📁 Structure du dépôt
+
+```text
+.
+├── README.md
+└── docs/
+    ├── analyse/
+    │   ├── commande-steve-landry-nono.md
+    │   ├── commande-maeva-quenum.md
+    │   ├── commande-chantal-camara.md
+    │   ├── commande-stephane-domi.md
+    │   └── commande-ludovic-tuekam.md
+    ├── collectif/
+    │   └── questions-retenues-proposition.md
+    ├── sources/
+    │   ├── inventaire.md
+    │   └── matrice.md
+    ├── glossaire.md
+    └── decisions/
+        └── journal.md
+```
+
+**État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) contiennent des **sources candidates, non encore vérifiées**.
+
+## 🗓️ Jalons pédagogiques
+
+| Date | Attendu |
 |---|---|
-| Maeva QUENUM | Sources, inventaire et matrice questions × sources |
-| Chantal CAMARA | Qualité, conformité et définitions |
-| Stéphane DOMI | Pipelines, chargement et traçabilité |
-| Ludovic TUEKAM | Modèle décisionnel et analyse des seuils |
-| Steve Landry NONO | Coordination, dépôt, tickets, checkpoints et journal |
+| **16/11/2026** | Analyses individuelles, fiches et inventaire des sources, glossaire initial (8 termes minimum), matrice initiale |
+| **17/11/2026** | Spécification v1 en FOAD |
+| **18/11/2026** | Remise de la spécification |
+| **09/12/2026** | Entrepôt en étoile historisé et testé |
+| **11/12/2026** | Entrepôt final et soutenance |
 
-Les responsabilités sont proposées et ne préjugent pas de l'accord des membres. Chacun contribue à l'analyse, à la documentation et aux revues.
+Ces dates sont les **échéances pédagogiques**, et non des preuves que chaque livrable est terminé.
 
-## 3. Démarche méthodologique
+## 🤝 Contribuer
 
-**Décision → question analytique → termes à définir → besoin mesurable → données idéales → sources vérifiées.** Nous ne partons pas du catalogue pour inventer ensuite des questions. Chaque question doit changer une décision selon sa réponse.
+1. Accepter l'invitation GitHub et cloner le dépôt : `git clone https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie.git`.
+2. Créer une branche par tâche : `git checkout -b docs/analyse-prenom`.
+3. Modifier ses fichiers, citer ses sources et signaler ce qui reste à vérifier.
+4. Commiter **depuis son propre compte**, avec un message explicite **en français** (ex. `docs(analyse): compléter mon analyse et justifier les données`).
+5. Ouvrir une pull request, faire relire, puis fusionner après vérification.
 
-Pour chaque source : relever le producteur, le mode d'accès, le grain, l'emprise, la période réellement couverte, la mise à jour, la volumétrie, les clés, la licence et les données personnelles. Une information inconnue est notée **« non vérifiée »**, jamais supposée.
+**Convention de validation :** *validé pour le cadrage* signifie que le groupe a retenu un rôle, une question ou une structure de travail ; cela **ne signifie pas** que les données, les chiffres, les sources ou les contributions personnelles sont vérifiés. Les changements importants sont consignés dans le [journal des décisions](docs/decisions/journal.md).
 
-## 4. Livrables et calendrier
+## 📚 Références pédagogiques
 
-| Date | Livrable |
-|---|---|
-| 16 novembre 2026 | Analyses individuelles, fiches et inventaire de sources, glossaire v0 (8 termes minimum), matrice v0 |
-| 17 novembre 2026 | Spécification v1 en FOAD |
-| 18 novembre 2026 | Rendu de la spécification |
-| 9 décembre 2026 | Entrepôt en étoile historisé et testé |
-| 11 décembre 2026 | Entrepôt final et soutenance |
+- Marine PROST, **Exercice 1 — De la commande aux données — Occitanie**.
+- **Template analyse de la commande**.
+- **Exercice 2 — Fiche d'identité des sources**.
+- **Le glossaire du projet**.
+- Support de cours **UE01.A — C1 : Du besoin décisionnel à la cartographie des sources**.
 
-## 5. Organisation documentaire
+---
 
-- `docs/analyse/` : analyses individuelles, conformes au template de l'exercice 1 ;
-- `docs/collectif/` : propositions de questions collectives et argumentaire ;
-- `docs/sources/` : fiches, inventaire et matrice ;
-- `docs/glossaire.md` : définitions métier et divergences ;
-- `docs/decisions/` : journal des arbitrages.
-
-## 6. Convention de travail Git
-
-Créer un ticket par tâche, travailler sur une branche dédiée, produire des commits courts et explicites **en français**, ouvrir une pull request, demander une relecture et fusionner après validation. Les analyses individuelles doivent être relues, appropriées et **commitées par chaque membre depuis son propre compte**, conformément à l'énoncé. Les brouillons préparés collectivement ne constituent pas une preuve de contribution individuelle.
-
-Exemples de commits : `docs(analyse): rédiger mon analyse de la commande` ; `docs(sources): documenter la source BDIFF` ; `docs(glossaire): préciser la notion de départ de feu`.
-
-## 7. Hypothèses et limites à vérifier
-
-- La disponibilité et la compatibilité temporelle des archives de danger et d'incendies ;
-- L'échelle géographique réelle des données de danger ;
-- La définition d'un « feu de forêt » et le risque de confondre feu, départ de feu et intervention ;
-- Les coûts et capacités de mobilisation du SDIS, potentiellement absents de l'open data ;
-- La possibilité de comparer des territoires de tailles et surfaces forestières différentes ;
-- Les effets des données manquantes et des changements de codes géographiques.
-
-## 8. État d'avancement
-
-**Préparation documentaire :** en cours. **Choix définitif des rôles, questions, sources et seuils :** à valider par le groupe. **Résultats d'analyse :** non produits à ce stade.
-
-## 9. Références pédagogiques
-
-Marine PROST, HETIC 2026–2027 : « Exercice 1 — De la commande aux données — Occitanie », « Template analyse de la commande », « Exercice 2 — Fiche d'identité des sources », « Le glossaire du projet » et support UE01.A — C1.
+*Projet étudiant — documents de cadrage validés, résultats et données à produire et vérifier.*
