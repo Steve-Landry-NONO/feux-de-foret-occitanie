@@ -16,3 +16,7 @@
 **Alerte de faisabilité :** le chevauchement des observations d'incendie et de météo n'est pas démontré. Ne pas déduire une année de données de la seule date de mise à jour d'une fiche.
 
 Pour chaque ressource retenue, compléter une fiche : URL exacte, rôle du producteur, date de consultation et d'extraction, format, taille et empreinte, licence, grain, période réelle, géographie, champs, clés, valeurs manquantes, limites, questions couvertes et auteur de la revue. Conserver les métadonnées séparément des données brutes.
+
+## Suivi après revue
+
+Les vérifications A1–A4 sont décrites dans le [plan de suivi](../suivi/actions-faisabilite.md). Elles restent à faire. Aucune ressource métier n'est déclarée exploitable pour un indicateur par cette revue documentaire ; disponibilité, couverture et licence au niveau des fichiers restent à vérifier.

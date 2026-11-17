@@ -3,7 +3,7 @@
 
 **Date :** 17 novembre 2026.  
 **Statut :** proposition de spécification v1 soumise à relecture collective ; aucune validation finale ni analyse de données brutes revendiquée.  
-**Contribution préparée à la demande de Chantal CAMARA**, référente qualité et conformité. Les responsabilités de l'équipe restent celles du [README](../../README.md). Ce document développe le rendu transmis et ne remplace pas les analyses individuelles.
+**Provenance et responsabilité :** Chantal CAMARA, référente qualité et conformité, a transmis le document de rendu et demandé son adaptation au dépôt. Le document transmis déclare une assistance de Claude à la rédaction ; la restructuration en spécification v1, la revue des pages publiques et les corrections documentaires ont été réalisées avec l'assistance de ChatGPT (Codex). Cette contribution est soumise à la relecture de Chantal et du groupe ; elle ne constitue ni une rédaction personnelle sans assistance ni une validation des données ou des analyses individuelles. Les responsabilités de l'équipe restent celles du [README](../../README.md). Ce document développe le rendu transmis et ne remplace pas les analyses individuelles.
 
 ## 1. Objet et périmètre
 
@@ -36,8 +36,8 @@ Les questions ci-dessous reprennent le périmètre [Q1 à Q6](../collectif/quest
 
 | ID | Référence | Constat documentaire | Réserve à lever |
 |---|---|---|---|
-| S1 | [BDIFF sur data.gouv.fr](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) | Fiche publiée par l'IGN, Licence Ouverte 2.0 ; données décrites depuis 2006 et agrégation communale | Couverture affichée 2006–2022 malgré une description évoquant l'année antérieure et une mise à jour du 13/12/2025 ; vérifier millésimes, granularité temporelle et champs réels |
-| S2 | [Archives Météo des forêts](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets/informations) | Météo-France, Licence Ouverte 2.0 ; couverture annoncée depuis le 03/06/2024, départementale ; mise à jour affichée le 05/10/2026 | Dates réellement renseignées, schéma, codes et échéances à contrôler dans les ressources |
+| S1 | [BDIFF sur data.gouv.fr](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) | Fiche publiée par l'IGN, licence affichée : Licence Ouverte 2.0 ; données décrites depuis 2006 et agrégation communale | Couverture affichée 2006–2022 malgré une description évoquant l'année antérieure et une mise à jour du 13/12/2025 ; vérifier millésimes, granularité temporelle et champs réels |
+| S2 | [Archives Météo des forêts](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets/informations) | Météo-France, licence affichée : Licence Ouverte 2.0 ; couverture annoncée depuis le 03/06/2024, départementale ; mise à jour affichée le 05/10/2026 | Dates réellement renseignées, schéma, codes et échéances à contrôler dans les ressources |
 | S3 | [Les feux de forêts — notre-environnement](https://www.notre-environnement.gouv.fr/themes/risques/article/les-feux-de-forets) | Synthèse du ministère, mise à jour le 14/09/2026 | Source de contexte ; ne fournit pas ici les observations nécessaires aux jointures |
 | S4 | [Météo des forêts — Météo-France](https://meteofrance.com/meteo-des-forets) | Information de danger départementale à quatre niveaux, pour le lendemain et le surlendemain | Choisir une échéance constante et conserver la date d'émission pour éviter d'utiliser une information indisponible au moment de la décision |
 
@@ -123,6 +123,17 @@ Pour d'éventuels fichiers SDIS, demander les seules variables utiles, privilég
 | Ludovic — modèle décisionnel | Schéma, mesures et scénarios | Grain et couverture confirmés |
 
 Cette répartition rappelle les rôles existants ; elle ne déclare pas ces travaux terminés. Le schéma en étoile détaillé et le choix technique seront proposés après inspection des colonnes ; aucune colonne source inexistante ne doit être supposée.
+
+### Suivi documentaire après revue
+
+La revue du coordinateur, transmise par Chantal le 17 novembre, est favorable sous réserve de C1–C3. La provenance est explicitée, l'arborescence est complétée et les statuts restent provisoires. La correction documentaire ne clôt pas les vérifications de données. Voir le [plan de suivi A1–A4](../suivi/actions-faisabilite.md).
+
+| Question | Données vérifiées disponibles | Données encore non vérifiées | Repli proposé, à arbitrer par le groupe | Limites |
+|---|---|---|---|---|
+| Q5 | Aucune dans cette contribution | Alerte, arrivée, localisation, centres, effectifs et objectif opérationnel | Si accès insuffisant : scénario pédagogique explicitement simulé, ou indicateur non calculable | Aucun délai cible inventé ; un refus d'accès n'est pas établi |
+| Q6 | Aucune dans cette contribution | Dates des feux, intervalles d'engagement, disponibilités, compétences, engins et coûts | Si accès insuffisant : scénario de charge explicitement simulé, ou indicateur non calculable | Dates seules insuffisantes pour mesurer une simultanéité ; aucun budget inventé |
+
+Aucune simulation n'est déclarée autorisée par défaut ni réalisée. Les hypothèses et leur éventuelle validation seront consignées au journal.
 
 ### Critères de relecture de la v1
 

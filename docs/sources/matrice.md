@@ -20,3 +20,7 @@
 3. Vérifier le grain événementiel et les clés avant d'agréger au département × jour.
 4. Réserver 2022 aux séries qui la couvrent ; ne pas simuler un niveau météo historique absent.
 5. Déclarer Q5–Q6 non calculables sur données observées sans accès suffisant ; identifier séparément toute simulation.
+
+## Suivi après revue
+
+Les vérifications A1–A4 sont décrites dans le [plan de suivi](../suivi/actions-faisabilite.md). Elles restent à faire. Aucune ressource métier n'est déclarée exploitable pour un indicateur par cette revue documentaire ; disponibilité, couverture et licence au niveau des fichiers restent à vérifier.
