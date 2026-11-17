@@ -2,6 +2,8 @@
 
 > **Proposition de travail à relire, personnaliser et valider par l'étudiant concerné.** Commande : SDIS 31, Haute-Garonne — saison des feux 2027.
 
+**Auteur de la proposition individuelle : Ludovic TUEKAM.**
+
 ## 1. Les questions
 
 Quatre questions dont la réponse aiderait la direction à trancher.
@@ -12,7 +14,7 @@ Quatre questions dont la réponse aiderait la direction à trancher.
 1. **Quel seuil de danger détecte la plus grande part des journées avec départ de feu ?** Argument décisionnel : Choisir un seuil qui limite les événements manqués.
 2. **Combien de journées de mobilisation chaque seuil entraînerait-il ?** Argument décisionnel : Écarter les seuils trop coûteux pour le budget.
 3. **Les performances d'un même seuil varient-elles selon les départements ?** Argument décisionnel : Envisager des seuils territorialisés si les différences sont robustes.
-4. **Un seuil déterminé sur les années passées reste-t-il pertinent sur une autre année ?** Argument décisionnel : Éviter une règle surajustée à un été exceptionnel.
+4. **Les effectifs et engins disponibles suffisent-ils pour couvrir simultanément plusieurs secteurs à danger élevé ?** Argument décisionnel : Dimensionner des renforts et des réserves en cas de simultanéité.
 
 ## 2. Les termes inconnus
 
@@ -43,6 +45,6 @@ Pour chaque question, la donnée idéale qu'il faudrait disposer avant de choisi
 | 1 | Danger quotidien et occurrence de feu | Département × jour | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 | 2 | Niveau de danger quotidien et durée du dispositif | Département × jour | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 | 3 | Danger et incendies comparables | Département × saison | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
-| 4 | Historique pluriannuel des deux séries | Département × jour | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
+| 4 | Disponibilité des équipes, engins et scénarios de simultanéité | Centre × jour × type de moyen | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 
 *Note méthodologique : la période et la fraîcheur sont des besoins idéaux, et non des caractéristiques vérifiées de sources existantes.*
