@@ -91,7 +91,9 @@ Recommandations argumentées et limites
         └── journal.md
 ```
 
-**État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) contiennent des **sources candidates, non encore vérifiées**.
+**Rendu du 17 novembre :** [spécification v1](docs/specification/specification-v1-2026-11-17.md), proposée à la relecture collective. Elle détaille les indicateurs, grains, contrôles et limites ; aucun résultat chiffré n'est produit. La revue de métadonnées ne remplace pas l'examen des fichiers bruts.
+
+**État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) distinguent les **métadonnées consultées et les sources candidates** ; aucun fichier métier brut n'a encore été vérifié.
 
 ## 🗓️ Jalons pédagogiques
 

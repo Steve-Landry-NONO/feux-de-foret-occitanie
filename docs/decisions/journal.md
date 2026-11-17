@@ -10,3 +10,14 @@
 | 2026-11-17 | Contributions personnelles | Chaque étudiant doit relire et commiter son analyse sous son compte | Exigence de l'exercice 1 ; fichiers initialement préparés par la coordination | **À réaliser / vérifier** |
 
 **Portée :** la validation du cadrage et des rôles est consignée à la demande du responsable de coordination ; elle ne constitue ni une preuve de vote formel des cinq membres ni une validation de données non examinées.
+
+## Contribution documentaire du 17 novembre 2026 — à relire
+
+La contribution préparée à la demande de Chantal CAMARA ajoute la [spécification v1](../specification/specification-v1-2026-11-17.md), issue du document de rendu transmis. L'inventaire, la matrice Q1–Q6 et le README sont alignés sur cette proposition.
+
+- **Constat documentaire :** les fiches BDIFF et archives météo ont été consultées ; les données brutes ne sont pas vérifiées.
+- **Réserve :** le chevauchement temporel des sources reste à démontrer.
+- **Propositions méthodologiques :** séparer les grains communal et départemental, documenter l'échéance météo, distinguer zéro et absence de données, distinguer multiplicité journalière et simultanéité.
+- **Statut :** soumis à relecture via pull request ; aucune validation collective, personnelle des cinq analyses ou opérationnelle n'est ajoutée par cette contribution.
+
+Les responsabilités existantes sont conservées. Les arbitrages sur les périodes, les ressources retenues et la faisabilité de Q5–Q6 restent à consigner après revue.
