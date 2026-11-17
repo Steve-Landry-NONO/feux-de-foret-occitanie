@@ -2,6 +2,8 @@
 
 > **Proposition de travail à relire, personnaliser et valider par l'étudiant concerné.** Commande : SDIS 31, Haute-Garonne — saison des feux 2027.
 
+**Auteur de la proposition individuelle : Steve Landry NONO.**
+
 ## 1. Les questions
 
 Quatre questions dont la réponse aiderait la direction à trancher.
@@ -12,7 +14,7 @@ Quatre questions dont la réponse aiderait la direction à trancher.
 1. **Quels territoires présentent la plus forte fréquence de départs de feu, compte tenu de leur exposition forestière ?** Argument décisionnel : Allouer prioritairement les moyens aux zones les plus exposées.
 2. **À partir de quel niveau de Météo des forêts la surveillance renforcée permettrait-elle de couvrir une part jugée acceptable des journées avec incendie ?** Argument décisionnel : Définir un seuil d'activation tenant compte des événements manqués.
 3. **Combien de journées de renforcement seraient nécessaires selon chaque seuil ?** Argument décisionnel : Comparer les scénarios au regard de la capacité budgétaire.
-4. **La règle choisie en Haute-Garonne serait-elle cohérente avec les autres départements d'Occitanie et la France ?** Argument décisionnel : Conserver une règle locale ou justifier des adaptations.
+4. **Quels moyens humains et matériels supplémentaires faudrait-il mobiliser pour couvrir les secteurs prioritaires au niveau de danger retenu ?** Argument décisionnel : Arbitrer entre renforts humains, prépositionnement et équipements, dans la limite du budget.
 
 ## 2. Les termes inconnus
 
@@ -43,6 +45,6 @@ Pour chaque question, la donnée idéale qu'il faudrait disposer avant de choisi
 | 1 | Incendies géolocalisés, surfaces forestières et limites administratives | Commune × année | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 | 2 | Niveau de danger et départs de feu par date | Département × jour | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 | 3 | Danger quotidien, coût ou effectifs par jour de mobilisation | Département × jour | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
-| 4 | Historique harmonisé des dangers et incendies | Département × saison | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
+| 4 | Effectifs disponibles, compétences, engins, capacités, coûts et secteurs | Centre × jour × type de ressource | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 
 *Note méthodologique : la période et la fraîcheur sont des besoins idéaux, et non des caractéristiques vérifiées de sources existantes.*
