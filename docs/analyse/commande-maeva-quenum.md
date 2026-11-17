@@ -2,6 +2,8 @@
 
 > **Proposition de travail à relire, personnaliser et valider par l'étudiant concerné.** Commande : SDIS 31, Haute-Garonne — saison des feux 2027.
 
+**Auteur de la proposition individuelle : Maeva QUENUM.**
+
 ## 1. Les questions
 
 Quatre questions dont la réponse aiderait la direction à trancher.
@@ -12,7 +14,7 @@ Quatre questions dont la réponse aiderait la direction à trancher.
 1. **Quelles communes concentrent les départs de feu rapportés à leur surface forestière ?** Argument décisionnel : Prioriser les patrouilles dans les communes où la fréquence relative est la plus forte.
 2. **La concentration spatiale des incendies est-elle stable d'une année sur l'autre ?** Argument décisionnel : Choisir des postes permanents si elle est stable, des moyens mobiles sinon.
 3. **Quels secteurs cumulent danger météorologique élevé et forte exposition forestière ?** Argument décisionnel : Renforcer le guet dans les secteurs cumulant ces facteurs.
-4. **Les départements voisins présentent-ils des situations comparables ?** Argument décisionnel : Mutualiser les moyens ou adapter localement le dispositif.
+4. **Quels secteurs présentent des délais d'arrivée des premiers secours incompatibles avec les objectifs opérationnels ?** Argument décisionnel : Adapter le prépositionnement des équipes si les délais sont élevés.
 
 ## 2. Les termes inconnus
 
@@ -43,6 +45,6 @@ Pour chaque question, la donnée idéale qu'il faudrait disposer avant de choisi
 | 1 | Incendies localisés et surface forestière | Commune × année | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 | 2 | Localisation et date des incendies | Commune × année | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 | 3 | Danger météo et couverture forestière | Zone météo × jour | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
-| 4 | Incendies, météo et référentiels départementaux | Département × saison | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
+| 4 | Horodatages des alertes, départs et arrivées, localisation des centres | Intervention × événement | Historique pluriannuel, incluant si possible 2024–2026 ; à vérifier | Dernier millésime disponible ; à vérifier | Haute-Garonne, Occitanie et France selon la question |
 
 *Note méthodologique : la période et la fraîcheur sont des besoins idéaux, et non des caractéristiques vérifiées de sources existantes.*
