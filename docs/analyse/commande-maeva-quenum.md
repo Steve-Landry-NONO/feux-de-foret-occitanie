@@ -1,8 +1,8 @@
 # Analyse de la commande - Maeva QUENUM
 
-> **Proposition de travail à relire, personnaliser et valider par l'étudiant concerné.** Commande : SDIS 31, Haute-Garonne — saison des feux 2027.
+> **Statut : version de cadrage retenue pour l'exercice 1.** Relecture personnelle et commit individuel du membre toujours attendus. Commande : SDIS 31, Haute-Garonne — saison des feux 2027.
 
-**Auteur de la proposition individuelle : Maeva QUENUM.**
+**Membre responsable de l'analyse : Maeva QUENUM.**
 
 ## 1. Les questions
 
