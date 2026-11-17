@@ -2,6 +2,8 @@
 
 > **Proposition de travail à relire, personnaliser et valider par l'étudiant concerné.** Commande : SDIS 31, Haute-Garonne — saison des feux 2027.
 
+**Auteur de la proposition individuelle : Chantal CAMARA.**
+
 ## 1. Les questions
 
 Quatre questions dont la réponse aiderait la direction à trancher.
