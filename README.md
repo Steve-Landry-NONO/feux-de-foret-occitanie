@@ -22,7 +22,7 @@ Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inve
 | Source | Lien | Statut documentaire |
 |---|---|---|
 | BDIFF — incendies de forêts en France | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) | Métadonnées consultées ; fichiers, dates et grain à vérifier |
-| Archives de la Météo des forêts | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets/informations) | Métadonnées consultées ; couverture effective et schéma à vérifier |
+| Archives de la Météo des forêts | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets/informations) | **Trois archives 2024–2026 téléchargées et profilées** ; validité des prévisions à confirmer |
 | Météo des forêts — explication des niveaux | [Météo-France](https://meteofrance.com/meteo-des-forets) | Documentation méthodologique, pas table de faits |
 | Contexte national des feux | [Notre Environnement](https://www.notre-environnement.gouv.fr/themes/risques/article/les-feux-de-forets) | Documentation de contexte |
 | Référentiels INSEE, couverture IGN, moyens SDIS, Gaspar / Prométhée | [Inventaire et points à vérifier](docs/sources/inventaire.md) | URL exacte / accès / usage encore à identifier |
@@ -64,6 +64,20 @@ Notre approche complète ce cadrage par la **capacité réelle de réponse** : d
 | **Q6** | Quels effectifs, compétences et engins faut-il pour couvrir plusieurs départs simultanés ? | Dimensionner les renforts et le matériel |
 
 Les questions sont **validées comme périmètre analytique**. Leur faisabilité, les seuils chiffrés et les recommandations dépendront des données réellement accessibles. Voir [l'argumentaire collectif](docs/collectif/questions-retenues-proposition.md).
+
+## Avancement de l'exploration des données — 19 novembre 2026
+
+Le projet a commencé la collecte et le profilage réel des sources, tout en conservant un statut explicite pour ce qui reste à vérifier.
+
+- **Archives Météo des forêts :** trois fichiers datés (2024, 2025, 2026), vérifiés par SHA-256 et [profilage automatique](docs/resultats/profilage_sources_v1.md) ; 11 520, 11 520 et 12 576 lignes, 96 départements dont les 13 d'Occitanie, 0 doublon sur département × date.
+- **Incendies :** une couche ArcGIS **secondaire** dérivée de BDIFF a pu être interrogée pour 2024 (413 événements en Occitanie) ; l'export primaire BDIFF doit encore être récupéré. Les endpoints secondaires testés pour 2025 renvoient HTTP 404.
+- **INSEE :** tentative de collecte officielle 2025 en erreur HTTP 504, [diagnostic consultable](docs/resultats/diagnostic_insee_v0.md) ; aucune ressource COG déclarée validée.
+- **Architecture :** [UML, flux de données et schéma en étoile V0](docs/modelisation/modeles-de-donnees-v0.md), à faire relire par le groupe, avec les clés et jointures candidates.
+- **Notebooks et tests :** les notebooks météo et jointure lisent les rapports produits par le pipeline ; des tests vérifient les dates, les codes et l'unicité des observations météo.
+
+**Les chiffres de raccord par même date ne sont pas des KPI validés** : la date d'émission et l'échéance J+1/J+2 restent à confirmer. Les questions Q5–Q6 restent conditionnées à l'accès aux données opérationnelles du SDIS.
+
+**Travail à relire :** [PR #3](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/pull/3) — tickets [#4](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/4), [#5](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/5), [#6](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/6), [#7](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/7), [#8](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/8).
 
 ## Méthode
 
