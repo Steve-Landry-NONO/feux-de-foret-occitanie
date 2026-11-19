@@ -15,11 +15,21 @@
 
 | ID | Source et accès | Ce que l'on cherche | Grain/temps à contrôler | Q | État |
 |---|---|---|---|---|---|
-| S01 | [BDIFF — catalogue](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) ; [application officielle](https://bdiff.agriculture.gouv.fr/incendies) | Feux, date, commune, surface, identifiant événement | Catalogue affiche 2006–2022, application présente aussi des années récentes ; possibilité d'export à confirmer | Q1, Q2, Q4 | Métadonnées consultées ; fichier non obtenu |
+| S01 | [BDIFF — catalogue](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) ; [application officielle](https://bdiff.agriculture.gouv.fr/incendies) | Feux, date, commune, surface, identifiant événement | Catalogue affiche 2006–2022 ; l'application BDIFF affiche 2025 et **propose un export CSV des résultats filtrés** (confirmé dans son aide officielle) | Q1, Q2, Q4 | Métadonnées consultées ; fichier non obtenu |
 | S02 | [Archives Météo des forêts](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets) : **mdf.2024, mdf.2025, mdf.2026**, documentation et géométrie des départements | Niveau de danger, émission/validité/échéance | Département × jour supposé, clés et couverture à confirmer sur les trois CSV.GZ | Q2, Q3, Q4 | Ressources annuelles repérées ; fichiers non ouverts |
 | S03 | [COG INSEE](https://www.data.gouv.fr/datasets/code-officiel-geographique-1) et [passage historique des codes](https://www.data.gouv.fr/datasets/table-de-passage-des-codes-communes-vers-le-millesime-en-vigueur-du-cog) | Codes et millésimes des communes et départements | Commune × millésime ; respecter les changements historiques | Q1, Q4, Q5 | Fiches repérées ; fichiers non ouverts |
 | S04 | [Masque Forêt IGN](https://www.data.gouv.fr/datasets/masque-foret) ; [BD Forêt V2](https://www.data.gouv.fr/datasets/bd-foret-r) | Dénominateur forestier, composition et surface | Polygones × millésime ; **choisir et documenter le référentiel retenu**, ne pas mélanger les surfaces | Q1, Q4 | Candidats ; extractions et unités non vérifiées |
 | S05 | [Interventions réalisées par les SIS (DGSCGC)](https://www.data.gouv.fr/datasets/interventions-realisees-par-les-services-d-incendie-et-de-secours) | Volume annuel départemental, comparaison nationale | À relever sur CSV ; **agrégat statistique, pas un journal horodaté des interventions** | Q4 ; contexte Q5 | Fiche et exports CSV repérés ; fichiers non ouverts |
+
+### Protocole BDIFF × Météo des forêts (priorité A1)
+
+1. Sur [la recherche BDIFF](https://bdiff.agriculture.gouv.fr/incendies), filtrer les incendies **2024**, puis **2025**, d'abord en Haute-Garonne (31), puis pour les 13 départements d'Occitanie : `09, 11, 12, 30, 31, 32, 34, 46, 48, 65, 66, 81, 82`.
+2. Utiliser **« Télécharger : CSV »** disponible sous les résultats (voir [l'aide officielle BDIFF](https://bdiff.agriculture.gouv.fr/aide/recherche)). Noter précisément **les filtres** et conserver les exports non modifiés avec SHA-256.
+3. Télécharger séparément les archives Météo des forêts **mdf.2024** et **mdf.2025** (le fichier **mdf.2026** servira ensuite à la préparation 2027, après contrôle de sa complétude).
+4. Relever les champs et les dates **dans les fichiers**. Vérifier l'heure d'alerte et son fuseau, les départements, le calendrier de jours attendus, les échéances météo et les valeurs manquantes.
+5. Dédupliquer au niveau de l'**identifiant événement**, agréger en `département × date`, puis joindre la météo à **une échéance définie**. Vérifier les nombres de jours retenus/exclus avant chaque ratio Q2–Q3.
+
+**Attention :** le portail BDIFF signale des données 2024 en cours de modification pour le département 09 (Ariège). Un feu **non renseigné** n'est pas un « jour sans feu ». Le chevauchement chronologique est désormais **plausible**, pas encore **démontré sur fichiers**.
 
 ## 3. Enrichissements pertinents (seulement si les indicateurs le justifient)
 
