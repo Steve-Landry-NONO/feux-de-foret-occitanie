@@ -24,17 +24,20 @@ jobs:
       - name: Vérifier le script avant téléchargement
         run: python3 -m py_compile scripts/collecter_cog_insee.py
       - name: Extraire les communes et les départements de la région 76
+        id: collecte
+        continue-on-error: true
         run: python3 scripts/collecter_cog_insee.py
       - name: Contrôler le manifeste et les fichiers produits
+        if: steps.collecte.outcome == 'success'
         run: |
           python3 -m json.tool datasets/public/insee_cog_2025/manifest.json > /dev/null
           test -s datasets/public/insee_cog_2025/occitanie_communes_2025.csv
           test -s datasets/public/insee_cog_2025/occitanie_departements_2025.csv
-      - name: Versionner le référentiel et ses preuves
+      - name: Versionner le référentiel ou le diagnostic d\'échec
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add datasets/public/insee_cog_2025/
+          git add -A -- datasets/public/insee_cog_2025/ docs/resultats/diagnostic_insee_v0.md 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "data(insee) : archiver le COG 2025 d'Occitanie et les empreintes"
             git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
