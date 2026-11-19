@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "extractions": [
+    {
+      "annee_archive": "2024",
+      "source": "Météo-France — Archives de la Météo des forêts",
+      "page_catalogue": "https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets",
+      "url_ressource_stable": "https://www.data.gouv.fr/api/1/datasets/r/59f2c103-f8d5-4216-9e46-de2327f4dc5a",
+      "identifiant_ressource": "59f2c103-f8d5-4216-9e46-de2327f4dc5a",
+      "licence_catalogue": "Licence Ouverte / Open Licence 2.0",
+      "date_collecte_utc": "2026-11-19T11:03:18.129302+00:00",
+      "fichier": "datasets/public/meteo_des_forets/mdf_2024.csv.gz",
+      "taille_octets": 40309,
+      "sha256": "e3f87c1161d30491ec7ad1149e0f8b5b89f3974d34dd3200ecbdd1d41b55115f",
+      "lignes_y_compris_entete": 11521,
+      "en_tetes_observees": [
+        "date",
+        "num_dep",
+        "niveau_j1",
+        "niveau_j2",
+        "nom_dep"
+      ],
+      "separateur_csv": ",",
+      "statut": "fichier_telecharge_et_structure_initiale_observee",
+      "grain_reel": "a_confirmer",
+      "couverture_reelle": "a_confirmer",
+      "jointures": "non_validees"
+    },
+    {
+      "annee_archive": "2025",
+      "source": "Météo-France — Archives de la Météo des forêts",
+      "page_catalogue": "https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets",
+      "url_ressource_stable": "https://www.data.gouv.fr/api/1/datasets/r/c1f8f7c8-e8cc-4d70-9372-43da3c878c81",
+      "identifiant_ressource": "c1f8f7c8-e8cc-4d70-9372-43da3c878c81",
+      "licence_catalogue": "Licence Ouverte / Open Licence 2.0",
+      "date_collecte_utc": "2026-11-19T11:03:19.020256+00:00",
+      "fichier": "datasets/public/meteo_des_forets/mdf_2025.csv.gz",
+      "taille_octets": 43511,
+      "sha256": "dd0a095b1744ef7c64e44c3a4560bdbd75a1fcbd7292942ba539c85b79e9e3b0",
+      "lignes_y_compris_entete": 11521,
+      "en_tetes_observees": [
+        "date",
+        "num_dep",
+        "niveau_j1",
+        "niveau_j2",
+        "dep_nom"
+      ],
+      "separateur_csv": ",",
+      "statut": "fichier_telecharge_et_structure_initiale_observee",
+      "grain_reel": "a_confirmer",
+      "couverture_reelle": "a_confirmer",
+      "jointures": "non_validees"
+    },
+    {
+      "annee_archive": "2026",
+      "source": "Météo-France — Archives de la Météo des forêts",
+      "page_catalogue": "https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets",
+      "url_ressource_stable": "https://www.data.gouv.fr/api/1/datasets/r/14f5607c-68b1-4b91-be36-b1265f309c51",
+      "identifiant_ressource": "14f5607c-68b1-4b91-be36-b1265f309c51",
+      "licence_catalogue": "Licence Ouverte / Open Licence 2.0",
+      "date_collecte_utc": "2026-11-19T11:03:20.157364+00:00",
+      "fichier": "datasets/public/meteo_des_forets/mdf_2026.csv.gz",
+      "taille_octets": 49870,
+      "sha256": "c02f4f539370a663e290c0dce57c2dc6857a47cfee60b052d4a77ea3cbabf33f",
+      "lignes_y_compris_entete": 12577,
+      "en_tetes_observees": [
+        "date",
+        "num_dep",
+        "niveau_j1",
+        "niveau_j2",
+        "nom_dep"
+      ],
+      "separateur_csv": ";",
+      "statut": "fichier_telecharge_et_structure_initiale_observee",
+      "grain_reel": "a_confirmer",
+      "couverture_reelle": "a_confirmer",
+      "jointures": "non_validees"
+    }
+  ]
+}

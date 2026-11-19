@@ -221,3 +221,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Projet feux de forêt : données téléchargées et productions locales
+# Ne jamais publier ici des extractions brutes ou des données SDIS restreintes.
+data/raw/
+data/processed/
+data/restricted/
+data/exports/

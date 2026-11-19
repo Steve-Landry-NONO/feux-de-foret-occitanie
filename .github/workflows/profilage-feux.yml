@@ -1,0 +1,62 @@
+name: Profiler les sources et tester les jointures candidates
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/profilage-feux.yml
+      - scripts/profiler_et_joindre_donnees.py
+      - scripts/collecter_feux_arcgis.py
+      - tests/test_qualite_sources.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  analyser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Consulter la branche de travail
+        uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+          persist-credentials: true
+      - name: Contrôler la syntaxe des scripts
+        run: python3 -m py_compile scripts/collecter_feux_arcgis.py scripts/profiler_et_joindre_donnees.py
+      - name: Tester les dates, codes et doublons sur les archives météo
+        run: python3 -m unittest discover -s tests -v
+      - name: Essayer de collecter la source secondaire BDIFF 2024–2025
+        id: feux
+        continue-on-error: true
+        run: python3 scripts/collecter_feux_arcgis.py
+      - name: Signaler la limite si les feux sont inaccessibles
+        if: steps.feux.outcome != 'success'
+        run: echo "Source secondaire ArcGIS non obtenue ; profilage météo seul, sans prétendre à un KPI croisé."
+      - name: Profiler les fichiers réellement disponibles
+        run: python3 scripts/profiler_et_joindre_donnees.py
+      - name: Contrôler les rapports produits
+        run: |
+          python3 -m json.tool docs/resultats/profilage_sources_v1.json >/dev/null
+          test -s docs/resultats/profilage_sources_v1.md
+          test -s docs/resultats/danger_j1_haute_garonne.svg
+      - name: Archiver uniquement les rapports et non les données secondaires
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-sources-feux-occitanie
+          path: docs/resultats/
+          retention-days: 30
+      - name: Verser les preuves réelles sur la branche
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/resultats/profilage_sources_v1.json docs/resultats/profilage_sources_v1.md docs/resultats/danger_j1_haute_garonne.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "data(qualite) : publier les résultats vérifiés du profilage et du raccord exploratoire"
+            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          else
+            echo "Aucun changement dans les résultats."
+          fi

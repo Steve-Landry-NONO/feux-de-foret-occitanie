@@ -1,0 +1,54 @@
+name: Collecter les archives publiques Météo des forêts
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/collecte-mdf.yml
+      - scripts/collecter_archives_mdf_ci.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collecte:
+    # Collecte ponctuelle : pas de réécriture automatique des archives déjà versionnées.
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Récupérer la branche de collecte
+        uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+          persist-credentials: true
+      - name: Télécharger uniquement si les archives n'ont pas déjà été versées
+        run: |
+          if test -s datasets/public/meteo_des_forets/manifest.json; then
+            echo "Archives déjà présentes : conservation des versions et empreintes existantes."
+          else
+            python3 scripts/collecter_archives_mdf_ci.py
+          fi
+      - name: Vérifier la présence des fichiers et du manifeste
+        run: |
+          ls -lh datasets/public/meteo_des_forets/
+          python3 -m json.tool datasets/public/meteo_des_forets/manifest.json > /dev/null
+      - name: Archiver les ressources comme pièce jointe du job
+        uses: actions/upload-artifact@v4
+        with:
+          name: meteo-des-forets-archives-2024-2026
+          path: datasets/public/meteo_des_forets/
+          retention-days: 30
+      - name: Ajouter les fichiers contrôlés à la PR
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datasets/public/meteo_des_forets
+          if ! git diff --cached --quiet; then
+            git commit -m "data(météo) : archiver les ressources 2024 à 2026 et leurs empreintes"
+            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          else
+            echo "Aucun changement : versions déjà archivées."
+          fi
