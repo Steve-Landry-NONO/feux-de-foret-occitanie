@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 
 LAYERS = {
     "2024": "https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/G%C3%A9orisques___Les_feux_de_For%C3%AAt__2024_/FeatureServer/16",
-    "2025": "https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/G%C3%A9orisques___Les_feux_de_For%C3%AAt__2025_/FeatureServer/13",
+    "2025": "https://services.arcgis.com/d3voDfTFbHOCRwVR/ArcGIS/rest/services/G%C3%A9orisques___Les_feux_de_For%C3%AAt/FeatureServer/14",
 }
 OCCITANIE = ("09", "11", "12", "30", "31", "32", "34", "46", "48", "65", "66", "81", "82")
 CHAMPS = ("OBJECTID", "Annee", "Numero", "Departement", "Code_INSEE",
