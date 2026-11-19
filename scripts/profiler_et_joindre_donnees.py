@@ -111,6 +111,10 @@ def run():
     RESULT.mkdir(parents=True,exist_ok=True)
     ms,mi,gr=meteo()
     es,feu,_=incendies()
+    diagnostic_collecte={}
+    p_diag=FEUX/"manifest-local.json"
+    if p_diag.exists():
+        diagnostic_collecte=json.loads(p_diag.read_text(encoding="utf-8"))
     joint=[]
     for annee in ("2024","2025"):
         a={k for k in feu if k[0]==annee}
@@ -120,7 +124,7 @@ def run():
             "jours_avec_feu_31":sum(1 for k in a if k[1]=="31"),
             "raccord_31":sum(1 for k in b if k[1]=="31")})
     result={"genere_utc":datetime.now(timezone.utc).isoformat(),
-        "meteo":ms,"incendies":es,"raccord_technique_NON_KPI":joint,
+        "meteo":ms,"incendies":es,"collecte_arcgis":diagnostic_collecte,"raccord_technique_NON_KPI":joint,
         "limites":[
            "La date de référence météo et la validité J+1/J+2 restent à établir.",
            "Les valeurs de jour sans feu ne sont pas garanties si le recensement est incomplet.",
