@@ -102,4 +102,17 @@ def main():
     print("COMMUNES PAR DÉPARTEMENT :",count_by_dep)
 
 if __name__=="__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:
+        dossier = Path("docs/resultats")
+        dossier.mkdir(parents=True, exist_ok=True)
+        description = (
+            "# Tentative de collecte INSEE COG 2025 — contrôle technique\n\n"
+            "**Statut : collecte non aboutie.** Aucun référentiel INSEE n'est validé par cette tentative.\n\n"
+            "Source officielle : https://www.insee.fr/fr/information/8377162\n\n"
+            "Erreur interceptée : " + type(exc).__name__ + " — " + str(exc)[:400] + "\n\n"
+            "À vérifier : réseau du runner, URL de la ressource, schéma CSV, filtrage REG=76.\n"
+        )
+        (dossier / "diagnostic_insee_v0.md").write_text(description, encoding="utf-8")
+        raise
