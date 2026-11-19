@@ -5,7 +5,7 @@
 
 > **Projet pédagogique HETIC — Mastère Data & IA, UE01 Stratégie Business Data-Driven (2026–2027).** Encadrement : Marine PROST. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
 
-## 🔗 Espaces de travail et suivi
+## Espaces de travail et suivi
 
 | Espace | Accès | Utilisation |
 |---|---|---|
@@ -15,7 +15,7 @@
 
 **Convention :** chaque carte technique Trello référence son Issue GitHub ; chaque PR référence l'Issue correspondante. Le dépôt reste la source de vérité pour le code et les livrables versionnés. Ne pas confondre le Drive pédagogique et le Drive collectif.
 
-## 🗃️ Sources de données et documentation externe
+## Sources de données et documentation externe
 
 Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inventaire.md). **Ils désignent des sources candidates ou des pages de documentation, et non des jeux de données déjà validés ou profilés.**
 
@@ -29,7 +29,7 @@ Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inve
 
 **Point bloquant prioritaire :** le chevauchement temporel entre les observations d'incendies et les archives météo reste à démontrer avant de calculer les indicateurs croisés. Voir [actions de faisabilité A1–A4](docs/suivi/actions-faisabilite.md) et [matrice questions × sources](docs/sources/matrice.md).
 
-## 🎯 Notre mission
+## Notre mission
 
 La Haute-Garonne prépare la saison des feux de forêt 2027 avec un risque d'activité comparable ou supérieur à 2026. Le SDIS ne peut pas renforcer toutes les patrouilles partout, tout l'été. Il doit répondre à deux décisions :
 
@@ -40,7 +40,7 @@ Notre approche complète ce cadrage par la **capacité réelle de réponse** : d
 
 **Objectif :** transformer une commande opérationnelle en questions mesurables, données traçables, indicateurs explicables et recommandations argumentées. **Nous ne prétendons pas prédire individuellement chaque incendie.**
 
-## 👥 Équipe et responsabilités — VALIDÉES
+## Équipe et responsabilités — VALIDÉES
 
 | Membre | Rôle confirmé | Responsabilités principales |
 |---|---|---|
@@ -52,7 +52,7 @@ Notre approche complète ce cadrage par la **capacité réelle de réponse** : d
 
 **Règle d'équipe :** les rôles structurent la responsabilité, mais **les analyses, les revues et la qualité finale sont collectives**. Chaque étudiant contribue sous son propre compte GitHub.
 
-## ❓ Questions décisionnelles — VALIDÉES POUR LE CADRAGE
+## Questions décisionnelles — VALIDÉES POUR LE CADRAGE
 
 | ID | Question | Décision visée |
 |---|---|---|
@@ -65,7 +65,7 @@ Notre approche complète ce cadrage par la **capacité réelle de réponse** : d
 
 Les questions sont **validées comme périmètre analytique**. Leur faisabilité, les seuils chiffrés et les recommandations dépendront des données réellement accessibles. Voir [l'argumentaire collectif](docs/collectif/questions-retenues-proposition.md).
 
-## 🔎 Méthode
+## Méthode
 
 ```text
 Commande du SDIS 31
@@ -93,7 +93,7 @@ Recommandations argumentées et limites
 - **Comparaison territoriale** : vérifier les périodes, les grains, les référentiels et les dénominateurs (notamment la surface forestière).
 - **Coût estimé ≠ coût constaté** : documenter les hypothèses de simulation.
 
-## 📁 Structure du dépôt
+## Structure du dépôt
 
 ```text
 .
@@ -123,7 +123,7 @@ Recommandations argumentées et limites
 
 **État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) distinguent les **métadonnées consultées et les sources candidates** ; aucun fichier métier brut n'a encore été vérifié.
 
-## 🗓️ Jalons pédagogiques
+## Jalons pédagogiques
 
 | Date | Attendu |
 |---|---|
@@ -135,7 +135,7 @@ Recommandations argumentées et limites
 
 Ces dates sont les **échéances pédagogiques**, et non des preuves que chaque livrable est terminé.
 
-## 🤝 Contribuer
+## Contribuer
 
 1. Accepter l'invitation GitHub et cloner le dépôt : `git clone https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie.git`.
 2. Créer une branche par tâche : `git checkout -b docs/analyse-prenom`.
@@ -145,7 +145,7 @@ Ces dates sont les **échéances pédagogiques**, et non des preuves que chaque 
 
 **Convention de validation :** *validé pour le cadrage* signifie que le groupe a retenu un rôle, une question ou une structure de travail ; cela **ne signifie pas** que les données, les chiffres, les sources ou les contributions personnelles sont vérifiés. Les changements importants sont consignés dans le [journal des décisions](docs/decisions/journal.md).
 
-## 📚 Références pédagogiques
+## Références pédagogiques
 
 - Marine PROST, **Exercice 1 — De la commande aux données — Occitanie**.
 - **Template analyse de la commande**.
