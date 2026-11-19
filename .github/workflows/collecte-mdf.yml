@@ -6,10 +6,12 @@ on:
       - docs/notebooks-exploration-v0-2026-11-19
     paths:
       - .github/workflows/collecte-mdf.yml
+      - scripts/collecter_archives_mdf_ci.py
   pull_request:
     types: [synchronize]
     paths:
       - .github/workflows/collecte-mdf.yml
+      - scripts/collecter_archives_mdf_ci.py
 
 permissions:
   contents: write
