@@ -36,3 +36,13 @@ Revue transmise par Chantal : avis favorable sous réserve des corrections docum
 | A1–A4 | [Plan distinct de suivi](../suivi/actions-faisabilite.md), avec résultats attendus et rôles proposés | Planifiées dans le dépôt, non réalisées |
 
 Les commits de correction décrivent l'assistance à la rédaction ; ils ne certifient pas l'appropriation personnelle du texte par un membre. La fusion et la revue finale restent distinctes de cette mise à jour.
+
+## 19 novembre 2026 — Module MD5 KPI et atelier 1
+
+- **Cours examiné :** Bilel Maïz, *Définition de KPIs : mesurer pour décider*, sections 1 à 9 ; atelier « De la décision au premier chiffre » du 19/11/2026, parties A à F.
+- **Exigences :** question de décision complète, dix indicateurs candidats triés avec RACER, GQM et arbre à trois niveaux, trois fiches KPI, deux sources consolidées, cinq années de calcul réel, normalisation, sensibilité, effets pervers.
+- **Proposition à valider collectivement :** arbitrer le seuil d'activation de surveillance renforcée en Haute-Garonne pour 2027 en comparant couverture des jours avec feu et charge d'activation. La question n'est **pas encore figée** ; elle servira aussi à l'oral de décembre.
+- **Document créé :** [atelier 1 — dossier de travail](../kpi/atelier-01-2026-11-19.md).
+- **Non réalisé / non prouvé :** aucun export BDIFF ou météo inspecté ni jointure exécutée dans cette contribution ; aucun résultat chiffré ou test de sensibilité validé ; aucun envoi au professeur effectué.
+- **Échéance :** envoi le 19/11, même inachevé ; noms demandés `G07_Atelier1_KPI.pdf` et `G07_Atelier1_calcul.ipynb` ou .xlsx (adapter G07 au numéro réel).
+- **Répartition proposée :** Steve (coordination), Maeva (sources), Chantal (qualité), Stéphane (calcul), Ludovic (arbre et modèle) ; relecture collective.
