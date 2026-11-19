@@ -33,7 +33,7 @@ Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inve
 
 - [Polycopié et atelier : dossier de travail A–F](docs/kpi/atelier-01-2026-11-19.md) — **propositions à valider, calculs réels non effectués**.
 - [Journal des décisions](docs/decisions/journal.md) — trace de la séance et des points ouverts.
-- [Dossier Drive de l'atelier](https://drive.google.com/drive/folders/1iMk2890zeldg9ekIcnssBmdgeEZ9YF-J) · [Drive projet Feux de Forêt](https://drive.google.com/drive/folders/1hmXnuUVU_Uj0LLo5ZTkJaSwenAip6jI2).
+- [Dossier Drive de l'atelier](https://drive.google.com/drive/folders/1iMk2890zeldg9ekIcnssBmdgeEZ9YF-J) · [PDF de travail](https://drive.google.com/file/d/1j4hxjy7fNwOo7PNqR98vMszcQa1c3QMd/view?usp=drivesdk) · [Notebook de calcul](https://drive.google.com/file/d/1BLCglG8rLckMRBjhg0h9lfeXwXxPI6pb/view?usp=drivesdk) · [Cours](https://drive.google.com/file/d/18yw2Zou93xKSQ50-SXAaYbuRR_S_3-HL/view?usp=drivesdk) · [Énoncé](https://drive.google.com/file/d/1K7vTtiQt3VEOidCSQe_DkUXvmRlVzEm-/view?usp=drivesdk) · [Drive projet Feux de Forêt](https://drive.google.com/drive/folders/1hmXnuUVU_Uj0LLo5ZTkJaSwenAip6jI2).
 - **À remettre le 19/11 :** `G07_Atelier1_KPI.pdf` et `G07_Atelier1_calcul.ipynb` (ou .xlsx), sous réserve du numéro de groupe exact. L'atelier est non noté mais doit être transmis même inachevé.
 
 ## Notre mission
