@@ -1,0 +1,34 @@
+name: Synchroniser la PR d'exploration avec main
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/synchroniser-main.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  synchroniser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Récupérer tout l'historique Git
+        uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+          fetch-depth: 0
+      - name: Fusionner les changements de main sans réécrire l'historique
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo "La branche intègre déjà main."
+          else
+            git merge --no-ff origin/main -m "chore(git) : intégrer les évolutions récentes de main dans la branche exploration"
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          fi
