@@ -11,7 +11,7 @@
 |---|---|---|
 | **GitHub** | [Dépôt du projet](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie) · [Issues](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues) · [Pull requests](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/pulls) | Code, documentation versionnée, tickets, revues et preuves de contribution |
 | **Trello** | [Tableau de suivi HETIC UE01](https://trello.com/b/TqnYAupj/hetic-ue01-feux-de-for%C3%AAt-pilotage-%C3%A9quipe) | Répartition des tâches, jalons, blocages et avancement |
-| **Google Drive du groupe** | **Lien du dossier collectif à confirmer** | Documents partagés, supports et éventuels fichiers de travail |
+| **Google Drive du groupe** | [Dossier collaboratif MD5](https://drive.google.com/drive/folders/1SLx__GbAFq-2ZqFKY0MmccqqbGxK6tnG?usp=sharing) | Documents partagés, supports et éventuels fichiers de travail |
 
 **Convention :** chaque carte technique Trello référence son Issue GitHub ; chaque PR référence l'Issue correspondante. Le dépôt reste la source de vérité pour le code et les livrables versionnés. Ne pas confondre le Drive pédagogique et le Drive collectif.
 
