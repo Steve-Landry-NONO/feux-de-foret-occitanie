@@ -7,19 +7,14 @@ on:
     paths:
       - .github/workflows/collecte-mdf.yml
       - scripts/collecter_archives_mdf_ci.py
-  pull_request:
-    types: [synchronize]
-    paths:
-      - .github/workflows/collecte-mdf.yml
-      - scripts/collecter_archives_mdf_ci.py
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   collecte:
-    # Une PR externe ne doit jamais pouvoir déclencher une écriture dans le dépôt.
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    # Collecte ponctuelle : pas de réécriture automatique des archives déjà versionnées.
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -28,8 +23,13 @@ jobs:
         with:
           ref: docs/notebooks-exploration-v0-2026-11-19
           persist-credentials: true
-      - name: Télécharger et contrôler trois archives officielles
-        run: python3 scripts/collecter_archives_mdf_ci.py
+      - name: Télécharger uniquement si les archives n'ont pas déjà été versées
+        run: |
+          if test -s datasets/public/meteo_des_forets/manifest.json; then
+            echo "Archives déjà présentes : conservation des versions et empreintes existantes."
+          else
+            python3 scripts/collecter_archives_mdf_ci.py
+          fi
       - name: Vérifier la présence des fichiers et du manifeste
         run: |
           ls -lh datasets/public/meteo_des_forets/
@@ -45,5 +45,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add datasets/public/meteo_des_forets
-          git commit -m "data(météo) : archiver les ressources 2024 à 2026 et leurs empreintes"
-          git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          if ! git diff --cached --quiet; then
+            git commit -m "data(météo) : archiver les ressources 2024 à 2026 et leurs empreintes"
+            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          else
+            echo "Aucun changement : versions déjà archivées."
+          fi
