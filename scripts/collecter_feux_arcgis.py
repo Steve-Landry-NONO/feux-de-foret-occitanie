@@ -76,10 +76,16 @@ def collecter(annee, couche):
 def main():
     DOSSIER.mkdir(parents=True, exist_ok=True)
     manifest = []
+    erreurs = []
     for annee, url in LAYERS.items():
-        attributs, filtre = collecter(annee, url)
-        if not attributs:
-            raise ValueError(f"Aucun feu trouvé en {annee} : contrôle de filtre requis")
+        try:
+            attributs, filtre = collecter(annee, url)
+            if not attributs:
+                raise ValueError(f"Aucun feu trouvé en {annee} : contrôle de filtre requis")
+        except Exception as exc:
+            print(f"ÉCHEC contrôlé pour {annee} : {type(exc).__name__}: {exc}", flush=True)
+            erreurs.append({"annee": annee, "couche": url, "type": type(exc).__name__, "message": str(exc)[:500]})
+            continue
         path = DOSSIER / f"evenements_derive_bdiff_{annee}_occitanie.csv"
         with path.open("w", newline="", encoding="utf-8") as handle:
             writer = csv.DictWriter(handle, fieldnames=list(CHAMPS) + ["date_alerte_utc", "date_alerte_paris", "date_jour_paris"])
@@ -105,7 +111,7 @@ def main():
         })
         print(f"{annee} : {len(attributs)} feux, fichier local {path}, empreinte SHA-256 {manifest[-1]['sha256']}")
     (DOSSIER / "manifest-local.json").write_text(
-        json.dumps({"sources": manifest}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        json.dumps({"sources": manifest, "erreurs": erreurs}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
 
 if __name__ == "__main__":
