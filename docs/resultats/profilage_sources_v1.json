@@ -1,0 +1,118 @@
+{
+  "genere_utc": "2026-11-19T14:14:27.024873+00:00",
+  "meteo": [
+    {
+      "annee": "2024",
+      "lignes": 11520,
+      "departements": 96,
+      "departements_occitanie": 13,
+      "dates_distinctes": 120,
+      "date_min": "2024-06-03",
+      "date_max": "2024-09-30",
+      "dates_invalides": 0,
+      "doublons_depart_jour": 0,
+      "champs": [
+        "date",
+        "num_dep",
+        "niveau_j1",
+        "niveau_j2",
+        "nom_dep"
+      ],
+      "vides": {},
+      "niveaux_j1": {
+        "1": 10332,
+        "2": 1022,
+        "3": 165,
+        "4": 1
+      }
+    },
+    {
+      "annee": "2025",
+      "lignes": 11520,
+      "departements": 96,
+      "departements_occitanie": 13,
+      "dates_distinctes": 120,
+      "date_min": "2025-06-03",
+      "date_max": "2025-09-30",
+      "dates_invalides": 0,
+      "doublons_depart_jour": 0,
+      "champs": [
+        "date",
+        "num_dep",
+        "niveau_j1",
+        "niveau_j2",
+        "dep_nom"
+      ],
+      "vides": {},
+      "niveaux_j1": {
+        "1": 8487,
+        "2": 2476,
+        "3": 528,
+        "4": 29
+      }
+    },
+    {
+      "annee": "2026",
+      "lignes": 12576,
+      "departements": 96,
+      "departements_occitanie": 13,
+      "dates_distinctes": 131,
+      "date_min": "2026-05-28",
+      "date_max": "2026-10-05",
+      "dates_invalides": 0,
+      "doublons_depart_jour": 0,
+      "champs": [
+        "date",
+        "num_dep",
+        "niveau_j1",
+        "niveau_j2",
+        "nom_dep"
+      ],
+      "vides": {},
+      "niveaux_j1": {
+        "1": 5364,
+        "2": 5265,
+        "3": 1848,
+        "4": 99
+      }
+    }
+  ],
+  "incendies": [
+    {
+      "annee": "2024",
+      "statut": "derive_BDIFF_Esri_non_recoupe_avec_original",
+      "lignes": 413,
+      "evenements_retenus": 413,
+      "sans_date": 0,
+      "hors_occitanie": 0
+    },
+    {
+      "annee": "2025",
+      "statut": "non_collecte"
+    }
+  ],
+  "raccord_technique_NON_KPI": [
+    {
+      "annee": "2024",
+      "jours_avec_feu": 289,
+      "raccord_meme_date": 161,
+      "sans_correspondance": 128,
+      "jours_avec_feu_31": 1,
+      "raccord_31": 0
+    },
+    {
+      "annee": "2025",
+      "jours_avec_feu": 0,
+      "raccord_meme_date": 0,
+      "sans_correspondance": 0,
+      "jours_avec_feu_31": 0,
+      "raccord_31": 0
+    }
+  ],
+  "limites": [
+    "La date de référence météo et la validité J+1/J+2 restent à établir.",
+    "Les valeurs de jour sans feu ne sont pas garanties si le recensement est incomplet.",
+    "ArcGIS est une source Esri dérivée de BDIFF, sans validation par l'export primaire.",
+    "Les intervalles d'engagement et les coûts SDIS ne sont pas disponibles ici."
+  ]
+}
