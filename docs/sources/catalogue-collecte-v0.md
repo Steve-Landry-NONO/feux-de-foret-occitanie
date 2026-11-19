@@ -37,7 +37,7 @@
 | S15 | [Pyronear — images de départs de feux 2024](https://www.data.gouv.fr/datasets/images-de-departs-de-feux-sdis-2024) | Annexe possible sur détection par images | Hors cœur Q1–Q6 | Très volumineux ; priorité basse et pas de nouvel objectif de computer vision sans décision |
 | S16 | [Accessibilité physique des forêts](https://www.data.gouv.fr/datasets/accessibilite-physique-des-forets-1) | Hypothèses de prépositionnement et accessibilité | Q5 | Accessibilité forestière générique ≠ temps d'arrivée d'un engin SDIS |
 | S17 | [Copernicus — indicateurs de danger climatique](https://cds.climate.copernicus.eu/datasets/sis-tourism-fire-danger-indicators?tab=overview) | Stress-test climatique, évolution de danger | Q4 | FWI projeté ≠ niveau officiel Météo des forêts ; hors besoin minimal |
-| S18 | [BD TOPO/transport — IGN](https://www.data.gouv.fr/datasets/admin-express-admin-express-cog-admin-express-cog-carto-admin-express-cog-carto-pe-admin-express-cog-carto-plus-pe) | Référentiel géographique de base pour une future étude de trajet | Q5 | Le lien pointe **uniquement vers Admin Express** ; identifier une ressource routière BD TOPO avant emploi |
+| S18 | [BD TOPO — IGN](https://www.data.gouv.fr/datasets/bd-topo-r) | Référentiel géographique de base pour une future étude de trajet | Q5 | Identifier et extraire uniquement le thème routier et son millésime ; réseau routier ≠ délai d'intervention observé |
 
 ## 4. Points de jonction à investiguer
 
