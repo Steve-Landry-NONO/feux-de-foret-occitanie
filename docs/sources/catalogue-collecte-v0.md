@@ -1,6 +1,6 @@
 # Catalogue de collecte des données — v0 (19 novembre 2026)
 
-**Statut : recherche documentaire.** Les fiches publiques ont été consultées ; aucune ligne issue d'un fichier brut n'a été profilée dans cette contribution. Ce catalogue complète l'[inventaire](inventaire.md), la [matrice Q1–Q6](matrice.md) et le [suivi A1–A4](../suivi/actions-faisabilite.md). Il ne remplace pas les fiches individuelles demandées par Marine PROST.
+**Statut actualisé le 19/11/2026 :** trois fichiers bruts Météo des forêts (2024, 2025, 2026) ont été collectés et versionnés avec SHA-256 ; leurs en-têtes et nombres de lignes ont été contrôlés. Les données incendie BDIFF et les autres sources ne sont **pas** encore collectées. Aucun indicateur Q1–Q6 n'est calculé ni validé. Ce catalogue complète l'[inventaire](inventaire.md), la [matrice Q1–Q6](matrice.md) et le [suivi A1–A4](../suivi/actions-faisabilite.md). Il ne remplace pas les fiches individuelles demandées par Marine PROST.
 
 ## 1. Principe : une source sert une question, pas l'inverse
 
@@ -16,7 +16,7 @@
 | ID | Source et accès | Ce que l'on cherche | Grain/temps à contrôler | Q | État |
 |---|---|---|---|---|---|
 | S01 | [BDIFF — catalogue](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) ; [application officielle](https://bdiff.agriculture.gouv.fr/incendies) | Feux, date, commune, surface, identifiant événement | Catalogue affiche 2006–2022 ; l'application BDIFF affiche 2025 et **propose un export CSV des résultats filtrés** (confirmé dans son aide officielle) | Q1, Q2, Q4 | Métadonnées consultées ; fichier non obtenu |
-| S02 | [Archives Météo des forêts](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets) : **mdf.2024, mdf.2025, mdf.2026**, documentation et géométrie des départements | Niveau de danger, émission/validité/échéance | Département × jour supposé, clés et couverture à confirmer sur les trois CSV.GZ | Q2, Q3, Q4 | Ressources annuelles repérées ; fichiers non ouverts |
+| S02 | [Archives Météo des forêts](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets) : **mdf.2024, mdf.2025, mdf.2026**, documentation et géométrie des départements | Niveau de danger, émission/validité/échéance | Département × jour supposé, clés et couverture à confirmer sur les trois CSV.GZ | Q2, Q3, Q4 | **Trois fichiers récupérés** ; en-têtes et séparateurs observés, schéma métier et dates non validés |
 | S03 | [COG INSEE](https://www.data.gouv.fr/datasets/code-officiel-geographique-1) et [passage historique des codes](https://www.data.gouv.fr/datasets/table-de-passage-des-codes-communes-vers-le-millesime-en-vigueur-du-cog) | Codes et millésimes des communes et départements | Commune × millésime ; respecter les changements historiques | Q1, Q4, Q5 | Fiches repérées ; fichiers non ouverts |
 | S04 | [Masque Forêt IGN](https://www.data.gouv.fr/datasets/masque-foret) ; [BD Forêt V2](https://www.data.gouv.fr/datasets/bd-foret-r) | Dénominateur forestier, composition et surface | Polygones × millésime ; **choisir et documenter le référentiel retenu**, ne pas mélanger les surfaces | Q1, Q4 | Candidats ; extractions et unités non vérifiées |
 | S05 | [Interventions réalisées par les SIS (DGSCGC)](https://www.data.gouv.fr/datasets/interventions-realisees-par-les-services-d-incendie-et-de-secours) | Volume annuel départemental, comparaison nationale | À relever sur CSV ; **agrégat statistique, pas un journal horodaté des interventions** | Q4 ; contexte Q5 | Fiche et exports CSV repérés ; fichiers non ouverts |
@@ -25,7 +25,7 @@
 
 1. Sur [la recherche BDIFF](https://bdiff.agriculture.gouv.fr/incendies), filtrer les incendies **2024**, puis **2025**, d'abord en Haute-Garonne (31), puis pour les 13 départements d'Occitanie : `09, 11, 12, 30, 31, 32, 34, 46, 48, 65, 66, 81, 82`.
 2. Utiliser **« Télécharger : CSV »** disponible sous les résultats (voir [l'aide officielle BDIFF](https://bdiff.agriculture.gouv.fr/aide/recherche)). Noter précisément **les filtres** et conserver les exports non modifiés avec SHA-256.
-3. Télécharger séparément les archives Météo des forêts **mdf.2024** et **mdf.2025** (le fichier **mdf.2026** servira ensuite à la préparation 2027, après contrôle de sa complétude).
+3. Les archives Météo des forêts **2024, 2025 et 2026 sont désormais versionnées** dans [`datasets/public/meteo_des_forets/`](../../datasets/public/meteo_des_forets/README.md). Utiliser le manifeste et les vérifications du notebook ; la saison 2026 doit être contrôlée avant comparaison.
 4. Relever les champs et les dates **dans les fichiers**. Vérifier l'heure d'alerte et son fuseau, les départements, le calendrier de jours attendus, les échéances météo et les valeurs manquantes.
 5. Dédupliquer au niveau de l'**identifiant événement**, agréger en `département × date`, puis joindre la météo à **une échéance définie**. Vérifier les nombres de jours retenus/exclus avant chaque ratio Q2–Q3.
 
@@ -69,4 +69,15 @@
 4. Exécuter `notebooks/01` et `02` avant de tenter le notebook des jointures ; compléter les fiches de sources individuelles sous les comptes des membres concernés.
 5. Ne passer de « métadonnées consultées » à « fichier examiné » que lorsque son contenu, son schéma et sa couverture ont effectivement été contrôlés.
 
-**Limite de cette mise à jour :** aucune ressource brute n'a pu être téléchargée dans l'environnement d'exécution ici. Les statuts restent donc « repérée » ou « métadonnées consultées ». Les responsables de revue sont à confirmer avec le groupe.
+**Limites actuelles :** les archives Météo des forêts ont été téléchargées via un runner GitHub connecté, avec contrôle d'intégrité et des en-têtes ; leur couverture réelle reste à profiler. BDIFF nécessite encore un export CSV filtré. Les autres sources restent des candidates, et les responsables de revue sont à confirmer avec le groupe.
+
+
+## 6. Collecte effective — 19 novembre 2026
+
+| Source | Fichier suivi dans Git | Lignes | Schéma constaté | Statut |
+|---|---|---:|---|---|
+| MdF 2024 | `datasets/public/meteo_des_forets/mdf_2024.csv.gz` | 11 520 | `date,num_dep,niveau_j1,niveau_j2,nom_dep` (virgule) | Fichier téléchargé ; indicateurs non validés |
+| MdF 2025 | `datasets/public/meteo_des_forets/mdf_2025.csv.gz` | 11 520 | `date,num_dep,niveau_j1,niveau_j2,dep_nom` (virgule) | Fichier téléchargé ; indicateurs non validés |
+| MdF 2026 | `datasets/public/meteo_des_forets/mdf_2026.csv.gz` | 12 576 | `date,num_dep,niveau_j1,niveau_j2,nom_dep` (point-virgule) | Fichier téléchargé ; indicateurs non validés |
+
+La variation de délimiteur et de nom de colonne a été **observée sur les fichiers bruts**, pas supposée. [Consulter le manifeste avec empreintes SHA-256](../../datasets/public/meteo_des_forets/manifest.json). **Ne pas confondre nombre de lignes et nombre de jours effectivement exploitables :** ce dernier exige un contrôle par département, date et niveau.
