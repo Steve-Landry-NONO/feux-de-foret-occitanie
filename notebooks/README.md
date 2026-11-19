@@ -19,3 +19,22 @@ Avant toute conclusion, renseigner l'URL de la ressource, sa date, sa licence, s
 ## Étape suivante
 
 Comparer les périodes BDIFF et météo, puis vérifier si la jointure département × jour est possible avant de calculer Q2–Q3. Toute modification du modèle doit rester liée à une question décisionnelle et documenter sa justification.
+
+## Collecte des sources — travail préparatoire (19/11/2026)
+
+Un [catalogue des 18 pistes de données](../docs/sources/catalogue-collecte-v0.md) relie les jeux candidats aux questions Q1–Q6 et signale les jointures encore à tester. Le [script de collecte](../scripts/collecter_data_gouv.py) interroge l'API du catalogue data.gouv.fr et permet de télécharger des ressources explicitement filtrées, avec empreinte SHA-256. Les données brutes restent exclues du dépôt.
+
+Depuis la racine du projet, sur un ordinateur connecté :
+
+```bash
+# 1. Vérifier la liste réelle des fichiers Météo des forêts (sans télécharger)
+python scripts/collecter_data_gouv.py --jeu archives-de-la-meteo-des-forets --motif '^mdf\\.202[456]$' --lister
+
+# 2. Télécharger uniquement les trois archives annuelles, après vérification des titres
+python scripts/collecter_data_gouv.py --jeu archives-de-la-meteo-des-forets --motif '^mdf\\.202[456]$' --telecharger --max-fichiers 3
+
+# 3. Rechercher un export climatologique du département 31 (sans télécharger)
+python scripts/collecter_data_gouv.py --jeu donnees-climatologiques-de-base-quotidiennes --motif 'departement_31.*2025-2026' --lister
+```
+
+Les fichiers téléchargés et le registre JSONL sont placés sous `data/raw/`. Le script n'a **pas été exécuté sur les fichiers bruts ici**, faute d'accès réseau de téléchargement ; les sorties des notebooks restent donc à produire. La BDIFF demande une étude séparée de son interface d'export, car son catalogue référence une ressource de type API et ne fournit pas directement le même type d'archive.
