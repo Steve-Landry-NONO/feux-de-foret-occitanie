@@ -44,7 +44,7 @@ Les commits de correction décrivent l'assistance à la rédaction ; ils ne cert
 - **Proposition à valider collectivement :** arbitrer le seuil d'activation de surveillance renforcée en Haute-Garonne pour 2027 en comparant couverture des jours avec feu et charge d'activation. La question n'est **pas encore figée** ; elle servira aussi à l'oral de décembre.
 - **Document créé :** [atelier 1 — dossier de travail](../kpi/atelier-01-2026-11-19.md).
 - **Non réalisé / non prouvé :** aucun export BDIFF ou météo inspecté ni jointure exécutée dans cette contribution ; aucun résultat chiffré ou test de sensibilité validé ; aucun envoi au professeur effectué.
-- **Échéance :** envoi le 19/11, même inachevé ; noms demandés `G07_Atelier1_KPI.pdf` et `G07_Atelier1_calcul.ipynb` ou .xlsx (adapter G07 au numéro réel).
+- **Échéance :** envoi le 19/11, même inachevé ; noms demandés `Atelier1_KPI_Equipe_Michel_Marine.pdf` et `Atelier1_calcul_Equipe_Michel_Marine.ipynb` ou .xlsx (adapter le numéro de groupe par les noms des cinq membres).
 - **Répartition proposée :** Steve (coordination), Maeva (sources), Chantal (qualité), Stéphane (calcul), Ludovic (arbre et modèle) ; relecture collective.
 
 ## 19 novembre 2026 — Mise en œuvre et blocage du calcul réel
