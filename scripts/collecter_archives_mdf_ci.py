@@ -40,7 +40,13 @@ def main():
             decompressed = gzip.decompress(blob)
             text = decompressed.decode("utf-8-sig")
             # Un parseur csv sert seulement à compter les lignes physiques : pas de modèle métier présumé.
-            rows = list(csv.reader(text.splitlines(), delimiter=";"))
+            header = text.splitlines()[0] if text.splitlines() else ""
+            candidates = (";", ",", "\t", "|")
+            sep = max(candidates, key=header.count)
+            print(f"Entête archive {year} : {header[:200]!r} ; séparateur détecté : {sep!r}")
+            if header.count(sep) == 0:
+                raise SystemExit(f"Impossible de détecter le séparateur CSV pour {year}")
+            rows = list(csv.reader(text.splitlines(), delimiter=sep))
         except (OSError, UnicodeError, csv.Error) as exc:
             raise SystemExit(f"Archive {year} non exploitable comme CSV : {exc}")
         if len(rows) < MIN_ROWS or len(rows[0]) < 2:
@@ -59,6 +65,7 @@ def main():
             "sha256": hashlib.sha256(blob).hexdigest(),
             "lignes_y_compris_entete": len(rows),
             "en_tetes_observees": rows[0],
+            "separateur_csv": sep,
             "statut": "fichier_telecharge_et_structure_initiale_observee",
             "grain_reel": "a_confirmer",
             "couverture_reelle": "a_confirmer",
