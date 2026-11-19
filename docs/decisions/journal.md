@@ -36,3 +36,20 @@ Revue transmise par Chantal : avis favorable sous réserve des corrections docum
 | A1–A4 | [Plan distinct de suivi](../suivi/actions-faisabilite.md), avec résultats attendus et rôles proposés | Planifiées dans le dépôt, non réalisées |
 
 Les commits de correction décrivent l'assistance à la rédaction ; ils ne certifient pas l'appropriation personnelle du texte par un membre. La fusion et la revue finale restent distinctes de cette mise à jour.
+
+## Mise à jour du 19 novembre 2026 — collecte réelle et modèle de données V0
+
+**Contexte :** après la validation documentaire de la PR #2, la coordination a préparé et exécuté la première collecte publique et les notebooks d'exploration sur la branche de [PR #3](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/pull/3). Les modifications de ce jour sont des travaux techniques de coordination, avec assistance IA ; elles ne remplacent pas les commits ni les validations personnelles des autres membres.
+
+| Décision / constat | Justification et preuve | État |
+|---|---|---|
+| Conserver le **SDIS 31** comme point de décision et l'Occitanie comme comparateur | [Questions Q1–Q6](../collectif/questions-retenues-proposition.md) | **Périmètre inchangé** |
+| Versionner les archives météo ouvertes et de petite taille | Fichiers 2024–2026, manifeste SHA-256 et licence affichée, [rapport](../resultats/profilage_sources_v1.md) | **Collecte exécutée** |
+| Distinguer **raccord technique** et **KPI métier** | 2024 : source incendie Esri dérivée, sans validation de date J1/J2 ni exhaustivité BDIFF | **Point de vigilance maintenu** |
+| Ne pas publier des données secondaires dont la redistribution est non qualifiée | Conditions d'usage de la couche Esri non établies | **Bruts hors du dépôt** |
+| Rendre visible un échec de collecte | ArcGIS 2025 HTTP 404 ; INSEE HTTP 504, [diagnostic](../resultats/diagnostic_insee_v0.md) | **Bloqué, non masqué** |
+| Produire UML conceptuel, flux et schéma étoile **en V0** | [Document de modélisation](../modelisation/modeles-de-donnees-v0.md) rattaché aux six questions | **Proposé à la revue** |
+| Préserver l'historique Git, réintégrer les évolutions de main sans force-push | Synchronisation de branche via GitHub Actions | **Effectuée** |
+| Faire relire la PR avant intégration dans main | [Issues #4 à #8](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues), PR #3 prête pour relecture | **Revue attendue, fusion non réalisée** |
+
+**Aucune approbation de Maeva, Chantal, Stéphane ou Ludovic n'est présumée dans ce journal.** Les décisions de modèle et les KPI doivent être finalisés sur preuve après les véritables retours des membres.
