@@ -8,6 +8,7 @@ on:
       - .github/workflows/profilage-feux.yml
       - scripts/profiler_et_joindre_donnees.py
       - scripts/collecter_feux_arcgis.py
+      - tests/test_qualite_sources.py
   workflow_dispatch:
 
 permissions:
@@ -25,6 +26,8 @@ jobs:
           persist-credentials: true
       - name: Contrôler la syntaxe des scripts
         run: python3 -m py_compile scripts/collecter_feux_arcgis.py scripts/profiler_et_joindre_donnees.py
+      - name: Tester les dates, codes et doublons sur les archives météo
+        run: python3 -m unittest discover -s tests -v
       - name: Essayer de collecter la source secondaire BDIFF 2024–2025
         id: feux
         continue-on-error: true
