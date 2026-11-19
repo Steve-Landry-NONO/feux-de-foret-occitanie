@@ -29,6 +29,13 @@ Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inve
 
 **Point bloquant prioritaire :** le chevauchement temporel entre les observations d'incendies et les archives météo reste à démontrer avant de calculer les indicateurs croisés. Voir [actions de faisabilité A1–A4](docs/suivi/actions-faisabilite.md) et [matrice questions × sources](docs/sources/matrice.md).
 
+## Atelier KPI — 19 novembre 2026
+
+- [Polycopié et atelier : dossier de travail A–F](docs/kpi/atelier-01-2026-11-19.md) — **propositions à valider, calculs réels non effectués**.
+- [Journal des décisions](docs/decisions/journal.md) — trace de la séance et des points ouverts.
+- [Dossier Drive de l'atelier](https://drive.google.com/drive/folders/1iMk2890zeldg9ekIcnssBmdgeEZ9YF-J) · [Drive projet Feux de Forêt](https://drive.google.com/drive/folders/1hmXnuUVU_Uj0LLo5ZTkJaSwenAip6jI2).
+- **À remettre le 19/11 :** `G07_Atelier1_KPI.pdf` et `G07_Atelier1_calcul.ipynb` (ou .xlsx), sous réserve du numéro de groupe exact. L'atelier est non noté mais doit être transmis même inachevé.
+
 ## Notre mission
 
 La Haute-Garonne prépare la saison des feux de forêt 2027 avec un risque d'activité comparable ou supérieur à 2026. Le SDIS ne peut pas renforcer toutes les patrouilles partout, tout l'été. Il doit répondre à deux décisions :
