@@ -34,7 +34,7 @@ def main():
             raise SystemExit(f"Le fichier existe déjà : {target}. Effectuer une revue avant actualisation.")
         with urllib.request.urlopen(req, timeout=90) as response:
             blob = response.read(MAX_SIZE + 1)
-        if not blob.startswith(b"\\x1f\\x8b") or len(blob) > MAX_SIZE:
+        if not blob.startswith(b"\x1f\x8b") or len(blob) > MAX_SIZE:
             raise SystemExit(f"Échec de validation du GZIP {year} (taille / signature)")
         try:
             decompressed = gzip.decompress(blob)
@@ -67,7 +67,7 @@ def main():
         print(f"{year} : {len(blob)} octets / {len(rows)-1} enregistrements / SHA256 {entries[-1]['sha256']}")
 
     manifest = DIR / "manifest.json"
-    manifest.write_text(json.dumps({"schema_version":1,"extractions":entries},ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    manifest.write_text(json.dumps({"schema_version":1,"extractions":entries},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
 if __name__ == "__main__":
     main()
