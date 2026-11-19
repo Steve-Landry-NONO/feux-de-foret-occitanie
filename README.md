@@ -5,6 +5,30 @@
 
 > **Projet pédagogique HETIC — Mastère Data & IA, UE01 Stratégie Business Data-Driven (2026–2027).** Encadrement : Marine PROST. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
 
+## 🔗 Espaces de travail et suivi
+
+| Espace | Accès | Utilisation |
+|---|---|---|
+| **GitHub** | [Dépôt du projet](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie) · [Issues](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues) · [Pull requests](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/pulls) | Code, documentation versionnée, tickets, revues et preuves de contribution |
+| **Trello** | [Tableau de suivi HETIC UE01](https://trello.com/b/TqnYAupj/hetic-ue01-feux-de-for%C3%AAt-pilotage-%C3%A9quipe) | Répartition des tâches, jalons, blocages et avancement |
+| **Google Drive du groupe** | **Lien du dossier collectif à confirmer** | Documents partagés, supports et éventuels fichiers de travail |
+
+**Convention :** chaque carte technique Trello référence son Issue GitHub ; chaque PR référence l'Issue correspondante. Le dépôt reste la source de vérité pour le code et les livrables versionnés. Ne pas confondre le Drive pédagogique et le Drive collectif.
+
+## 🗃️ Sources de données et documentation externe
+
+Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inventaire.md). **Ils désignent des sources candidates ou des pages de documentation, et non des jeux de données déjà validés ou profilés.**
+
+| Source | Lien | Statut documentaire |
+|---|---|---|
+| BDIFF — incendies de forêts en France | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) | Métadonnées consultées ; fichiers, dates et grain à vérifier |
+| Archives de la Météo des forêts | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets/informations) | Métadonnées consultées ; couverture effective et schéma à vérifier |
+| Météo des forêts — explication des niveaux | [Météo-France](https://meteofrance.com/meteo-des-forets) | Documentation méthodologique, pas table de faits |
+| Contexte national des feux | [Notre Environnement](https://www.notre-environnement.gouv.fr/themes/risques/article/les-feux-de-forets) | Documentation de contexte |
+| Référentiels INSEE, couverture IGN, moyens SDIS, Gaspar / Prométhée | [Inventaire et points à vérifier](docs/sources/inventaire.md) | URL exacte / accès / usage encore à identifier |
+
+**Point bloquant prioritaire :** le chevauchement temporel entre les observations d'incendies et les archives météo reste à démontrer avant de calculer les indicateurs croisés. Voir [actions de faisabilité A1–A4](docs/suivi/actions-faisabilite.md) et [matrice questions × sources](docs/sources/matrice.md).
+
 ## 🎯 Notre mission
 
 La Haute-Garonne prépare la saison des feux de forêt 2027 avec un risque d'activité comparable ou supérieur à 2026. Le SDIS ne peut pas renforcer toutes les patrouilles partout, tout l'été. Il doit répondre à deux décisions :
