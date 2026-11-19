@@ -46,3 +46,21 @@ Les commits de correction décrivent l'assistance à la rédaction ; ils ne cert
 - **Non réalisé / non prouvé :** aucun export BDIFF ou météo inspecté ni jointure exécutée dans cette contribution ; aucun résultat chiffré ou test de sensibilité validé ; aucun envoi au professeur effectué.
 - **Échéance :** envoi le 19/11, même inachevé ; noms demandés `G07_Atelier1_KPI.pdf` et `G07_Atelier1_calcul.ipynb` ou .xlsx (adapter G07 au numéro réel).
 - **Répartition proposée :** Steve (coordination), Maeva (sources), Chantal (qualité), Stéphane (calcul), Ludovic (arbre et modèle) ; relecture collective.
+
+## 19 novembre 2026 — Mise en œuvre et blocage du calcul réel
+
+**Responsable de la tenue du journal : Steve Landry NONO (coordination).** Cette entrée décrit les actions documentées ; elle ne constitue pas une validation collective.
+
+| Élément | Observation vérifiable | Décision / suite | Responsable proposé | Statut |
+|---|---|---|---|---|
+| Drive de l'atelier | Quatre fichiers déposés : polycopié, énoncé, PDF de travail et notebook ; [dossier](https://drive.google.com/drive/folders/1iMk2890zeldg9ekIcnssBmdgeEZ9YF-J) | Conserver les versions, ne pas confondre brouillon et remise | Steve | Fait |
+| Traçabilité | [Document d'analyse A–F](../kpi/atelier-01-2026-11-19.md), [README](../../README.md) et carte [PIL-08](https://trello.com/c/feST7dYr/) reliés | Relecture par chaque référent | Tous | Fait pour les liens, revue à faire |
+| Données incendies | La BDIFF diffuse les incendies à partir de 2006 ; export CSV/ZIP disponible via filtres de localisation et dates, mais **aucun export Haute-Garonne inspecté dans le projet** | Télécharger le CSV filtré sur département 31 et cinq années complètes ; relever schéma, doublons et exhaustivité | Maeva + Stéphane | Bloqué par l'export |
+| Dénominateur | Jeu de données public « Surface », diffuseur Ecolab, attribution INSEE/IGN, ressource CSV « Surface - commune » (28/01/2026) ; **CSV non téléchargé ni vérifié** | Inspecter code commune, unité, millésime et correspondances ; superficie du territoire ≠ surface forestière | Maeva + Stéphane | À faire |
+| Cinq ans / météo | L'option de comparaison BDIFF + météo n'a pas cinq années communes prouvées | Calcul territorial BDIFF + superficie proposé comme solution de repli pour la partie E ; ne pas le présenter comme preuve du seuil météo | Ludovic + Chantal | Arbitrage collectif requis |
+| Livrables | PDF et notebook de **travail** présents sur Drive ; chiffres réels, contrôle des jointures et exécution non produits | Compléter avec résultats réels ou déclarer explicitement les limites dans la remise du jour | Stéphane + Steve | Incomplet |
+| Envoi professeur | Aucune preuve d'envoi | Confirmer destinataire, numéro du groupe et heure limite ; envoyer même incomplet selon l'énoncé | Steve | Non confirmé |
+
+**Méthode pour les entrées futures :** consigner date, auteur, fait ou preuve, décision, responsable, échéance, statut et lien vers livrable. Ne jamais inscrire « terminé » pour une tâche dont la preuve manque. Les propositions de la coordination restent « à valider » jusqu'à confirmation de l'équipe.
+
+**Références vérifiées :** [aide à l'export BDIFF](https://bdiff.agriculture.gouv.fr/aide/recherche) ; [BDIFF, précautions sur l'exhaustivité](https://bdiff.agriculture.gouv.fr/aide/generalites) ; [jeu « Surface »](https://www.data.gouv.fr/datasets/surface).
