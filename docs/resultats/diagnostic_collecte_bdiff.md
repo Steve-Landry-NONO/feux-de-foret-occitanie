@@ -73,7 +73,7 @@ Source : https://bdiff.agriculture.gouv.fr/incendies ; méthode : formulaire pub
 }
 ~~~
 
-- SHA-256 : 41c5fec89e26a04a5e6329f495c01526a6237a9490f1206e7e04536f1e8c7963
+- SHA-256 : a4b7bf48dc032788746247f6f4878740b80f43da4b2a3a28c86024bf9259d6a2
 ## 2025
 
 - Recherche HTTP 200, URL finale https://bdiff.agriculture.gouv.fr/incendies?if%5BdateAlerteDeb%5D%5Bdate%5D=01%2F01%2F2025&if%5BdateAlerteDeb%5D%5Btime%5D%5Bhour%5D=0&if%5BdateAlerteDeb%5D%5Btime%5D%5Bminute%5D=0&if%5BdateAlerteFin%5D%5Bdate%5D=31%2F12%2F2025&if%5BdateAlerteFin%5D%5Btime%5D%5Bhour%5D=23&if%5BdateAlerteFin%5D%5Btime%5D%5Bminute%5D=59&if%5Bra%5D=76&if%5Bsubmit%5D=
@@ -146,6 +146,6 @@ Source : https://bdiff.agriculture.gouv.fr/incendies ; méthode : formulaire pub
 }
 ~~~
 
-- SHA-256 : b9eda6ed42d0b19dbd54848dbdfc6675334ca81c6c2bdc17a436f9edb9b3e678
+- SHA-256 : 393f8bc15f9c4c803310eefd94c86cad9b81e8a5bd08440a3f5f1403b5e3f282
 
 **Statut : ZIP officiels récupérés depuis le portail et contrôlés (schéma, année, zone, annexes) ; certificat TLS non vérifié sur le runner, réserve de provenance à lever indépendamment.**
