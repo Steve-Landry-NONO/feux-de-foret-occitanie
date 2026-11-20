@@ -29,13 +29,16 @@ jobs:
           path: datasets/public/bdiff_officiel/
           retention-days: 7
           if-no-files-found: ignore
-      - name: Verser le diagnostic uniquement (aucune donnée non validée)
+      - name: Conserver les ZIP ayant passé les contrôles et leur manifeste
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/resultats/diagnostic_collecte_bdiff.md
+          if test -s datasets/public/bdiff_officiel/manifest.json; then
+            git add datasets/public/bdiff_officiel/*.zip datasets/public/bdiff_officiel/manifest.json
+          fi
           if ! git diff --cached --quiet; then
-            git commit -m "docs(bdiff) : tracer le test d'export des ZIP officiels 2024 et 2025"
+            git commit -m "data(bdiff) : conserver les ZIP contrôlés 2024–2025 et leur provenance"
             git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
             git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
           fi
