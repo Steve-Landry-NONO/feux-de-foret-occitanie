@@ -1,0 +1,43 @@
+name: Profiler les exports BDIFF officiels
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/profilage-bdiff-officiel.yml
+      - scripts/profiler_bdiff_original.py
+
+permissions:
+  contents: write
+
+jobs:
+  profiler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+          fetch-depth: 0
+      - name: Vérifier les sources et la syntaxe du pipeline
+        run: |
+          test -s datasets/public/bdiff_officiel/bdiff_occitanie_2024.zip
+          test -s datasets/public/bdiff_officiel/bdiff_occitanie_2025.zip
+          python3 -m py_compile scripts/profiler_bdiff_original.py
+      - name: Mesurer les événements et les jointures candidates
+        run: python3 scripts/profiler_bdiff_original.py
+      - name: Vérifier les preuves générées
+        run: |
+          python3 -m json.tool docs/resultats/profilage_bdiff_officiel_v1.json >/dev/null
+          test -s docs/resultats/profilage_bdiff_officiel_v1.md
+      - name: Committer les résultats reproductibles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/resultats/profilage_bdiff_officiel_v1.*
+          if ! git diff --cached --quiet; then
+            git commit -m "data(bdiff) : publier le profilage des feux officiels 2024–2025"
+            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          fi
