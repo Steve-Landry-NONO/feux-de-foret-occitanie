@@ -1,0 +1,34 @@
+name: Inspecter les exports publics BDIFF
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/inspecter-bdiff.yml
+      - scripts/inspecter_export_bdiff.py
+
+permissions:
+  contents: write
+
+jobs:
+  inspecter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+          fetch-depth: 0
+      - name: Examiner les liens et les formulaires publics BDIFF
+        run: python3 scripts/inspecter_export_bdiff.py
+      - name: Versionner le diagnostic (sans données brutes)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/resultats/diagnostic_export_bdiff.md
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(bdiff) : consigner les options de téléchargement officiel observées"
+            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          fi
