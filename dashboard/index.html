@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Feux de forêt — Simulateur pédagogique SDIS 31</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#192c3b;background:#f4f7f9}*{box-sizing:border-box}body{margin:0}header{background:#123047;color:white;padding:32px max(20px,calc((100% - 1100px)/2))}header h1{font-size:clamp(1.5rem,3.5vw,2.3rem);margin:.35rem 0}.subtitle{opacity:.83;max-width:810px;line-height:1.6}main{max-width:1140px;margin:0 auto;padding:26px 20px 60px}.tag{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#a7d1f4}.notice{border-left:4px solid #cc9745;background:white;padding:14px 18px;border-radius:4px;line-height:1.55}.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:23px 0}.field{display:flex;flex-direction:column;gap:7px}.field label{font-weight:600;font-size:.88rem}select{padding:12px 14px;border:1px solid #b8c8d0;background:white;border-radius:9px;color:#192c3b;font:inherit;width:100%}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.metric,.panel{background:white;border-radius:13px;padding:20px;box-shadow:0 1px 8px #17334b0b}.metric .k{color:#4e6272;font-size:.8rem}.metric strong{font-size:2rem;display:block;margin-top:8px}.metric small{color:#4e6272}.panel{margin-top:18px}h2{margin-top:0;font-size:1.17rem}p{line-height:1.65}.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:710px}th{text-align:left;color:#445b68;background:#edf3f6;font-size:.82rem}td,th{padding:12px 10px;border-bottom:1px solid #e4ebef}tr:last-child td{border-bottom:0}td.num{text-align:right;font-variant-numeric:tabular-nums}th.num{text-align:right}svg{max-width:100%;height:auto;display:block}svg text{font-family:inherit}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.83rem;color:#405969;margin-top:8px}.swatch{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px}.method{color:#445865;font-size:.91rem}footer{margin-top:24px;color:#526a77;font-size:.83rem}a{color:#1a578c}a:hover{text-decoration:none}.error{border:1px solid #c45b4b;background:#fff8f7;padding:16px;border-radius:9px;margin:24px 0;display:none}@media(max-width:720px){header{padding:28px 20px}.controls,.metrics{grid-template-columns:1fr}.metric strong{font-size:1.55rem}}
+</style>
+</head>
+<body>
+<header><div class="tag">HETIC · Mastère Data & IA · Prototype V0</div><h1>Feux de forêt : quel seuil de surveillance ?</h1><div class="subtitle">Comparaison pédagogique des journées avec feu recensé et des journées de surveillance théoriquement mobilisées. Département principal : Haute-Garonne (SDIS 31).</div></header>
+<main>
+<div class="notice"><strong>Outil exploratoire, pas une consigne opérationnelle.</strong> La Météo des forêts est un produit de sensibilisation grand public. Les archives BDIFF couvrent ici les événements de type F ; les résultats sont conditionnés par les périodes et les réserves de validation documentées.</div>
+<div id="error" role="alert" class="error"></div>
+<section class="controls" aria-label="Filtres d'analyse">
+ <div class="field"><label for="year">Année</label><select id="year"><option value="2025">2025</option><option value="2024">2024</option></select></div>
+ <div class="field"><label for="territory">Territoire</label><select id="territory"><option value="31">Haute-Garonne (31)</option><option value="Occitanie">Occitanie (ensemble)</option></select></div>
+ <div class="field"><label for="horizon">Prévision publiée</label><select id="horizon"><option value="J+1">J+1 — veille à 17 h</option><option value="J+2">J+2 — deux jours avant</option></select></div>
+</section>
+<section class="metrics" aria-live="polite">
+ <div class="metric"><span class="k">Journées départementales éligibles</span><strong id="eligible">—</strong><small>Communes non utilisées pour cette météo départementale</small></div>
+ <div class="metric"><span class="k">Journées avec au moins un feu de type F</span><strong id="fire-days">—</strong><small id="fires-note">Dans la période de prévision comparable</small></div>
+ <div class="metric"><span class="k">Comparaison des seuils</span><strong>2 · 3 · 4</strong><small>Modéré · Élevé · Très élevé</small></div>
+</section>
+<section class="panel"><h2>Compromis : couverture observée / journées de surveillance</h2><p class="method">Chaque point est un seuil. Vers la droite, davantage de journées de surveillance ; vers le haut, une part plus importante des journées avec feu est couverte.</p><svg id="chart" viewBox="0 0 860 365" role="img" aria-label="Graphique des seuils : surveillance et couverture"></svg><div class="legend"><span><span class="swatch" style="background:#267d9d"></span>Seuil ≥ 2</span><span><span class="swatch" style="background:#db9840"></span>Seuil ≥ 3</span><span><span class="swatch" style="background:#ac5656"></span>Seuil ≥ 4</span></div></section>
+<section class="panel"><h2>Détail des scénarios</h2><div class="table-scroll"><table><thead><tr><th>Seuil</th><th class="num">Jours surveillés</th><th class="num">Jours avec feu couverts</th><th class="num">Couverture</th><th class="num">Jours avec feu non couverts</th><th class="num">Surveillance sans feu observé</th></tr></thead><tbody id="tbody"></tbody></table></div><p class="method">« Sans feu observé » signifie qu'aucun événement de type F ne figure dans l'extraction BDIFF pour cette journée, et non que toute intervention était inutile.</p></section>
+<section class="panel"><h2>Comment lire correctement ce résultat ?</h2><p id="interpretation">Chargement du rapport.</p><p class="method">Les journées éligibles sont l'intersection des prévisions J+1 et J+2, pour chaque département et date. Une journée avec plusieurs incendies compte une fois. Sans journée avec feu dans ce périmètre, le taux de couverture est indiqué « n.d. », jamais « 100 % ».</p><p class="method"><strong>Réserves ouvertes :</strong> correspondance du champ CSV <code>date</code> avec le <code>Reference_time</code> documenté ; provenance des ZIP BDIFF contrôlée structurellement mais chaîne de certificats HTTPS non authentifiée sur le runner ; pas de coût réel du SDIS ; effectif local très faible.</p></section>
+<footer>Source : <a href="../docs/resultats/kpi_scenarios_q2_q3.csv">table d'indicateurs calculés</a> · <a href="../docs/resultats/kpi_scenarios_q2_q3_manifest.json">hypothèses et provenance</a> · <a href="../docs/resultats/kpi_scenarios_q2_q3.md">rapport d'analyse</a>. Exécuter depuis la racine du dépôt avec <code>python3 -m http.server 8000</code> et ouvrir <code>http://localhost:8000/dashboard/</code>.</footer>
+</main>
+<script>
+"use strict";
+const departments={"09":"Ariège","11":"Aude","12":"Aveyron","30":"Gard","31":"Haute-Garonne","32":"Gers","34":"Hérault","46":"Lot","48":"Lozère","65":"Hautes-Pyrénées","66":"Pyrénées-Orientales","81":"Tarn","82":"Tarn-et-Garonne"};
+const colors={"2":"#267d9d","3":"#db9840","4":"#ac5656"};
+let data=[];
+const $=id=>document.getElementById(id);
+function csvRecords(text){
+ const lines=text.trim().replace(/\r/g,"").split("\n");
+ const names=lines.shift().split(",");
+ return lines.filter(x=>x.trim()).map(line=>{
+  const values=line.split(",");
+  return Object.fromEntries(names.map((n,i)=>[n,values[i]??""]));
+ });
+}
+function fmt(v){return new Intl.NumberFormat("fr-FR").format(Number(v))}
+function pct(v){return v===""||v==null?"n.d.":fmt(v)+" %"}
+function renderGraph(rows,fireDays){
+ const svg=$("chart");svg.replaceChildren();
+ const NS="http://www.w3.org/2000/svg";
+ function element(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const [a,b] of Object.entries(attrs))e.setAttribute(a,b);if(text!=null)e.textContent=text;svg.appendChild(e);return e}
+ const L=72,R=820,T=30,B=294;
+ element("rect",{x:L,y:T,width:R-L,height:B-T,fill:"#f8fafb",rx:6});
+ if(!fireDays){element("text",{x:360,y:156,fill:"#566c79","font-size":18},"Aucune journée avec feu : couverture non définie");return}
+ const max=Math.max(...rows.map(r=>+r.jours_surveillance),1);
+ for(let t=0;t<=100;t+=25){
+  const y=B-(B-T)*t/100;
+  element("line",{x1:L,x2:R,y1:y,y2:y,stroke:"#dfe8ee"});
+  element("text",{x:L-13,y:y+4,fill:"#567","font-size":13,"text-anchor":"end"},t+" %");
+ }
+ for(let t=0;t<=4;t++){
+  const x=L+(R-L)*t/4;
+  element("text",{x,y:B+24,fill:"#567","font-size":13,"text-anchor":"middle"},fmt(Math.round(max*t/4)));
+ }
+ element("text",{x:445,y:350,fill:"#36536b","text-anchor":"middle","font-size":14},"Journées de surveillance simulées");
+ element("text",{x:15,y:22,fill:"#36536b","font-size":14},"Couverture");
+ for(const row of rows){
+  const x=L+(R-L)*(+row.jours_surveillance)/max;
+  const y=B-(B-T)*(+row.couverture_feu_pct)/100;
+  const col=colors[row.seuil];
+  element("circle",{cx:x,cy:y,r:8,fill:col,stroke:"white","stroke-width":2});
+  const desc="Seuil "+row.seuil+" : "+row.jours_surveillance+" jours surveillés, "+pct(row.couverture_feu_pct)+" de couverture";
+  const text=element("text",{x:Math.max(L+12,Math.min(R-85,x+15)),y:y-12,fill:col,"font-weight":"bold","font-size":14},"≥ "+row.seuil);
+  const title=document.createElementNS(NS,"title");title.textContent=desc;text.appendChild(title);
+ }
+}
+function update(){
+ const yr=$("year").value,territory=$("territory").value,horizon=$("horizon").value;
+ const rows=data.filter(x=>x.annee===yr&&x.territoire===territory&&x.horizon===horizon).sort((a,b)=>+a.seuil-+b.seuil);
+ if(rows.length!==3){$("error").style.display="block";$("error").textContent="Impossible de trouver les trois seuils pour les filtres sélectionnés.";return}
+ $("error").style.display="none";
+ const n=Number(rows[0].jours_eligibles),f=Number(rows[0].jours_avec_feu_observe);
+ $("eligible").textContent=fmt(n);$("fire-days").textContent=fmt(f);
+ $("fires-note").textContent=fmt(rows[0].feux_observes_type_f)+" événements recensés, sur "+fmt(n)+" journées départementales comparables";
+ const tbody=$("tbody");tbody.replaceChildren();
+ for(const r of rows){
+  const tr=document.createElement("tr");
+  const cells=["≥ "+r.seuil,fmt(r.jours_surveillance),fmt(r.jours_feu_couverts),pct(r.couverture_feu_pct),fmt(r.jours_feu_non_couverts),fmt(r.jours_surveillance_sans_feu_observe)];
+  cells.forEach((value,i)=>{const td=document.createElement("td");td.textContent=value;if(i>0)td.className="num";tr.appendChild(td)});
+  tbody.appendChild(tr);
+ }
+ renderGraph(rows,f);
+ const name=territory==="Occitanie"?"l'Occitanie":(departments[territory]||territory);
+ const s3=rows.find(x=>x.seuil==="3");
+ $("interpretation").textContent=f===0
+  ?"Pour "+name+" en "+yr+", aucune journée avec feu de type F n'est recensée dans la cohorte saisonnière commune. On peut décrire les journées de surveillance, pas calculer une couverture des feux."
+  :"Pour "+name+" en "+yr+", le seuil élevé (≥3, "+horizon+") aurait mobilisé "+fmt(s3.jours_surveillance)+" journées départementales ; "+fmt(s3.jours_feu_couverts)+" des "+fmt(f)+" journées avec feu auraient été couvertes ("+pct(s3.couverture_feu_pct)+"). C'est un calcul rétrospectif, pas une preuve de prévention ni une décision opérationnelle.";
+}
+async function init(){
+ try{
+  const r=await fetch("../docs/resultats/kpi_scenarios_q2_q3.csv",{cache:"no-store"});
+  if(!r.ok)throw new Error("Fichier CSV non disponible ("+r.status+")");
+  data=csvRecords(await r.text());
+  if(!data.length)throw new Error("CSV vide");
+  const departmentsSeen=[...new Set(data.map(x=>x.territoire))].filter(x=>x!=="Occitanie"&&x!=="31").sort();
+  for(const id of departmentsSeen){
+   const opt=document.createElement("option");opt.value=id;opt.textContent=(departments[id]||id)+" ("+id+")";$("territory").appendChild(opt);
+  }
+  ["year","territory","horizon"].forEach(id=>$(id).addEventListener("change",update));
+  update();
+ }catch(e){$("error").style.display="block";$("error").textContent="Impossible de charger les résultats vérifiés : "+e.message+". Ouvrez ce tableau de bord depuis un serveur HTTP local, et relancez le pipeline des KPI si nécessaire."}
+}
+init();
+</script>
+</body>
+</html>
