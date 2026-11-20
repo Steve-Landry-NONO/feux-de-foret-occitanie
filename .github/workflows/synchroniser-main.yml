@@ -32,3 +32,4 @@ jobs:
             git merge --no-ff origin/main -m "chore(git) : intégrer les évolutions récentes de main dans la branche exploration"
             git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
           fi
+# Synchronisation demandée après création du moteur KPI et dashboard V0.
