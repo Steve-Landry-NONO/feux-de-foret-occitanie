@@ -52,9 +52,10 @@ def inspect_zip(data,annee):
         txt=raw.decode("utf-8-sig")
         try:sep=csv.Sniffer().sniff(txt[:4096],delimiters=";,\t").delimiter
         except csv.Error:sep=";"
+        candidates=txt.splitlines()[:5]
         reader=csv.DictReader(io.StringIO(txt),delimiter=sep)
         rows=list(reader)
-        return {"fichiers":names,"csv":csvs[0],"pdfs":pdfs,"champs":reader.fieldnames,"separateur":sep,"lignes":len(rows),
+        return {"fichiers":names,"csv":csvs[0],"pdfs":pdfs,"premieres_lignes_csv":candidates,"champs":reader.fieldnames,"separateur":sep,"lignes":len(rows),
                 "extrait_annees":sorted({str(row.get(k,"")) for row in rows for k in (reader.fieldnames or []) if normaliser(k) in ("annee","annee du feu")}),
                 "extrait_departements":sorted({str(row.get(k,"")) for row in rows for k in (reader.fieldnames or []) if "departement" in normaliser(k)}),
                 "premiere_ligne_extrait":{"noms_champs":list(rows[0]) if rows else []}}
