@@ -8,7 +8,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from collections import Counter
 import csv, io, json, zipfile
-from scripts.profiler_et_joindre_donnees import meteo, jour, dep, OCC
+from profiler_et_joindre_donnees import meteo, jour, dep, OCC
 
 ROOT=Path("datasets/public/bdiff_officiel")
 OUT=Path("docs/resultats")
@@ -46,7 +46,7 @@ def profiler():
             date_civile=jour(r.get("Date de première alerte"))
             if not date_civile:invalides+=1;continue
             if not date_civile.startswith(annee):raise ValueError("Date hors année")
-            dates=jours.add((annee,d,date_civile))
+            jours.add((annee,d,date_civile))
             plages.append(date_civile)
             deps[d]+=1;uniques_par_dept[d]+=1
         jours_feu[annee]=jours
