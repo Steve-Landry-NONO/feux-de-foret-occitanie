@@ -1,0 +1,52 @@
+name: Contrôler le prototype de tableau de bord
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/controle-dashboard.yml
+      - dashboard/index.html
+      - dashboard/README.md
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+      - name: Vérifier la présence des résultats calculés
+        run: |
+          test -s dashboard/index.html
+          test -s docs/resultats/kpi_scenarios_q2_q3.csv
+          test -s docs/resultats/kpi_scenarios_q2_q3_manifest.json
+      - name: Vérifier la syntaxe JavaScript du tableau de bord
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          html=Path("dashboard/index.html").read_text(encoding="utf-8")
+          js=re.findall(r"<script>(.*?)</script>",html,flags=re.S|re.I)
+          assert len(js)==1,"Un seul script interne est attendu"
+          Path("/tmp/dashboard-script.js").write_text(js[0],encoding="utf-8")
+          assert '../docs/resultats/kpi_scenarios_q2_q3.csv' in js[0]
+          PY
+          node --check /tmp/dashboard-script.js
+      - name: Contrôler le CSV consommé par l'application
+        run: |
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+          with Path("docs/resultats/kpi_scenarios_q2_q3.csv").open(newline="",encoding="utf-8") as f:
+              data=list(csv.DictReader(f))
+          assert len(data)==168, "Nombre de lignes KPI inattendu"
+          required={"annee","territoire","horizon","seuil","jours_eligibles","jours_avec_feu_observe","couverture_feu_pct","jours_surveillance"}
+          assert required.issubset(data[0]),"Les champs nécessaires au dashboard sont absents"
+          assert any(x["annee"]=="2025" and x["territoire"]=="31" and x["horizon"]=="J+1" and x["seuil"]=="3" for x in data)
+          PY
