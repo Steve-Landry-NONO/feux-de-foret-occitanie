@@ -1,0 +1,133 @@
+{
+  "genere_utc": "2026-11-20T07:40:49.138574+00:00",
+  "provenance": "BDIFF ministère Agriculture, ZIP issus du portail officiel, transport TLS non authentifié côté runner (à confirmer indépendamment)",
+  "rapport_validation_transport": "datasets/public/bdiff_officiel/manifest.json",
+  "incendies": [
+    {
+      "annee": "2024",
+      "nb_lignes": 413,
+      "incendies_31": 1,
+      "departements_avec_incendie": 10,
+      "feux_par_departement": {
+        "09": 1,
+        "11": 152,
+        "12": 2,
+        "30": 38,
+        "31": 1,
+        "34": 133,
+        "46": 3,
+        "48": 25,
+        "66": 55,
+        "81": 3
+      },
+      "date_min": "2024-01-01",
+      "date_max": "2024-12-29",
+      "dates_invalides": 0,
+      "doublons_numero": 0,
+      "colonnes": [
+        "Année",
+        "Numéro",
+        "Département",
+        "Code INSEE",
+        "Nom de la commune",
+        "Date de première alerte",
+        "Surface parcourue (m2)",
+        "Surface forêt (m2)",
+        "Surface maquis garrigues (m2)",
+        "Autres surfaces naturelles hors forêt (m2)",
+        "Surfaces agricoles (m2)",
+        "Autres surfaces (m2)",
+        "Surface autres terres boisées (m2)",
+        "Surfaces non boisées naturelles (m2)",
+        "Surfaces non boisées artificialisées (m2)",
+        "Surfaces non boisées (m2)",
+        "Précision des surfaces",
+        "Type de peuplement",
+        "Nature",
+        "Décès ou bâtiments touchés",
+        "Nombre de décès",
+        "Nombre de bâtiments totalement détruits",
+        "Nombre de bâtiments partiellement détruits",
+        "Précision de la donnée"
+      ]
+    },
+    {
+      "annee": "2025",
+      "nb_lignes": 472,
+      "incendies_31": 4,
+      "departements_avec_incendie": 13,
+      "feux_par_departement": {
+        "09": 8,
+        "11": 140,
+        "12": 9,
+        "30": 48,
+        "31": 4,
+        "32": 3,
+        "34": 162,
+        "46": 13,
+        "48": 41,
+        "65": 2,
+        "66": 30,
+        "81": 4,
+        "82": 8
+      },
+      "date_min": "2025-01-10",
+      "date_max": "2025-12-31",
+      "dates_invalides": 0,
+      "doublons_numero": 0,
+      "colonnes": [
+        "Année",
+        "Numéro",
+        "Département",
+        "Code INSEE",
+        "Nom de la commune",
+        "Date de première alerte",
+        "Surface parcourue (m2)",
+        "Surface forêt (m2)",
+        "Surface maquis garrigues (m2)",
+        "Autres surfaces naturelles hors forêt (m2)",
+        "Surfaces agricoles (m2)",
+        "Autres surfaces (m2)",
+        "Surface autres terres boisées (m2)",
+        "Surfaces non boisées naturelles (m2)",
+        "Surfaces non boisées artificialisées (m2)",
+        "Surfaces non boisées (m2)",
+        "Précision des surfaces",
+        "Type de peuplement",
+        "Nature",
+        "Décès ou bâtiments touchés",
+        "Nombre de décès",
+        "Nombre de bâtiments totalement détruits",
+        "Nombre de bâtiments partiellement détruits",
+        "Précision de la donnée"
+      ]
+    }
+  ],
+  "raccords_techniques_NON_KPI": [
+    {
+      "annee": "2024",
+      "jours_departement_avec_feu": 289,
+      "jours_departement_avec_meteo_meme_date": 161,
+      "jours_departement_sans_meteo_meme_date": 128,
+      "jours_31_avec_feu": 1,
+      "jours_31_avec_meteo_meme_date": 0,
+      "jours_departement_avec_feu_pendant_saison_meteo": 161
+    },
+    {
+      "annee": "2025",
+      "jours_departement_avec_feu": 340,
+      "jours_departement_avec_meteo_meme_date": 208,
+      "jours_departement_sans_meteo_meme_date": 132,
+      "jours_31_avec_feu": 4,
+      "jours_31_avec_meteo_meme_date": 4,
+      "jours_departement_avec_feu_pendant_saison_meteo": 208
+    }
+  ],
+  "limites": [
+    "Le portail exporte ici uniquement 'Type de feu : F'.",
+    "La date météo et les échéances J1/J2 nécessitent une validation documentaire.",
+    "Une date sans événement dans les données n'est pas nécessairement une journée sans feu garanti.",
+    "Un rapprochement sur la même date brute ne constitue pas un taux de couverture du danger.",
+    "Le transport TLS non vérifié sur le runner doit faire l'objet d'un contrôle indépendant avant certification de provenance."
+  ]
+}
