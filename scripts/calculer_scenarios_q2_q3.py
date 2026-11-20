@@ -185,7 +185,7 @@ def produire():
       "",
       "## Autres livrables",
       "",
-      "- [Table complète des indicateurs par département](kpi_scenarios_q2_q3.csv), années et échéances (78 lignes).",
+      "- [Table complète des indicateurs par département](kpi_scenarios_q2_q3.csv), années et échéances (168 lignes).",
       "- [Journées avec feu ou situées dans le 31](jours_feu_et_31.csv), utiles pour contrôler les observations.",
       "- [Manifeste des hypothèses et restrictions](kpi_scenarios_q2_q3_manifest.json).",
       "",
