@@ -1,0 +1,35 @@
+{
+  "date_execution_utc": "2026-11-20T08:18:40.260377+00:00",
+  "perimetre": "Occitanie, jours communs J+1/J+2 par département sur saisons 2024–2025",
+  "nombre_jours_departement_eligibles": 3094,
+  "annees": [
+    2024,
+    2025
+  ],
+  "seuils": [
+    2,
+    3,
+    4
+  ],
+  "horizons": [
+    "J+1",
+    "J+2"
+  ],
+  "regle_date": "date archive supposée date de référence, J+1= date +1, J+2= date +2",
+  "type_feu_bdiff": "F (tel que précisé dans les ZIP officiels)",
+  "previsions_mdf": "danger départemental pour sensibilisation grand public",
+  "denominateur": "jours départementaux où J+1 ET J+2 sont disponibles (intersection identique)",
+  "jour_sans_feu": "aucun feu type F recensé par BDIFF dans l'export, pas une certitude d'absence d'incendie",
+  "limites": [
+    "Correspondance du champ 'date' et 'Reference_time' non corroborée formellement",
+    "Certificat HTTPS non validé sur le runner lors de l'acquisition BDIFF",
+    "Échantillon du 31 très faible (1 événement 2024 et 4 en 2025 sur toute l'année)",
+    "Pas de mesure de coût monétaire ni de politique SDIS réelle",
+    "Danger départemental non pertinent pour comparer directement des communes",
+    "Les seuils ne prouvent pas de prévention causale"
+  ],
+  "fichiers": [
+    "kpi_scenarios_q2_q3.csv",
+    "jours_feu_et_31.csv"
+  ]
+}
