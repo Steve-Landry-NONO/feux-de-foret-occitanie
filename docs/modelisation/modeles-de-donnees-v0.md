@@ -206,3 +206,26 @@ Pour chaque test effectivement exécuté, nous renseignerons l'empreinte des sou
 5. Qui accepte les revues : Maeva (source), Chantal (qualité), Stéphane (ETL), Ludovic (KPI/modèle), Steve (cohérence) ? Pas de validations inventées.
 
 **Issue de suivi :** [#6 — UML et schéma étoile](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/6).
+
+## 7. Validation de la règle temporelle Météo-France — 20 novembre 2026
+
+La [documentation métier du producteur](https://confluence-meteofrance.atlassian.net/wiki/spaces/OpenDataMeteoFrance/pages/874741792/Donn%2Bes%2Bexpertis%Bes) confirme que les prévisions Météo des forêts sont publiées vers **17 h**, pour le **lendemain (J+1)** et le **surlendemain (J+2)**. Les quatre codes sont faible=1, modéré=2, élevé=3, très élevé=4.
+
+**Règles de transformation implémentées :**
+
+```text
+Archive : (date de référence = D, département = 31, niveau_j1 = 3, niveau_j2 = 4)
+    ├─ (département=31, date_validité=D+1, échéance=J+1, danger=3)
+    └─ (département=31, date_validité=D+2, échéance=J+2, danger=4)
+
+BDIFF : (département=31, date_première_alerte=T)
+Jointure  : département identique + date_validité = date(T) + échéance CHOISIE
+```
+
+Pour une décision prise le **soir précédent le jour de patrouille**, retenir **J+1** émis la veille ; pour un arbitrage deux jours avant, examiner **J+2**. Éviter de sélectionner a posteriori la meilleure des deux prévisions pour augmenter artificiellement la sensibilité.
+
+**Réserve de schéma :** la documentation appelle le champ de production `Reference_time` (avec heure), mais nos archives comportent `date` (sans heure). L'analogie est forte ; la correspondance formelle entre ces libellés reste à confirmer. La production à 17 h est une règle générale, pas un horodatage de chaque ligne de nos fichiers.
+
+**Audit exécuté :** [validation_j1_j2_v1.md](../resultats/validation_j1_j2_v1.md) et [script Python](../../scripts/valider_echeances_mdf.py). Le résultat vérifie des **raccords de données**, pas encore un taux de couverture de seuil ou un coût de mobilisation.
+
+**Portée des résultats :** Météo-France précise que la **Météo des forêts est un produit de prévention grand public**, différent de l'assistance opérationnelle apportée aux SIS. Les scénarios Q2–Q3 sont des modèles pédagogiques d'aide à la discussion, **pas une instruction officielle de déclenchement du SDIS 31**.
