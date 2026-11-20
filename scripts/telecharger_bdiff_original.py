@@ -41,24 +41,48 @@ def selection_region(html):
     raise RuntimeError("Option Occitanie introuvable dans le formulaire")
 
 def inspect_zip(data,annee):
-    if not zipfile.is_zipfile(io.BytesIO(data)):raise ValueError("Réponse ZIP invalide : "+repr(data[:140]))
+    if not zipfile.is_zipfile(io.BytesIO(data)):
+        raise ValueError("Réponse non ZIP : "+repr(data[:140]))
     with zipfile.ZipFile(io.BytesIO(data)) as z:
         names=z.namelist()
         csvs=[n for n in names if n.lower().endswith(".csv")]
         pdfs=[n for n in names if n.lower().endswith(".pdf")]
-        if len(csvs)!=1: raise ValueError("On attend un CSV unique, trouvé : "+str(csvs))
-        if not pdfs:raise ValueError("Documentation PDF manquante dans l'export")
+        if len(csvs)!=1 or len(pdfs)<2:
+            raise ValueError("ZIP incomplet : "+str(names))
         raw=z.read(csvs[0])
         txt=raw.decode("utf-8-sig")
-        try:sep=csv.Sniffer().sniff(txt[:4096],delimiters=";,\t").delimiter
-        except csv.Error:sep=";"
-        candidates=txt.splitlines()[:5]
-        reader=csv.DictReader(io.StringIO(txt),delimiter=sep)
+        lines=txt.splitlines()
+        if len(lines)<4 or "Critères de sélection" not in lines[1] or "OCCITANIE" not in lines[1]:
+            raise ValueError("Préambule BDIFF / Région inattendu")
+        if "Type de feu : F" not in lines[1]:
+            raise ValueError("Type de feu inattendu dans l'export")
+        match=re.search(r"Nombre d.incendies suivant les critères de sélection :\s*(\d+)",lines[0])
+        if not match:
+            raise ValueError("Nombre de feux absent du préambule")
+        header=next((i for i,line in enumerate(lines[:8]) if line.startswith("Année;Numéro;Département;")),None)
+        if header is None:
+            raise ValueError("Entête CSV métier manquante")
+        reader=csv.DictReader(io.StringIO("\n".join(lines[header:])),delimiter=";")
+        cols=reader.fieldnames or []
+        required={"Année","Numéro","Département","Code INSEE","Date de première alerte"}
+        if not required.issubset(cols):raise ValueError("Schéma inattendu : "+repr(cols))
         rows=list(reader)
-        return {"fichiers":names,"csv":csvs[0],"pdfs":pdfs,"premieres_lignes_csv":candidates,"champs":reader.fieldnames,"separateur":sep,"lignes":len(rows),
-                "extrait_annees":sorted({str(row.get(k,"")) for row in rows for k in (reader.fieldnames or []) if normaliser(k) in ("annee","annee du feu")}),
-                "extrait_departements":sorted({str(row.get(k,"")) for row in rows for k in (reader.fieldnames or []) if "departement" in normaliser(k)}),
-                "premiere_ligne_extrait":{"noms_champs":list(rows[0]) if rows else []}}
+        if len(rows)!=int(match.group(1)):
+            raise ValueError(f"Nombre enregistrements != bandeau ({len(rows)} vs {match.group(1)})")
+        deps=sorted({str(row["Département"]).strip().upper().zfill(2) for row in rows})
+        years=sorted({str(row["Année"]) for row in rows})
+        if years != [str(annee)]:raise ValueError("Année hors filtre : "+repr(years))
+        if not set(deps).issubset(OCC):raise ValueError("Département hors Occitanie : "+repr(deps))
+        invalid_dates=sum(1 for row in rows if not str(row["Date de première alerte"]).startswith(str(annee)+"-"))
+        if invalid_dates:raise ValueError(f"Dates alerte hors année : {invalid_dates}")
+        if any(not z.read(name).startswith(b"%PDF") for name in pdfs):
+            raise ValueError("Un PDF d'annexe ne possède pas de signature PDF")
+        return {"fichiers":names,"csv":csvs[0],"pdfs":pdfs,
+                "criteres_export":lines[1],"champs":cols,"separateur":";",
+                "lignes":len(rows),"annees":years,"departements_presents":deps,
+                "dates_alerte_hors_annee":invalid_dates,"validation_structure":"OK"}
+
+
 
 def main():
     REPORT.parent.mkdir(parents=True,exist_ok=True)
@@ -69,6 +93,7 @@ def main():
              ""]
     cert=ssl._create_unverified_context()
     opener=build_opener(HTTPCookieProcessor(CookieJar()),HTTPSHandler(context=cert))
+    collected=[]
     try:
         url,status,typ,b=ouvrir(opener,BASE+"/incendies")
         region=selection_region(b.decode("utf-8",errors="replace"))
@@ -90,10 +115,16 @@ def main():
             journal.append(f"- ZIP : HTTP {zstatus}, content-type {ztype}, taille {len(zipped)} octets")
             metadata=inspect_zip(zipped,annee)
             journal.append("- Contenu observé : \n\n~~~json\n"+json.dumps(metadata,ensure_ascii=False,indent=2)+"\n~~~\n")
-            filename=f"bdiff_occitanie_{annee}_transport_tls_non_verifie.zip"
+            filename=f"bdiff_occitanie_{annee}.zip"
             (OUT/filename).write_bytes(zipped)
-            journal.append(f"- SHA-256 : {hashlib.sha256(zipped).hexdigest()}")
-        journal.append("\n**Statut : fichiers téléchargés techniquement, à mettre en quarantaine avant publication.**")
+            sha=hashlib.sha256(zipped).hexdigest()
+            collected.append({"annee":annee,"fichier":filename,"sha256":sha,
+                              "url_recherche":url,"url_export":zurl,"octets":len(zipped),
+                              "controle":metadata,"date_collecte_utc":datetime.now(timezone.utc).isoformat(),
+                              "tls_certificat_verifie":False,"statut":"export_officiel_structure_verifiee_transport_tls_a_confirmer"})
+            journal.append(f"- SHA-256 : {sha}")
+        (OUT/"manifest.json").write_text(json.dumps({"source":"Portail BDIFF / ministère de l’Agriculture","transfert_tls_verifie":False,"extractions":collected},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+        journal.append("\n**Statut : ZIP officiels récupérés depuis le portail et contrôlés (schéma, année, zone, annexes) ; certificat TLS non vérifié sur le runner, réserve de provenance à lever indépendamment.**")
     except Exception as e:
         journal.append("\n**Collecte interrompue** : "+type(e).__name__+" — "+str(e)[:1200])
     REPORT.write_text("\n".join(journal)+"\n",encoding="utf-8")
