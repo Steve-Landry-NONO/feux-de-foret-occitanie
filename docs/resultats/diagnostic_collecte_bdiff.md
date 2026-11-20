@@ -24,30 +24,56 @@ Source : https://bdiff.agriculture.gouv.fr/incendies ; méthode : formulaire pub
     "Mention légales.pdf",
     "Définitions.pdf"
   ],
-  "premieres_lignes_csv": [
-    "\"Nombre d'incendies suivant les critères de sélection : 413\"",
-    "\"Critères de sélection =>\";\"Date de première alerte, de : 2024-01-01 00:00:00\";\"Date de première alerte, jusqu'à : 2024-12-31 23:59:00\";\"Région administrative : OCCITANIE\";\"Type de feu : F\"",
-    "Année;Numéro;Département;\"Code INSEE\";\"Nom de la commune\";\"Date de première alerte\";\"Surface parcourue (m2)\";\"Surface forêt (m2)\";\"Surface maquis garrigues (m2)\";\"Autres surfaces naturelles hors forêt (m2)\";\"Surfaces agricoles (m2)\";\"Autres surfaces (m2)\";\"Surface autres terres boisées (m2)\";\"Surfaces non boisées naturelles (m2)\";\"Surfaces non boisées artificialisées (m2)\";\"Surfaces non boisées (m2)\";\"Précision des surfaces\";\"Type de peuplement\";Nature;\"Décès ou bâtiments touchés\";\"Nombre de décès\";\"Nombre de bâtiments totalement détruits\";\"Nombre de bâtiments partiellement détruits\";\"Précision de la donnée\"",
-    "2024;5;\"66\";\"66043\";\"Casteil\";\"2024-01-01 12:02:00\";2000;2000;0;0;0;0;;;;;\"Estimées\";;\"Involontaire (particulier)\";\"Non\";;;;\"\"",
-    "2024;20474;\"11\";\"11322\";\"Roquefort-des-Corbières\";\"2024-01-01 20:42:00\";100;10;90;0;0;0;;;;;\"Mesurées\";\"1\";;\"Non\";;;;\"\""
-  ],
+  "criteres_export": "\"Critères de sélection =>\";\"Date de première alerte, de : 2024-01-01 00:00:00\";\"Date de première alerte, jusqu'à : 2024-12-31 23:59:00\";\"Région administrative : OCCITANIE\";\"Type de feu : F\"",
   "champs": [
-    "Nombre d'incendies suivant les critères de sélection : 413"
+    "Année",
+    "Numéro",
+    "Département",
+    "Code INSEE",
+    "Nom de la commune",
+    "Date de première alerte",
+    "Surface parcourue (m2)",
+    "Surface forêt (m2)",
+    "Surface maquis garrigues (m2)",
+    "Autres surfaces naturelles hors forêt (m2)",
+    "Surfaces agricoles (m2)",
+    "Autres surfaces (m2)",
+    "Surface autres terres boisées (m2)",
+    "Surfaces non boisées naturelles (m2)",
+    "Surfaces non boisées artificialisées (m2)",
+    "Surfaces non boisées (m2)",
+    "Précision des surfaces",
+    "Type de peuplement",
+    "Nature",
+    "Décès ou bâtiments touchés",
+    "Nombre de décès",
+    "Nombre de bâtiments totalement détruits",
+    "Nombre de bâtiments partiellement détruits",
+    "Précision de la donnée"
   ],
   "separateur": ";",
-  "lignes": 415,
-  "extrait_annees": [],
-  "extrait_departements": [],
-  "premiere_ligne_extrait": {
-    "noms_champs": [
-      "Nombre d'incendies suivant les critères de sélection : 413",
-      null
-    ]
-  }
+  "lignes": 413,
+  "annees": [
+    "2024"
+  ],
+  "departements_presents": [
+    "09",
+    "11",
+    "12",
+    "30",
+    "31",
+    "34",
+    "46",
+    "48",
+    "66",
+    "81"
+  ],
+  "dates_alerte_hors_annee": 0,
+  "validation_structure": "OK"
 }
 ~~~
 
-- SHA-256 : 4c8181dad5a210adfecd64935235fafe66c3f2eb2cc3de21675809a113ae9222
+- SHA-256 : 41c5fec89e26a04a5e6329f495c01526a6237a9490f1206e7e04536f1e8c7963
 ## 2025
 
 - Recherche HTTP 200, URL finale https://bdiff.agriculture.gouv.fr/incendies?if%5BdateAlerteDeb%5D%5Bdate%5D=01%2F01%2F2025&if%5BdateAlerteDeb%5D%5Btime%5D%5Bhour%5D=0&if%5BdateAlerteDeb%5D%5Btime%5D%5Bminute%5D=0&if%5BdateAlerteFin%5D%5Bdate%5D=31%2F12%2F2025&if%5BdateAlerteFin%5D%5Btime%5D%5Bhour%5D=23&if%5BdateAlerteFin%5D%5Btime%5D%5Bminute%5D=59&if%5Bra%5D=76&if%5Bsubmit%5D=
@@ -68,29 +94,58 @@ Source : https://bdiff.agriculture.gouv.fr/incendies ; méthode : formulaire pub
     "Mention légales.pdf",
     "Définitions.pdf"
   ],
-  "premieres_lignes_csv": [
-    "\"Nombre d'incendies suivant les critères de sélection : 472\"",
-    "\"Critères de sélection =>\";\"Date de première alerte, de : 2025-01-01 00:00:00\";\"Date de première alerte, jusqu'à : 2025-12-31 23:59:00\";\"Région administrative : OCCITANIE\";\"Type de feu : F\"",
-    "Année;Numéro;Département;\"Code INSEE\";\"Nom de la commune\";\"Date de première alerte\";\"Surface parcourue (m2)\";\"Surface forêt (m2)\";\"Surface maquis garrigues (m2)\";\"Autres surfaces naturelles hors forêt (m2)\";\"Surfaces agricoles (m2)\";\"Autres surfaces (m2)\";\"Surface autres terres boisées (m2)\";\"Surfaces non boisées naturelles (m2)\";\"Surfaces non boisées artificialisées (m2)\";\"Surfaces non boisées (m2)\";\"Précision des surfaces\";\"Type de peuplement\";Nature;\"Décès ou bâtiments touchés\";\"Nombre de décès\";\"Nombre de bâtiments totalement détruits\";\"Nombre de bâtiments partiellement détruits\";\"Précision de la donnée\"",
-    "2025;41;\"34\";\"34065\";\"Cazedarnes\";\"2025-01-10 11:22:00\";79;79;0;0;0;0;;;;;\"Mesurées\";\"1\";\"Malveillance\";\"Non\";;;;\"\"",
-    "2025;37;\"34\";\"34301\";\"Sète\";\"2025-01-10 21:48:00\";98;98;0;0;0;0;;;;;\"Mesurées\";\"1\";\"Malveillance\";\"Non\";;;;\"\""
-  ],
+  "criteres_export": "\"Critères de sélection =>\";\"Date de première alerte, de : 2025-01-01 00:00:00\";\"Date de première alerte, jusqu'à : 2025-12-31 23:59:00\";\"Région administrative : OCCITANIE\";\"Type de feu : F\"",
   "champs": [
-    "Nombre d'incendies suivant les critères de sélection : 472"
+    "Année",
+    "Numéro",
+    "Département",
+    "Code INSEE",
+    "Nom de la commune",
+    "Date de première alerte",
+    "Surface parcourue (m2)",
+    "Surface forêt (m2)",
+    "Surface maquis garrigues (m2)",
+    "Autres surfaces naturelles hors forêt (m2)",
+    "Surfaces agricoles (m2)",
+    "Autres surfaces (m2)",
+    "Surface autres terres boisées (m2)",
+    "Surfaces non boisées naturelles (m2)",
+    "Surfaces non boisées artificialisées (m2)",
+    "Surfaces non boisées (m2)",
+    "Précision des surfaces",
+    "Type de peuplement",
+    "Nature",
+    "Décès ou bâtiments touchés",
+    "Nombre de décès",
+    "Nombre de bâtiments totalement détruits",
+    "Nombre de bâtiments partiellement détruits",
+    "Précision de la donnée"
   ],
   "separateur": ";",
-  "lignes": 474,
-  "extrait_annees": [],
-  "extrait_departements": [],
-  "premiere_ligne_extrait": {
-    "noms_champs": [
-      "Nombre d'incendies suivant les critères de sélection : 472",
-      null
-    ]
-  }
+  "lignes": 472,
+  "annees": [
+    "2025"
+  ],
+  "departements_presents": [
+    "09",
+    "11",
+    "12",
+    "30",
+    "31",
+    "32",
+    "34",
+    "46",
+    "48",
+    "65",
+    "66",
+    "81",
+    "82"
+  ],
+  "dates_alerte_hors_annee": 0,
+  "validation_structure": "OK"
 }
 ~~~
 
-- SHA-256 : 6aae450a69230eff21e75d54f0c57377d370e5c2f0376b4702d012b2ebd8ab8e
+- SHA-256 : b9eda6ed42d0b19dbd54848dbdfc6675334ca81c6c2bdc17a436f9edb9b3e678
 
-**Statut : fichiers téléchargés techniquement, à mettre en quarantaine avant publication.**
+**Statut : ZIP officiels récupérés depuis le portail et contrôlés (schéma, année, zone, annexes) ; certificat TLS non vérifié sur le runner, réserve de provenance à lever indépendamment.**
