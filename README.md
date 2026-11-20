@@ -79,6 +79,18 @@ Le projet a commencé la collecte et le profilage réel des sources, tout en con
 
 **Travail à relire :** [PR #3](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/pull/3) — tickets [#4](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/4), [#5](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/5), [#6](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/6), [#7](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/7), [#8](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/8).
 
+## Résultats scénarios Q2–Q3 et démonstrateur (20 novembre 2026)
+
+Les premiers indicateurs ont été **calculés automatiquement** depuis les archives MdF et les ZIP BDIFF de type F : années 2024 et 2025, 13 départements + Occitanie, J+1/J+2, seuils 2/3/4. Le calcul compare les échéances sur un ensemble **strictement commun** de journées par département.
+
+- **[Rapport chiffré Q2–Q3](docs/resultats/kpi_scenarios_q2_q3.md)** : jours avec feu observé, journées de surveillance simulées, taux de couverture et jours de surveillance sans feu observé.
+- **[Audit des invariants](docs/resultats/audit_kpi_q2_q3.md)** : cohérence des totaux, monotonie des seuils et comparabilité des dénominateurs.
+- **[Tableau de bord interactif V0](dashboard/README.md)** : filtres année, territoire et horizon, graphique de compromis, données réelles issues du CSV. Exécuter avec `python3 -m http.server 8000` depuis la racine et ouvrir `http://localhost:8000/dashboard/`.
+- **[Vision technique élargie](docs/architecture/vision-technique-et-experimentations.md)** : cartographie 2D, optimisation des patrouilles, expérimentations ML et 3D sous conditions de qualité et d'utilité.
+- **Issues [#9](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/9) / [#10](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/10)** : calcul et interface.
+
+**Statut : résultats exploratoires reproductibles, validation finale NON acquise.** Le producteur définit J+1 et J+2, mais l'alias `date` de l'archive versus `Reference_time` de la documentation reste à corroborer ; la provenance HTTPS de BDIFF a une réserve TLS ; les feux du 31 sont trop rares pour une conclusion robuste isolée. Notre dashboard n'est pas un outil opérationnel du SDIS.
+
 ## Méthode
 
 ```text
