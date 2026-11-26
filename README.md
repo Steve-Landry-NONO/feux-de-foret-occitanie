@@ -15,6 +15,10 @@
 
 **Convention :** chaque carte technique Trello référence son Issue GitHub ; chaque PR référence l'Issue correspondante. Le dépôt reste la source de vérité pour le code et les livrables versionnés. Ne pas confondre le Drive pédagogique et le Drive collectif.
 
+## Démarrage avec un assistant IA
+
+Lire [AGENTS.md](AGENTS.md), le [guide de contribution](CONTRIBUTING.md), le [contexte projet](docs/pilotage/CONTEXTE.md), l’[état daté](docs/pilotage/PROJECT_STATUS.md), la [roadmap](docs/pilotage/ROADMAP.md) et les [prompts de démarrage](docs/accompagnement/README.md). Les tickets et PR en direct priment sur les instantanés. Onboarding : #19–#24.
+
 ## Sources de données et documentation externe
 
 Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inventaire.md). **Ils désignent des sources candidates ou des pages de documentation, et non des jeux de données déjà validés ou profilés.**
