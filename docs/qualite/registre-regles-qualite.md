@@ -76,3 +76,46 @@ python scripts/controler_qualite_mdf.py \
 ## Vérification des corrections du 27/11/2026
 
 Exécution locale : `python -m unittest discover -s tests -v` — 7 tests réussis, 0 échec, 0 erreur (0,006 s). Les empreintes Git des fichiers exécutés correspondent aux blobs publiés : script `431e055e9f7a3205dad847d2fa3fdcd075c24000`, tests `f92134b3cf28a32d99c6b5efade0475b75593dcf`. Cette vérification porte uniquement sur les tests synthétiques de la contribution ; les archives réelles restent à contrôler et la preuve JSON reste à produire.
+
+## Qualification technique — 27/11/2026
+
+La qualification est distincte de l'approbation collective. Une règle exécutée peut être CONFORME ou NON CONFORME ; NON CONTROLEE signifie que la preuve nécessaire manque. VALIDEE COLLECTIVEMENT exige une décision au journal. Aucun seuil proposé ci-dessous n'est déclaré approuvé.
+
+| Règle | Résultat technique sur les trois archives | Validation collective |
+|---|---|---|
+| MDF-01, 02, 03, 04, 05 | Exécutées, conformes aux seuils proposés | En attente |
+| MDF-06, 07 | Exécutées, conformes sur le calendrier publié uniquement | En attente |
+| MDF-08 | Exécutée : écart de format en 2024–2025 (1080 codes par archive), normalisation proposée | En attente |
+| MDF-09 | Exécutée, aucun jour à horodatages multiples | En attente |
+| MDF-11 | Exécutée, séparateurs détectés ; alias 2025 documenté | En attente |
+| MDF-10, 12 | Non contrôlées : sémantique et période attendue non établies | En attente |
+| BDF, REF, JNT, SDIS | Non contrôlées dans cette qualification | En attente |
+
+### Preuves et reproduction
+
+- [Rapport JSON](preuve-controles-mdf.json), blob Git `07d2f844d568b97519737f22519d38521a23061c`, SHA-256 `78a09983cd494e049b415bd796c2370839c593f46d92cb845f779661f76934bf`.
+- Source PR #3 : commit `479e5d91296a5994eaed304678504cdc05fb3a17`. Manifeste blob `d27b2ca388421077ddf613adbf47e2a782ba76a0`. Les archives du ZIP fourni ont été comparées aux blobs GitHub.
+- Script : blob `431e055e9f7a3205dad847d2fa3fdcd075c24000`, commit fcbc22d.
+- Tests : blobs `f92134b3cf28a32d99c6b5efade0475b75593dcf` et `5455aa1928a6bbf0968156ff1df6e0afca10a11f`.
+- Exécution locale assistée le 27/11/2026 : 7 méthodes initiales réussies (0,008 s), puis 8 méthodes réussies (2,198 s), 0 erreur et 0 échec. Le test CLI vérifie les codes 0, 1, 2 et les statuts JSON correspondants.
+- Contrôles réels : code retour 0, trois archives conformes aux règles bloquantes exécutables ; sortie identique octet pour octet au JSON versionné. Aucun jour absent dans les bornes publiées, ce qui ne démontre pas la couverture de la période d'étude.
+
+Depuis la branche de contribution, récupérer les fichiers du commit source dans un répertoire séparé (sans fusion) :
+
+```sh
+git fetch origin refs/pull/3/head
+git archive 479e5d91296a5994eaed304678504cdc05fb3a17 datasets/public/meteo_des_forets | tar -x -C /tmp
+python -m unittest discover -s tests -v
+python scripts/controler_qualite_mdf.py /tmp/datasets/public/meteo_des_forets/mdf_2024.csv.gz /tmp/datasets/public/meteo_des_forets/mdf_2025.csv.gz /tmp/datasets/public/meteo_des_forets/mdf_2026.csv.gz --manifest /tmp/datasets/public/meteo_des_forets/manifest.json --commit-source 479e5d91296a5994eaed304678504cdc05fb3a17 > /tmp/preuve-controles-mdf.json
+```
+
+### Suite proposée, sans chantier concurrent
+
+| Périmètre | Contrôles à préparer | Coordination préalable |
+|---|---|---|
+| BDIFF (#4, #5) | SHA, grain, identifiant unique, dates, territoire, surface et unité, exhaustivité, valeurs nulles, licence de la ressource | Maeva fournit les extractions identifiées ; Stéphane confirme le grain et les transformations |
+| Référentiels (#8) | Millésime COG, codes texte, unicité, correspondances historiques, couverture des clés et non-raccordés | Maeva confirme la source ; Stéphane fournit les clés du pipeline |
+| Jointures (A1, A3) | Cardinalité avant/après, anti-jointures, chevauchement réel, échéance météo, distinction zéro/inconnu, absence de multiplication | Stéphane prépare les jeux intermédiaires ; Ludovic valide les besoins KPI ; Steve arbitre la période |
+| Conformité | Licence au niveau ressource, attribution, minimisation et absence de données personnelles | Chantal prépare la revue sur les ressources confirmées |
+
+Livrables attendus : manifeste et SHA source, règles et seuils proposés, tests synthétiques, rapport réel et limites, puis revue humaine. Ne pas lancer de pipeline parallèle ni modifier les branches des autres membres. Le #14 reste ouvert. Décisions attendues : seuils et criticités, A3, MDF-10, coordination des prochains contrôles.
