@@ -78,3 +78,51 @@ for year in (2024, 2025):
         print(year, target, len(events), len(missing), sorted(set(missing)), len(conflicts))
 PY
 ```
+
+## Interface pour le pipeline et passage de la PR #3
+
+Le workflow `collecte-insee.yml` de la PR #3 appelle `python3 scripts/collecter_cog_insee.py` sans argument depuis la racine du dépôt. Cette commande utilise désormais `datasets/public/insee_cog_2025/` par défaut. Les deux noms de CSV 2025 et le manifeste JSON attendus par le workflow sont conservés, auxquels s’ajoutent le CSV 2024, les écarts et les mouvements. `--sortie` permet un chemin isolé. `--entrees` permet une reproduction hors ligne avec `--date-collecte-utc`.
+
+Un échec d’acquisition ou de validation rend un code non nul. En mode réseau avec la sortie par défaut, le diagnostic est écrit dans `docs/resultats/diagnostic_insee_v0.md`, chemin que le workflow sait versionner. Lire le statut de la commande pour savoir si le chargement courant a réussi. Des sorties présentes lors d’un échec peuvent provenir d’un chargement précédent. Le workflow vérifie la présence des CSV et la syntaxe du JSON. Pour leur intégrité, contrôler en plus `sorties_sha256`. Le nouveau manifeste organise la provenance par archives et sources et expose les effectifs par millésime. Le workflow existant ne lit aucun champ de l’ancien manifeste. Tout consommateur externe qui utilisait `communes_par_departement` doit lire `communes_par_dep_2025` et celui de 2024 est disponible séparément.
+
+Lors de la réconciliation coordonnée au #12, retenir ce collecteur pour résoudre le doublon de chemin et conserver l’appel du workflow. Exécuter les contrôles sur la branche réconciliée avant activation. Le workflow contient des références de branche pour le checkout, le rebase et le push. Si sa branche d’exécution change, la coordination doit adapter ces trois références ensemble.
+
+## Contrat de données pour Stéphane et Ludovic
+
+| Sortie | Grain et clés | Règle d’ingestion |
+|---|---|---|
+| `occitanie_communes_YYYY.csv` | Une commune en vigueur au 1er janvier, clé `(millesime, COM)`. | Dériver le millésime du nom. Lire `COM` sur cinq caractères et `DEP`, `REG` sur deux, toujours en texte. Attendre `TYPECOM=COM` et `REG=76`. Le libellé est un attribut. |
+| `occitanie_departements_2025.csv` | Un département en 2025, clé `(2025, DEP)`. | Vérifier le rattachement `DEP` des communes 2025 à un et un seul département. La liste 2025 n’est pas un instantané départemental 2024. |
+| `ecarts_communes_2024_2025.csv` | Un code `COM` dont la présence, le département ou le libellé diffère entre les deux instantanés. | Utiliser les statuts `apparu`, `disparu` et `attribut_modifie` pour l’audit. Une valeur vide indique l’absence du code dans ce millésime. |
+| `mouvements_communes_2024_2025.csv` | Une relation INSEE avant/après à `DATE_EFF`, avec motif `MOD`, types et codes des deux côtés. | Lire `DATE_EFF` comme date civile ISO. La fenêtre est ouverte au 1er janvier 2024 et fermée au 1er janvier 2025. Plusieurs relations peuvent partager un code initial ou final. Garder notamment `COMD` distinct de `COM`. |
+| `manifest.json` | Une collecte documentée, avec entrées et empreintes de chaque sortie. | Recalculer les SHA-256 avant chargement. Conserver la date de collecte et la distinguer du millésime et de la date d’effet. |
+
+Pour joindre les feux, partir de la ligne BDIFF avec code, département et date d’alerte bruts. Le raccord exploratoire utilise l’année comme millésime et exige au plus une commune par événement. Journaliser les codes sans correspondance ou les départements incohérents, sans les transformer en zéros. Pour un rattachement à la date exacte ou une conversion vers une géographie commune, appliquer la date d’effet et qualifier chaque mouvement, puis vérifier le nombre de lignes avant et après. Un code identique peut couvrir un périmètre qui a changé. Ces fichiers ne fournissent pas une dimension historisée complète à la date de l’événement. La réserve de provenance des ZIP BDIFF reste ouverte au #5.
+
+## Vérification de la correction de revue
+
+```bash
+python3 -m py_compile scripts/collecter_cog_insee.py
+python3 -m unittest discover -s tests -p 'test_collecter_cog_insee.py' -v
+python3 -m unittest discover -s tests
+```
+
+Résultat exécuté : **9 tests COG et 17 tests au total réussis**. Les tests ciblés couvrent la compatibilité CLI, le diagnostic d’échec, les filtres, l’unicité des communes et départements, les zéros initiaux, le rejet de schémas et couvertures invalides, la comparaison des millésimes, les mouvements et le contrôle des empreintes.
+
+Lors de la reproduction hors ligne sur les sources officielles conservées, `diff -rq` n’a trouvé aucun écart par rapport aux sorties versionnées. Les cinq SHA-256 recalculés concordent avec le manifeste.
+
+```bash
+python3 - <<'PY'
+import hashlib
+import json
+from pathlib import Path
+
+root = Path("datasets/public/insee_cog_2025")
+manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+for name, expected in manifest["sorties_sha256"].items():
+    actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
+    if actual != expected:
+        raise SystemExit(f"Empreinte différente : {name}")
+    print(f"{actual}  {name}")
+PY
+```

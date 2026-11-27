@@ -12,6 +12,9 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+DEFAULT_OUTPUT = Path("datasets/public/insee_cog_2025")
+FAILURE_REPORT = Path("docs/resultats/diagnostic_insee_v0.md")
+EXPECTED_NATIONAL = {"v_commune_2024.csv": 34935, "v_commune_2025.csv": 34875, "v_departement_2025.csv": 101}
 SOURCES = ("v_commune_2024.csv", "v_commune_2025.csv", "v_departement_2025.csv")
 DEPARTEMENTS = set("09 11 12 30 31 32 34 46 48 65 66 81 82".split())
 CATALOGUE = "https://www.data.gouv.fr/datasets/code-officiel-geographique-1"
@@ -49,17 +52,22 @@ def load_archives(directory):
     return files, metadata
 
 
-def read_source(name, raw, key, fields):
+def read_rows(name, raw, fields):
     reader = csv.DictReader(io.StringIO(raw.decode("utf-8-sig"), newline=""), strict=True)
-    if not reader.fieldnames or not set(fields) <= set(reader.fieldnames):
+    if (not reader.fieldnames or len(reader.fieldnames) != len(set(reader.fieldnames))
+            or not set(fields) <= set(reader.fieldnames)):
         raise ValueError(f"Colonnes attendues absentes dans {name}")
     rows = list(reader)
     if any(None in row or None in row.values() for row in rows):
         raise ValueError(f"Ligne CSV mal formée dans {name}")
+    return rows, reader.fieldnames
+
+
+def read_source(name, raw, key, fields):
+    rows, columns = read_rows(name, raw, fields)
     is_commune = key == "COM"
-    expected_national = {"v_commune_2024.csv": 34935, "v_commune_2025.csv": 34875, "v_departement_2025.csv": 101}
     base = [row for row in rows if not is_commune or row["TYPECOM"] == "COM"]
-    if len(base) != expected_national[name] or len({row[key] for row in base}) != len(base):
+    if len(base) != EXPECTED_NATIONAL[name] or len({row[key] for row in base}) != len(base):
         raise ValueError(f"Effectif national ou unicité inattendu dans {name}")
     subset = sorted((row for row in base if row["REG"] == "76"), key=lambda row: row[key])
     if {row["DEP"] for row in subset} != DEPARTEMENTS:
@@ -71,7 +79,7 @@ def read_source(name, raw, key, fields):
         "fichier": name,
         "millesime": int(name[-8:-4]), "sha256": sha256(raw), "octets": len(raw),
         "lignes_nationales": len(rows), "lignes_nationales_apres_filtre_type": len(base),
-        "colonnes": reader.fieldnames, "lignes_occitanie": len(subset),
+        "colonnes": columns, "lignes_occitanie": len(subset),
         "filtre": "REG=76 et TYPECOM=COM" if is_commune else "REG=76",
     }
     return subset, meta
@@ -85,17 +93,31 @@ def csv_output(fields, rows):
     return stream.getvalue().encode("utf-8")
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--entrees", type=Path, help="Dossier des fichiers officiels déjà téléchargés")
-    parser.add_argument("--sortie", type=Path, required=True)
+    parser.add_argument("--sortie", type=Path, default=DEFAULT_OUTPUT,
+                        help=f"Dossier des sorties (défaut : {DEFAULT_OUTPUT})")
     parser.add_argument("--date-collecte-utc", help="Date UTC constatée pour les fichiers locaux")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.entrees and not args.date_collecte_utc:
         parser.error("--entrees requiert --date-collecte-utc")
+    try:
+        collect(args.entrees, args.sortie, args.date_collecte_utc)
+    except (OSError, ValueError, csv.Error, KeyError, zipfile.BadZipFile) as exc:
+        if args.entrees is None and args.sortie == DEFAULT_OUTPUT:
+            FAILURE_REPORT.parent.mkdir(parents=True, exist_ok=True)
+            FAILURE_REPORT.write_text(
+                "# Collecte INSEE COG 2024–2025 — échec\n\n"
+                "Les sorties existantes ne constituent pas une preuve de cette collecte.\n\n"
+                f"{type(exc).__name__} — {exc}\n", encoding="utf-8")
+        parser.exit(1, f"Collecte INSEE interrompue : {exc}\n")
+
+
+def collect(inputs, output, collected_at):
     commune_fields = ["COM", "DEP", "REG", "TYPECOM", "LIBELLE", "NCC"]
     dep_fields = ["DEP", "REG", "LIBELLE", "NCC"]
-    archives, archive_metadata = load_archives(args.entrees)
+    archives, archive_metadata = load_archives(inputs)
     tables, metadata = {}, []
     for name in SOURCES:
         key, fields = ("COM", commune_fields) if name.startswith("v_commune") else ("DEP", dep_fields)
@@ -118,11 +140,11 @@ def main():
                 "dep_2025": after["DEP"] if after else "",
             })
     movement_bytes = archives["v_mvt_commune_2025.csv"]
-    movement_rows = list(csv.DictReader(io.StringIO(movement_bytes.decode("utf-8-sig")), strict=True))
     movement_fields = ["DATE_EFF", "MOD", "TYPECOM_AV", "COM_AV", "LIBELLE_AV",
                        "TYPECOM_AP", "COM_AP", "LIBELLE_AP"]
-    if not movement_rows or not set(movement_fields) <= set(movement_rows[0]):
-        raise ValueError("Schéma des mouvements inattendu")
+    movement_rows, _ = read_rows("v_mvt_commune_2025.csv", movement_bytes, movement_fields)
+    if not movement_rows:
+        raise ValueError("Table des mouvements vide")
     movements = [
         row for row in movement_rows
         if "2024-01-01" < row["DATE_EFF"] <= "2025-01-01"
@@ -140,8 +162,8 @@ def main():
     manifest = {
         "producteur": "Insee", "catalogue": CATALOGUE,
         "licence_catalogue": "Licence Ouverte (fr-lo)",
-        "date_collecte_utc": args.date_collecte_utc or datetime.now(timezone.utc).isoformat(),
-        "mode": "Fichiers officiels locaux" if args.entrees else "HTTPS",
+        "date_collecte_utc": collected_at or datetime.now(timezone.utc).isoformat(),
+        "mode": "Fichiers officiels locaux" if inputs else "HTTPS",
         "archives": archive_metadata,
         "mouvements": {"fichier": "v_mvt_commune_2025.csv", "sha256": sha256(movement_bytes),
                        "lignes_nationales": len(movement_rows), "lignes_retenues": len(movements)},
@@ -151,10 +173,10 @@ def main():
         "communes_par_dep_2025": dict(sorted(Counter(row["DEP"] for row in c25).items())),
         "sorties_sha256": {name: sha256(data) for name, data in outputs.items()},
     }
-    args.sortie.mkdir(parents=True, exist_ok=True)
+    output.mkdir(parents=True, exist_ok=True)
     for name, data in outputs.items():
-        (args.sortie / name).write_bytes(data)
-    (args.sortie / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        (output / name).write_bytes(data)
+    (output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
