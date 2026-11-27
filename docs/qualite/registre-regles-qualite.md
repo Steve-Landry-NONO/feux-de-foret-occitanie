@@ -72,3 +72,7 @@ python scripts/controler_qualite_mdf.py \
 1. Valider les criticités et les seuils proposés (aucun seuil statistique n'est fixé pour BDF-02).
 2. Confirmer l'emplacement `docs/qualite/` et l'intégration du script dans la chaîne de la PR #3.
 3. Désigner qui obtient la confirmation MDF-10 auprès de Météo-France.
+
+## Vérification des corrections du 27/11/2026
+
+Exécution locale : `python -m unittest discover -s tests -v` — 7 tests réussis, 0 échec, 0 erreur (0,006 s). Les empreintes Git des fichiers exécutés correspondent aux blobs publiés : script `431e055e9f7a3205dad847d2fa3fdcd075c24000`, tests `f92134b3cf28a32d99c6b5efade0475b75593dcf`. Cette vérification porte uniquement sur les tests synthétiques de la contribution ; les archives réelles restent à contrôler et la preuve JSON reste à produire.
