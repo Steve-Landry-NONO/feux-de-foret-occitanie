@@ -119,3 +119,20 @@ python scripts/controler_qualite_mdf.py /tmp/datasets/public/meteo_des_forets/md
 | Conformité | Licence au niveau ressource, attribution, minimisation et absence de données personnelles | Chantal prépare la revue sur les ressources confirmées |
 
 Livrables attendus : manifeste et SHA source, règles et seuils proposés, tests synthétiques, rapport réel et limites, puis revue humaine. Ne pas lancer de pipeline parallèle ni modifier les branches des autres membres. Le #14 reste ouvert. Décisions attendues : seuils et criticités, A3, MDF-10, coordination des prochains contrôles.
+
+
+## Extension BDIFF — qualification du 27/11/2026
+
+Source : PR #3, commit `479e5d91296a5994eaed304678504cdc05fb3a17`. Voir [qualification BDIFF](qualification-bdiff.md) et [preuve JSON](preuve-controles-bdiff.json). Les seuils supplémentaires sont proposés, non approuvés.
+
+| Règle | Qualification technique | Validation collective |
+|---|---|---|
+| BDF-01 | Unicité candidate année × numéro | En attente |
+| BDF-02 | Complétude des champs obligatoires, profil des autres champs sans imputation | En attente |
+| BDF-03 | Surfaces finies, non négatives, m² | En attente |
+| BDF-04 | Millésime et filtres, pas exhaustivité | En attente |
+| BDF-05 à 09 | Extensions : SHA, structure, format territorial, cohérence individuelle des surfaces, valeurs manquantes | En attente |
+| BDF-10 à 12 | Provenance TLS, licence exacte, exhaustivité : non validées | En attente |
+| REF-01, JNT-01, JNT-02 | Contrats proposés dans la qualification, non exécutés | En attente |
+
+Aucune absence de recensement ne prouve une absence réelle de feu. SHA-256 ne lève pas la réserve TLS. Aucun pipeline concurrent. Ticket #14 maintenu ouvert.
