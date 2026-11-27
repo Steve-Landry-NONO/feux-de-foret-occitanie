@@ -3,7 +3,7 @@
 
 ![Statut](https://img.shields.io/badge/Cadrage-valid%C3%A9-238636) ![Sources](https://img.shields.io/badge/Sources-%C3%A0_v%C3%A9rifier-orange) ![Projet](https://img.shields.io/badge/HETIC-MD5-blue)
 
-> **Projet pédagogique HETIC — Mastère Data & IA, UE01 Stratégie Business Data-Driven (2026–2027).** Encadrement : Marine PROST. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
+> **Projet pédagogique HETIC — Mastère Data & IA, projet transversal à plusieurs modules (2026–2027).** Les références pédagogiques propres à chaque module sont conservées ; la liste des enseignants sera établie ultérieurement. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
 
 ## Espaces de travail et suivi
 

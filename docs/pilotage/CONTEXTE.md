@@ -1,5 +1,5 @@
 # Contexte projet
-Cas pédagogique HETIC (Marine Prost), pas une mission opérationnelle du SDIS. Décisions : où concentrer les moyens et quel seuil météo déclenche une surveillance renforcée. Périmètre : Haute-Garonne, Occitanie, comparaison nationale si données compatibles.
+Cas pédagogique transversal HETIC, mobilisant plusieurs modules et enseignants, pas une mission opérationnelle du SDIS. Décisions : où concentrer les moyens et quel seuil météo déclenche une surveillance renforcée. Périmètre : Haute-Garonne, Occitanie, comparaison nationale si données compatibles.
 ## Références métier
 - README.md : rôles validés, questions Q1–Q6, espaces de travail.
 - docs/collectif/questions-retenues-proposition.md : questions retenues.
