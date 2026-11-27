@@ -1,0 +1,127 @@
+{
+  "date_execution": "2026-11-27",
+  "commit_source": "479e5d91296a5994eaed304678504cdc05fb3a17",
+  "resultats": [
+    {
+      "fichier": "mdf_2024.csv.gz",
+      "lignes": 11520,
+      "separateur": ",",
+      "MDF-01_alias_utilises": [],
+      "MDF-01_colonnes_manquantes": [],
+      "MDF-01_colonnes_inattendues": [],
+      "sha256_source": "e3f87c1161d30491ec7ad1149e0f8b5b89f3974d34dd3200ecbdd1d41b55115f",
+      "MDF-02_statut": "CONFORME",
+      "MDF-02_sha256_conforme": true,
+      "MDF-08_codes_sans_zero_initial": 1080,
+      "lignes_occitanie": 1560,
+      "MDF-03_dates_invalides": 0,
+      "MDF-04_doublons_dep_jour": 0,
+      "MDF-05_niveau_j1_vides": 0,
+      "MDF-05_niveau_j1_hors_domaine": 0,
+      "MDF-05_niveau_j1_distribution": {
+        "1": 1157,
+        "2": 326,
+        "3": 76,
+        "4": 1
+      },
+      "MDF-05_niveau_j2_vides": 0,
+      "MDF-05_niveau_j2_hors_domaine": 0,
+      "MDF-05_niveau_j2_distribution": {
+        "1": 1193,
+        "2": 328,
+        "3": 39
+      },
+      "MDF-06_jours_publies": 120,
+      "MDF-06_jours_population_incomplete": {},
+      "MDF-07_periode": [
+        "2024-06-03",
+        "2024-09-30"
+      ],
+      "MDF-07_jours_absents": [],
+      "MDF-09_jours_plusieurs_horodatages": 0,
+      "statut": "CONFORME_SUR_REGLES_BLOQUANTES"
+    },
+    {
+      "fichier": "mdf_2025.csv.gz",
+      "lignes": 11520,
+      "separateur": ",",
+      "MDF-01_alias_utilises": [
+        "dep_nom"
+      ],
+      "MDF-01_colonnes_manquantes": [],
+      "MDF-01_colonnes_inattendues": [],
+      "sha256_source": "dd0a095b1744ef7c64e44c3a4560bdbd75a1fcbd7292942ba539c85b79e9e3b0",
+      "MDF-02_statut": "CONFORME",
+      "MDF-02_sha256_conforme": true,
+      "MDF-08_codes_sans_zero_initial": 1080,
+      "lignes_occitanie": 1560,
+      "MDF-03_dates_invalides": 0,
+      "MDF-04_doublons_dep_jour": 0,
+      "MDF-05_niveau_j1_vides": 0,
+      "MDF-05_niveau_j1_hors_domaine": 0,
+      "MDF-05_niveau_j1_distribution": {
+        "1": 909,
+        "2": 474,
+        "3": 170,
+        "4": 7
+      },
+      "MDF-05_niveau_j2_vides": 0,
+      "MDF-05_niveau_j2_hors_domaine": 0,
+      "MDF-05_niveau_j2_distribution": {
+        "1": 945,
+        "2": 473,
+        "3": 135,
+        "4": 7
+      },
+      "MDF-06_jours_publies": 120,
+      "MDF-06_jours_population_incomplete": {},
+      "MDF-07_periode": [
+        "2025-06-03",
+        "2025-09-30"
+      ],
+      "MDF-07_jours_absents": [],
+      "MDF-09_jours_plusieurs_horodatages": 0,
+      "statut": "CONFORME_SUR_REGLES_BLOQUANTES"
+    },
+    {
+      "fichier": "mdf_2026.csv.gz",
+      "lignes": 12576,
+      "separateur": ";",
+      "MDF-01_alias_utilises": [],
+      "MDF-01_colonnes_manquantes": [],
+      "MDF-01_colonnes_inattendues": [],
+      "sha256_source": "c02f4f539370a663e290c0dce57c2dc6857a47cfee60b052d4a77ea3cbabf33f",
+      "MDF-02_statut": "CONFORME",
+      "MDF-02_sha256_conforme": true,
+      "MDF-08_codes_sans_zero_initial": 0,
+      "lignes_occitanie": 1703,
+      "MDF-03_dates_invalides": 0,
+      "MDF-04_doublons_dep_jour": 0,
+      "MDF-05_niveau_j1_vides": 0,
+      "MDF-05_niveau_j1_hors_domaine": 0,
+      "MDF-05_niveau_j1_distribution": {
+        "1": 501,
+        "2": 684,
+        "3": 470,
+        "4": 48
+      },
+      "MDF-05_niveau_j2_vides": 0,
+      "MDF-05_niveau_j2_hors_domaine": 0,
+      "MDF-05_niveau_j2_distribution": {
+        "1": 552,
+        "2": 741,
+        "3": 383,
+        "4": 27
+      },
+      "MDF-06_jours_publies": 131,
+      "MDF-06_jours_population_incomplete": {},
+      "MDF-07_periode": [
+        "2026-05-28",
+        "2026-10-05"
+      ],
+      "MDF-07_jours_absents": [],
+      "MDF-09_jours_plusieurs_horodatages": 0,
+      "statut": "CONFORME_SUR_REGLES_BLOQUANTES"
+    }
+  ]
+}
