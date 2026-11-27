@@ -3,7 +3,7 @@
 
 ![Statut](https://img.shields.io/badge/Cadrage-valid%C3%A9-238636) ![Sources](https://img.shields.io/badge/Sources-%C3%A0_v%C3%A9rifier-orange) ![Projet](https://img.shields.io/badge/HETIC-MD5-blue)
 
-> **Projet pédagogique HETIC — Mastère Data & IA, UE01 Stratégie Business Data-Driven (2026–2027).** Encadrement : Marine PROST. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
+> **Projet pédagogique HETIC — Mastère Data & IA, projet transversal à plusieurs modules (2026–2027).** Les références pédagogiques propres à chaque module sont conservées ; la liste des enseignants sera établie ultérieurement. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
 
 ## Espaces de travail et suivi
 
@@ -14,6 +14,10 @@
 | **Google Drive du groupe** | [Dossier collaboratif MD5](https://drive.google.com/drive/folders/1SLx__GbAFq-2ZqFKY0MmccqqbGxK6tnG?usp=sharing) | Documents partagés, supports et éventuels fichiers de travail |
 
 **Convention :** chaque carte technique Trello référence son Issue GitHub ; chaque PR référence l'Issue correspondante. Le dépôt reste la source de vérité pour le code et les livrables versionnés. Ne pas confondre le Drive pédagogique et le Drive collectif.
+
+## Démarrage avec un assistant IA
+
+Lire [AGENTS.md](AGENTS.md), le [guide de contribution](CONTRIBUTING.md), le [contexte projet](docs/pilotage/CONTEXTE.md), l’[état daté](docs/pilotage/PROJECT_STATUS.md), la [roadmap](docs/pilotage/ROADMAP.md) et les [prompts de démarrage](docs/accompagnement/README.md). Les tickets et PR en direct priment sur les instantanés. Onboarding : #19–#24.
 
 ## Sources de données et documentation externe
 
