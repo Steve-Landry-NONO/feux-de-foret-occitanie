@@ -20,7 +20,7 @@ python -m unittest discover -s tests -v
 python scripts/controler_qualite_bdiff.py /tmp/bdiff-source/datasets/public/bdiff_officiel/bdiff_occitanie_2024.zip /tmp/bdiff-source/datasets/public/bdiff_officiel/bdiff_occitanie_2025.zip --manifest /tmp/bdiff-source/datasets/public/bdiff_officiel/manifest.json --commit-source 479e5d91296a5994eaed304678504cdc05fb3a17 > /tmp/preuve-controles-bdiff.json
 ```
 
-Preuve JSON : résultats locaux du 27/11/2026 retranscrits lors de la publication. Script publié blob 219df1757d3b9912595d358743d690ceaa36aeda, identique au script local. Six méthodes synthétiques initiales réussies ; code réel 0. Test CLI ajouté lors de la publication, non encore exécuté ; suite complète de main non réexécutée. Codes 0 conformité bloquante, 1 échec, 2 manifeste absent sans échec.
+Preuve JSON : résultats locaux du 27/11/2026 retranscrits lors de la publication. Script publié blob 219df1757d3b9912595d358743d690ceaa36aeda, identique au script local. Six méthodes synthétiques initiales réussies ; code réel 0. Nouvelle exécution locale : 7 méthodes réussies, dont les trois codes CLI 0/1/2 ; contrôle réel code 0, JSON régénéré identique au rapport local initial. Suite complète de main non réexécutée. Comparaison avec main 0c6cc0b072c0d289ce66db8356e0e139a6524b98 : quatre commits documentaires sans chevauchement des fichiers ; PR fusionnable selon GitHub. Codes 0 conformité bloquante, 1 échec, 2 manifeste absent sans échec.
 
 ## Contrats à convenir avec Stéphane
 
