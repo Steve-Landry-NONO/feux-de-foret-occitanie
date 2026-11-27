@@ -1,0 +1,330 @@
+{
+  "date_execution": "2026-11-27",
+  "commit_source": "479e5d91296a5994eaed304678504cdc05fb3a17",
+  "script_sha256": "f820c4422ae959c663e85844fbba037592868528fab9d0b54d4b67cfbc8dc440",
+  "resultats": [
+    {
+      "fichier": "bdiff_occitanie_2024.zip",
+      "annee": 2024,
+      "erreurs": {
+        "BDF-01_doublons": 0
+      },
+      "provenance_tls": "NON_VALIDEE",
+      "validation_collective": "EN_ATTENTE",
+      "sha256": "a4b7bf48dc032788746247f6f4878740b80f43da4b2a3a28c86024bf9259d6a2",
+      "integrite": "CONFORME",
+      "annexes_sha256": {
+        "Définitions.pdf": "cc8d825a71ba76641e6a46f4d414325bf93c0165073744bb96f44d5a197b1d4e",
+        "Mention légales.pdf": "d81ba79d1986d0106eaa9c4972787d95ca6e9f7bee69e0a41722bad18d8c9e47"
+      },
+      "colonnes": [
+        "Année",
+        "Numéro",
+        "Département",
+        "Code INSEE",
+        "Nom de la commune",
+        "Date de première alerte",
+        "Surface parcourue (m2)",
+        "Surface forêt (m2)",
+        "Surface maquis garrigues (m2)",
+        "Autres surfaces naturelles hors forêt (m2)",
+        "Surfaces agricoles (m2)",
+        "Autres surfaces (m2)",
+        "Surface autres terres boisées (m2)",
+        "Surfaces non boisées naturelles (m2)",
+        "Surfaces non boisées artificialisées (m2)",
+        "Surfaces non boisées (m2)",
+        "Précision des surfaces",
+        "Type de peuplement",
+        "Nature",
+        "Décès ou bâtiments touchés",
+        "Nombre de décès",
+        "Nombre de bâtiments totalement détruits",
+        "Nombre de bâtiments partiellement détruits",
+        "Précision de la donnée"
+      ],
+      "lignes": 413,
+      "unite_surface": "m2",
+      "surfaces": {
+        "Surface parcourue (m2)": {
+          "vides": 0,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "13816107"
+        },
+        "Surface forêt (m2)": {
+          "vides": 0,
+          "zeros": 193,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "6359333"
+        },
+        "Surface maquis garrigues (m2)": {
+          "vides": 45,
+          "zeros": 165,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "5390020"
+        },
+        "Autres surfaces naturelles hors forêt (m2)": {
+          "vides": 35,
+          "zeros": 372,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "701600"
+        },
+        "Surfaces agricoles (m2)": {
+          "vides": 34,
+          "zeros": 365,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "307450"
+        },
+        "Autres surfaces (m2)": {
+          "vides": 35,
+          "zeros": 372,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "1057704"
+        },
+        "Surface autres terres boisées (m2)": {
+          "vides": 413,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        },
+        "Surfaces non boisées naturelles (m2)": {
+          "vides": 413,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        },
+        "Surfaces non boisées artificialisées (m2)": {
+          "vides": 413,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        },
+        "Surfaces non boisées (m2)": {
+          "vides": 413,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        }
+      },
+      "identifiants_uniques": 413,
+      "departements": {
+        "11": 152,
+        "12": 2,
+        "30": 38,
+        "31": 1,
+        "34": 133,
+        "46": 3,
+        "48": 25,
+        "66": 55,
+        "81": 3,
+        "09": 1
+      },
+      "dates": [
+        "2024-01-01",
+        "2024-12-29"
+      ],
+      "valeurs_manquantes": {
+        "Année": 0,
+        "Numéro": 0,
+        "Département": 0,
+        "Code INSEE": 0,
+        "Nom de la commune": 0,
+        "Date de première alerte": 0,
+        "Surface parcourue (m2)": 0,
+        "Surface forêt (m2)": 0,
+        "Surface maquis garrigues (m2)": 45,
+        "Autres surfaces naturelles hors forêt (m2)": 35,
+        "Surfaces agricoles (m2)": 34,
+        "Autres surfaces (m2)": 35,
+        "Surface autres terres boisées (m2)": 413,
+        "Surfaces non boisées naturelles (m2)": 413,
+        "Surfaces non boisées artificialisées (m2)": 413,
+        "Surfaces non boisées (m2)": 413,
+        "Précision des surfaces": 0,
+        "Type de peuplement": 223,
+        "Nature": 120,
+        "Décès ou bâtiments touchés": 9,
+        "Nombre de décès": 398,
+        "Nombre de bâtiments totalement détruits": 398,
+        "Nombre de bâtiments partiellement détruits": 398,
+        "Précision de la donnée": 403
+      },
+      "composantes_superieures_total": {},
+      "statut": "CONFORME_SUR_REGLES_BLOQUANTES"
+    },
+    {
+      "fichier": "bdiff_occitanie_2025.zip",
+      "annee": 2025,
+      "erreurs": {
+        "BDF-01_doublons": 0
+      },
+      "provenance_tls": "NON_VALIDEE",
+      "validation_collective": "EN_ATTENTE",
+      "sha256": "393f8bc15f9c4c803310eefd94c86cad9b81e8a5bd08440a3f5f1403b5e3f282",
+      "integrite": "CONFORME",
+      "annexes_sha256": {
+        "Définitions.pdf": "cc8d825a71ba76641e6a46f4d414325bf93c0165073744bb96f44d5a197b1d4e",
+        "Mention légales.pdf": "d81ba79d1986d0106eaa9c4972787d95ca6e9f7bee69e0a41722bad18d8c9e47"
+      },
+      "colonnes": [
+        "Année",
+        "Numéro",
+        "Département",
+        "Code INSEE",
+        "Nom de la commune",
+        "Date de première alerte",
+        "Surface parcourue (m2)",
+        "Surface forêt (m2)",
+        "Surface maquis garrigues (m2)",
+        "Autres surfaces naturelles hors forêt (m2)",
+        "Surfaces agricoles (m2)",
+        "Autres surfaces (m2)",
+        "Surface autres terres boisées (m2)",
+        "Surfaces non boisées naturelles (m2)",
+        "Surfaces non boisées artificialisées (m2)",
+        "Surfaces non boisées (m2)",
+        "Précision des surfaces",
+        "Type de peuplement",
+        "Nature",
+        "Décès ou bâtiments touchés",
+        "Nombre de décès",
+        "Nombre de bâtiments totalement détruits",
+        "Nombre de bâtiments partiellement détruits",
+        "Précision de la donnée"
+      ],
+      "lignes": 472,
+      "unite_surface": "m2",
+      "surfaces": {
+        "Surface parcourue (m2)": {
+          "vides": 0,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "155949363"
+        },
+        "Surface forêt (m2)": {
+          "vides": 0,
+          "zeros": 188,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "76305315"
+        },
+        "Surface maquis garrigues (m2)": {
+          "vides": 51,
+          "zeros": 216,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "72387480"
+        },
+        "Autres surfaces naturelles hors forêt (m2)": {
+          "vides": 25,
+          "zeros": 433,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "2250752"
+        },
+        "Surfaces agricoles (m2)": {
+          "vides": 0,
+          "zeros": 452,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "4975461"
+        },
+        "Autres surfaces (m2)": {
+          "vides": 0,
+          "zeros": 467,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "30355"
+        },
+        "Surface autres terres boisées (m2)": {
+          "vides": 472,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        },
+        "Surfaces non boisées naturelles (m2)": {
+          "vides": 472,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        },
+        "Surfaces non boisées artificialisées (m2)": {
+          "vides": 472,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        },
+        "Surfaces non boisées (m2)": {
+          "vides": 472,
+          "zeros": 0,
+          "invalides": 0,
+          "negatives": 0,
+          "somme": "0"
+        }
+      },
+      "identifiants_uniques": 472,
+      "departements": {
+        "11": 140,
+        "12": 9,
+        "30": 48,
+        "31": 4,
+        "32": 3,
+        "34": 162,
+        "46": 13,
+        "48": 41,
+        "65": 2,
+        "66": 30,
+        "81": 4,
+        "82": 8,
+        "09": 8
+      },
+      "dates": [
+        "2025-01-10",
+        "2025-12-31"
+      ],
+      "valeurs_manquantes": {
+        "Année": 0,
+        "Numéro": 0,
+        "Département": 0,
+        "Code INSEE": 0,
+        "Nom de la commune": 0,
+        "Date de première alerte": 0,
+        "Surface parcourue (m2)": 0,
+        "Surface forêt (m2)": 0,
+        "Surface maquis garrigues (m2)": 51,
+        "Autres surfaces naturelles hors forêt (m2)": 25,
+        "Surfaces agricoles (m2)": 0,
+        "Autres surfaces (m2)": 0,
+        "Surface autres terres boisées (m2)": 472,
+        "Surfaces non boisées naturelles (m2)": 472,
+        "Surfaces non boisées artificialisées (m2)": 472,
+        "Surfaces non boisées (m2)": 472,
+        "Précision des surfaces": 0,
+        "Type de peuplement": 217,
+        "Nature": 75,
+        "Décès ou bâtiments touchés": 19,
+        "Nombre de décès": 443,
+        "Nombre de bâtiments totalement détruits": 443,
+        "Nombre de bâtiments partiellement détruits": 443,
+        "Précision de la donnée": 450
+      },
+      "composantes_superieures_total": {},
+      "statut": "CONFORME_SUR_REGLES_BLOQUANTES"
+    }
+  ]
+}
