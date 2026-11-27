@@ -1,0 +1,43 @@
+name: Contrôler les échéances J1 et J2 de Météo des forêts
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/validation-echances-mdf.yml
+      - scripts/valider_echeances_mdf.py
+      - tests/test_echeances_mdf.py
+
+permissions:
+  contents: write
+
+jobs:
+  valider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+          fetch-depth: 0
+      - name: Contrôler la syntaxe et les décalages calendaires
+        run: |
+          python3 -m py_compile scripts/valider_echeances_mdf.py
+          python3 -m unittest discover -s tests -v
+      - name: Recalculer les dates de validité et les correspondances BDIFF
+        run: python3 scripts/valider_echeances_mdf.py
+      - name: Contrôler les rapports
+        run: |
+          python3 -m json.tool docs/resultats/validation_j1_j2_v1.json >/dev/null
+          test -s docs/resultats/validation_j1_j2_v1.md
+      - name: Versionner les preuves, sans modifier les archives sources
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/resultats/validation_j1_j2_v1.json docs/resultats/validation_j1_j2_v1.md
+          if ! git diff --cached --quiet; then
+            git commit -m "data(météo) : documenter les jointures décalées J+1 et J+2"
+            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          fi

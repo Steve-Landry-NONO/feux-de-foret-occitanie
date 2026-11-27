@@ -31,7 +31,7 @@ Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inve
 | Contexte national des feux | [Notre Environnement](https://www.notre-environnement.gouv.fr/themes/risques/article/les-feux-de-forets) | Documentation de contexte |
 | Référentiels INSEE, couverture IGN, moyens SDIS, Gaspar / Prométhée | [Inventaire et points à vérifier](docs/sources/inventaire.md) | URL exacte / accès / usage encore à identifier |
 
-**Point bloquant prioritaire :** le chevauchement temporel entre les observations d'incendies et les archives météo reste à démontrer avant de calculer les indicateurs croisés. Voir [actions de faisabilité A1–A4](docs/suivi/actions-faisabilite.md) et [matrice questions × sources](docs/sources/matrice.md).
+**Point bloquant prioritaire :** les rapprochements exploratoires sont documentés ; leur validation métier et la sémantique des dates restent ouvertes. Voir [actions de faisabilité A1–A4](docs/suivi/actions-faisabilite.md) et [matrice questions × sources](docs/sources/matrice.md).
 
 ## Atelier KPI — 19 novembre 2026
 
@@ -77,6 +77,36 @@ Notre approche complète ce cadrage par la **capacité réelle de réponse** : d
 | **Q6** | Quels effectifs, compétences et engins faut-il pour couvrir plusieurs départs simultanés ? | Dimensionner les renforts et le matériel |
 
 Les questions sont **validées comme périmètre analytique**. Leur faisabilité, les seuils chiffrés et les recommandations dépendront des données réellement accessibles. Voir [l'argumentaire collectif](docs/collectif/questions-retenues-proposition.md).
+
+## Avancement de l'exploration des données — 19 novembre 2026
+
+Le projet a commencé la collecte et le profilage réel des sources, tout en conservant un statut explicite pour ce qui reste à vérifier.
+
+- **Archives Météo des forêts :** trois fichiers datés (2024, 2025, 2026), vérifiés par SHA-256 et [profilage automatique](docs/resultats/profilage_sources_v1.md) ; 11 520, 11 520 et 12 576 lignes, 96 départements dont les 13 d'Occitanie, 0 doublon sur département × date.
+- **Incendies :** une couche ArcGIS **secondaire** dérivée de BDIFF a pu être interrogée pour 2024 (413 événements en Occitanie) ; l'export primaire BDIFF doit encore être récupéré. Les endpoints secondaires testés pour 2025 renvoient HTTP 404.
+- **INSEE :** tentative de collecte officielle 2025 en erreur HTTP 504, [diagnostic consultable](docs/resultats/diagnostic_insee_v0.md) ; aucune ressource COG déclarée validée.
+- **Architecture :** [UML, flux de données et schéma en étoile V0](docs/modelisation/modeles-de-donnees-v0.md), à faire relire par le groupe, avec les clés et jointures candidates.
+- **Notebooks et tests :** les notebooks météo et jointure lisent les rapports produits par le pipeline ; des tests vérifient les dates, les codes et l'unicité des observations météo.
+
+**Les chiffres de raccord par même date ne sont pas des KPI validés** : la date d'émission et l'échéance J+1/J+2 restent à confirmer. Les questions Q5–Q6 restent conditionnées à l'accès aux données opérationnelles du SDIS.
+
+**Travail à relire :** [PR #3](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/pull/3) — tickets [#4](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/4), [#5](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/5), [#6](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/6), [#7](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/7), [#8](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/8).
+
+## Résultats scénarios Q2–Q3 et démonstrateur (20 novembre 2026)
+
+Les premiers indicateurs ont été **calculés automatiquement** depuis les archives MdF et les ZIP BDIFF de type F : années 2024 et 2025, 13 départements + Occitanie, J+1/J+2, seuils 2/3/4. Le calcul compare les échéances sur un ensemble **strictement commun** de journées par département.
+
+- **[Rapport chiffré Q2–Q3](docs/resultats/kpi_scenarios_q2_q3.md)** : jours avec feu observé, journées de surveillance simulées, taux de couverture et jours de surveillance sans feu observé.
+- **[Audit des invariants](docs/resultats/audit_kpi_q2_q3.md)** : cohérence des totaux, monotonie des seuils et comparabilité des dénominateurs.
+- **[Tableau de bord interactif V0](dashboard/README.md)** : filtres année, territoire et horizon, graphique de compromis, données réelles issues du CSV. Exécuter avec `python3 -m http.server 8000` depuis la racine et ouvrir `http://localhost:8000/dashboard/`.
+- **[Vision technique élargie](docs/architecture/vision-technique-et-experimentations.md)** : cartographie 2D, optimisation des patrouilles, expérimentations ML et 3D sous conditions de qualité et d'utilité.
+- **Issues [#9](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/9) / [#10](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues/10)** : calcul et interface.
+
+**Statut : résultats exploratoires reproductibles, validation finale NON acquise.** Le producteur définit J+1 et J+2, mais l'alias `date` de l'archive versus `Reference_time` de la documentation reste à corroborer ; la provenance HTTPS de BDIFF a une réserve TLS ; les feux du 31 sont trop rares pour une conclusion robuste isolée. Notre dashboard n'est pas un outil opérationnel du SDIS.
+
+## Point de coordination — 27 novembre 2026
+
+Les PR #26 (gouvernance), #27 (sources) et #28 (qualité) ont été intégrées dans main. Voir [revue météo](docs/sources/revue-meteo-haute-garonne.md), [provenance BDIFF](docs/sources/revue-provenance-bdiff.md) et [registre qualité](docs/qualite/registre-regles-qualite.md). Le ticket #14 reste ouvert ; les seuils, la sémantique temporelle et la provenance TLS ne sont pas validés collectivement. La PR #29 dépend de la branche exploratoire ; la PR #30 propose le COG INSEE 2024–2025 et nécessite une réconciliation du collecteur. Les états en direct des issues et PR priment sur cet instantané.
 
 ## Méthode
 
@@ -134,7 +164,7 @@ Recommandations argumentées et limites
 
 **Rendu du 17 novembre :** [spécification v1](docs/specification/specification-v1-2026-11-17.md), proposée à la relecture collective. Elle détaille les indicateurs, grains, contrôles et limites ; aucun résultat chiffré n'est produit. La revue de métadonnées ne remplace pas l'examen des fichiers bruts. Les vérifications restantes sont planifiées dans le [suivi A1–A4](docs/suivi/actions-faisabilite.md).
 
-**État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) distinguent les **métadonnées consultées et les sources candidates** ; aucun fichier métier brut n'a encore été vérifié.
+**État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) distinguent les **métadonnées consultées et les sources candidates** ; les premières vérifications de fichiers sont documentées dans les PR #3, #27 et #28, sans validation scientifique globale.
 
 ## Jalons pédagogiques
 
@@ -168,4 +198,4 @@ Ces dates sont les **échéances pédagogiques**, et non des preuves que chaque 
 
 ---
 
-*Projet étudiant — documents de cadrage validés, résultats et données à produire et vérifier.*
+*Projet étudiant — cadrage validé ; résultats exploratoires et qualification progressive des données, sans validation opérationnelle.*

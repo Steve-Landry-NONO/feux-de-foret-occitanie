@@ -1,0 +1,147 @@
+{
+  "source": "Portail BDIFF / ministère de l’Agriculture",
+  "transfert_tls_verifie": false,
+  "extractions": [
+    {
+      "annee": 2024,
+      "fichier": "bdiff_occitanie_2024.zip",
+      "sha256": "a4b7bf48dc032788746247f6f4878740b80f43da4b2a3a28c86024bf9259d6a2",
+      "url_recherche": "https://bdiff.agriculture.gouv.fr/incendies?if%5BdateAlerteDeb%5D%5Bdate%5D=01%2F01%2F2024&if%5BdateAlerteDeb%5D%5Btime%5D%5Bhour%5D=0&if%5BdateAlerteDeb%5D%5Btime%5D%5Bminute%5D=0&if%5BdateAlerteFin%5D%5Bdate%5D=31%2F12%2F2024&if%5BdateAlerteFin%5D%5Btime%5D%5Bhour%5D=23&if%5BdateAlerteFin%5D%5Btime%5D%5Bminute%5D=59&if%5Bra%5D=76&if%5Bsubmit%5D=",
+      "url_export": "https://bdiff.agriculture.gouv.fr/incendies/zip",
+      "octets": 602878,
+      "controle": {
+        "fichiers": [
+          "Incendies.csv",
+          "Mention légales.pdf",
+          "Définitions.pdf"
+        ],
+        "csv": "Incendies.csv",
+        "pdfs": [
+          "Mention légales.pdf",
+          "Définitions.pdf"
+        ],
+        "criteres_export": "\"Critères de sélection =>\";\"Date de première alerte, de : 2024-01-01 00:00:00\";\"Date de première alerte, jusqu'à : 2024-12-31 23:59:00\";\"Région administrative : OCCITANIE\";\"Type de feu : F\"",
+        "champs": [
+          "Année",
+          "Numéro",
+          "Département",
+          "Code INSEE",
+          "Nom de la commune",
+          "Date de première alerte",
+          "Surface parcourue (m2)",
+          "Surface forêt (m2)",
+          "Surface maquis garrigues (m2)",
+          "Autres surfaces naturelles hors forêt (m2)",
+          "Surfaces agricoles (m2)",
+          "Autres surfaces (m2)",
+          "Surface autres terres boisées (m2)",
+          "Surfaces non boisées naturelles (m2)",
+          "Surfaces non boisées artificialisées (m2)",
+          "Surfaces non boisées (m2)",
+          "Précision des surfaces",
+          "Type de peuplement",
+          "Nature",
+          "Décès ou bâtiments touchés",
+          "Nombre de décès",
+          "Nombre de bâtiments totalement détruits",
+          "Nombre de bâtiments partiellement détruits",
+          "Précision de la donnée"
+        ],
+        "separateur": ";",
+        "lignes": 413,
+        "annees": [
+          "2024"
+        ],
+        "departements_presents": [
+          "09",
+          "11",
+          "12",
+          "30",
+          "31",
+          "34",
+          "46",
+          "48",
+          "66",
+          "81"
+        ],
+        "dates_alerte_hors_annee": 0,
+        "validation_structure": "OK"
+      },
+      "date_collecte_utc": "2026-11-20T07:38:27.625713+00:00",
+      "tls_certificat_verifie": false,
+      "statut": "export_officiel_structure_verifiee_transport_tls_a_confirmer"
+    },
+    {
+      "annee": 2025,
+      "fichier": "bdiff_occitanie_2025.zip",
+      "sha256": "393f8bc15f9c4c803310eefd94c86cad9b81e8a5bd08440a3f5f1403b5e3f282",
+      "url_recherche": "https://bdiff.agriculture.gouv.fr/incendies?if%5BdateAlerteDeb%5D%5Bdate%5D=01%2F01%2F2025&if%5BdateAlerteDeb%5D%5Btime%5D%5Bhour%5D=0&if%5BdateAlerteDeb%5D%5Btime%5D%5Bminute%5D=0&if%5BdateAlerteFin%5D%5Bdate%5D=31%2F12%2F2025&if%5BdateAlerteFin%5D%5Btime%5D%5Bhour%5D=23&if%5BdateAlerteFin%5D%5Btime%5D%5Bminute%5D=59&if%5Bra%5D=76&if%5Bsubmit%5D=",
+      "url_export": "https://bdiff.agriculture.gouv.fr/incendies/zip",
+      "octets": 604702,
+      "controle": {
+        "fichiers": [
+          "Incendies.csv",
+          "Mention légales.pdf",
+          "Définitions.pdf"
+        ],
+        "csv": "Incendies.csv",
+        "pdfs": [
+          "Mention légales.pdf",
+          "Définitions.pdf"
+        ],
+        "criteres_export": "\"Critères de sélection =>\";\"Date de première alerte, de : 2025-01-01 00:00:00\";\"Date de première alerte, jusqu'à : 2025-12-31 23:59:00\";\"Région administrative : OCCITANIE\";\"Type de feu : F\"",
+        "champs": [
+          "Année",
+          "Numéro",
+          "Département",
+          "Code INSEE",
+          "Nom de la commune",
+          "Date de première alerte",
+          "Surface parcourue (m2)",
+          "Surface forêt (m2)",
+          "Surface maquis garrigues (m2)",
+          "Autres surfaces naturelles hors forêt (m2)",
+          "Surfaces agricoles (m2)",
+          "Autres surfaces (m2)",
+          "Surface autres terres boisées (m2)",
+          "Surfaces non boisées naturelles (m2)",
+          "Surfaces non boisées artificialisées (m2)",
+          "Surfaces non boisées (m2)",
+          "Précision des surfaces",
+          "Type de peuplement",
+          "Nature",
+          "Décès ou bâtiments touchés",
+          "Nombre de décès",
+          "Nombre de bâtiments totalement détruits",
+          "Nombre de bâtiments partiellement détruits",
+          "Précision de la donnée"
+        ],
+        "separateur": ";",
+        "lignes": 472,
+        "annees": [
+          "2025"
+        ],
+        "departements_presents": [
+          "09",
+          "11",
+          "12",
+          "30",
+          "31",
+          "32",
+          "34",
+          "46",
+          "48",
+          "65",
+          "66",
+          "81",
+          "82"
+        ],
+        "dates_alerte_hors_annee": 0,
+        "validation_structure": "OK"
+      },
+      "date_collecte_utc": "2026-11-20T07:38:30.800610+00:00",
+      "tls_certificat_verifie": false,
+      "statut": "export_officiel_structure_verifiee_transport_tls_a_confirmer"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+name: Tester le téléchargement officiel BDIFF 2024–2025
+
+on:
+  push:
+    branches:
+      - docs/notebooks-exploration-v0-2026-11-19
+    paths:
+      - .github/workflows/telecharger-bdiff-officiel.yml
+      - scripts/telecharger_bdiff_original.py
+
+permissions:
+  contents: write
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/notebooks-exploration-v0-2026-11-19
+          fetch-depth: 0
+      - name: Collecter puis vérifier les contenus des ZIP
+        run: python3 scripts/telecharger_bdiff_original.py
+      - name: Joindre les fichiers en quarantaine comme artefact éphémère
+        uses: actions/upload-artifact@v4
+        with:
+          name: bdiff-2024-2025-non-valides
+          path: datasets/public/bdiff_officiel/
+          retention-days: 7
+          if-no-files-found: ignore
+      - name: Conserver les ZIP ayant passé les contrôles et leur manifeste
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/resultats/diagnostic_collecte_bdiff.md
+          if test -s datasets/public/bdiff_officiel/manifest.json; then
+            git add datasets/public/bdiff_officiel/*.zip datasets/public/bdiff_officiel/manifest.json
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m "data(bdiff) : conserver les ZIP contrôlés 2024–2025 et leur provenance"
+            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
+            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+          fi

@@ -1,0 +1,96 @@
+{
+  "execution_utc": "2026-11-20T07:51:03.512565+00:00",
+  "regle_officielle": "Diffusion à 17 h ; J+1 lendemain, J+2 surlendemain ; danger départemental de 1 à 4",
+  "point_non_formellement_confirme": "Le champ archive date correspond au Reference_time documenté",
+  "source_metier": "https://confluence-meteofrance.atlassian.net/wiki/spaces/OpenDataMeteoFrance/pages/874741792/Donn%2Bes%2Bexpertis%Bes",
+  "archives": [
+    {
+      "annee": "2024",
+      "lignes_source": 11520,
+      "previsions_generees": 23040,
+      "dates_ref_min": null,
+      "point_verifie": "Unicité des clés, niveaux 1..4 et décalage calendaire"
+    },
+    {
+      "annee": "2025",
+      "lignes_source": 11520,
+      "previsions_generees": 23040,
+      "dates_ref_min": null,
+      "point_verifie": "Unicité des clés, niveaux 1..4 et décalage calendaire"
+    },
+    {
+      "annee": "2026",
+      "lignes_source": 12576,
+      "previsions_generees": 25152,
+      "dates_ref_min": null,
+      "point_verifie": "Unicité des clés, niveaux 1..4 et décalage calendaire"
+    }
+  ],
+  "raccords": [
+    {
+      "annee": 2024,
+      "echeance": "J+1",
+      "jours_departement_avec_feu": 289,
+      "jours_avec_prevision_valide": 160,
+      "jours_sans_prevision_valide": 129,
+      "jours_31_avec_feu": 1,
+      "jours_31_raccordes": 0,
+      "niveaux_sur_jours_raccordes": {
+        "2": 89,
+        "1": 26,
+        "3": 44,
+        "4": 1
+      }
+    },
+    {
+      "annee": 2024,
+      "echeance": "J+2",
+      "jours_departement_avec_feu": 289,
+      "jours_avec_prevision_valide": 159,
+      "jours_sans_prevision_valide": 130,
+      "jours_31_avec_feu": 1,
+      "jours_31_raccordes": 0,
+      "niveaux_sur_jours_raccordes": {
+        "2": 103,
+        "1": 32,
+        "3": 24
+      }
+    },
+    {
+      "annee": 2025,
+      "echeance": "J+1",
+      "jours_departement_avec_feu": 340,
+      "jours_avec_prevision_valide": 208,
+      "jours_sans_prevision_valide": 132,
+      "jours_31_avec_feu": 4,
+      "jours_31_raccordes": 4,
+      "niveaux_sur_jours_raccordes": {
+        "3": 88,
+        "2": 88,
+        "1": 27,
+        "4": 5
+      }
+    },
+    {
+      "annee": 2025,
+      "echeance": "J+2",
+      "jours_departement_avec_feu": 340,
+      "jours_avec_prevision_valide": 210,
+      "jours_sans_prevision_valide": 130,
+      "jours_31_avec_feu": 4,
+      "jours_31_raccordes": 4,
+      "niveaux_sur_jours_raccordes": {
+        "3": 73,
+        "2": 97,
+        "1": 35,
+        "4": 5
+      }
+    }
+  ],
+  "reserves": [
+    "Pas de KPI final sans confirmation du libellé date/Reference_time",
+    "Météo des forêts est un produit de sensibilisation, non outil opérationnel SDIS",
+    "Le transfert HTTPS des ZIP BDIFF requiert un contrôle indépendant",
+    "Comparer uniquement les jours couverts par les archives météo"
+  ]
+}
