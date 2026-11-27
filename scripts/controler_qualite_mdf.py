@@ -28,7 +28,7 @@ NIVEAUX = {"1", "2", "3", "4"}
 def lire(chemin):
     brut = Path(chemin).read_bytes()
     texte = gzip.decompress(brut).decode("utf-8-sig")
-    entete = texte.splitlines()[0]
+    entete = next(iter(texte.splitlines()), "")
     sep = ";" if entete.count(";") > entete.count(",") else ","
     lignes = list(csv.DictReader(io.StringIO(texte), delimiter=sep))
     return brut, sep, entete.split(sep), lignes
@@ -57,9 +57,12 @@ def controler(chemin, manifest):
     res["MDF-01_colonnes_inattendues"] = sorted(normalisees - COLONNES_ATTENDUES)
 
     # MDF-02 Intégrité : empreinte identique au manifeste de collecte
-    attendu = manifest.get(Path(chemin).name)
+    attendu = (manifest or {}).get(Path(chemin).name)
+    res["sha256_source"] = hashlib.sha256(brut).hexdigest()
+    res["MDF-02_statut"] = ("NON_CONTROLE" if not attendu and manifest is None else
+                            "ECHEC" if not attendu or res["sha256_source"] != attendu else "CONFORME")
     res["MDF-02_sha256_conforme"] = (
-        None if attendu is None else hashlib.sha256(brut).hexdigest() == attendu
+        None if not attendu else hashlib.sha256(brut).hexdigest() == attendu
     )
 
     # MDF-08 Format des codes département (01 vs 1)
@@ -114,32 +117,45 @@ def controler(chemin, manifest):
 def statut(r):
     bloquants = [
         bool(r["MDF-01_colonnes_manquantes"]),
+        r["MDF-02_statut"] == "ECHEC",
+        r["lignes_occitanie"] == 0,
+        r["MDF-06_jours_publies"] == 0,
+        r["MDF-05_niveau_j1_vides"] > 0,
+        r["MDF-05_niveau_j2_vides"] > 0,
         r["MDF-02_sha256_conforme"] is False,
         r["MDF-03_dates_invalides"] > 0,
         r["MDF-04_doublons_dep_jour"] > 0,
         r["MDF-05_niveau_j1_hors_domaine"] > 0,
         r["MDF-05_niveau_j2_hors_domaine"] > 0,
     ]
-    return "ECHEC" if any(bloquants) else "CONFORME_SUR_REGLES_BLOQUANTES"
+    if any(bloquants):
+        return "ECHEC"
+    if r["MDF-02_statut"] == "NON_CONTROLE":
+        return "NON_CONTROLE"
+    return "CONFORME_SUR_REGLES_BLOQUANTES"
 
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("fichiers", nargs="+")
     p.add_argument("--manifest")
+    p.add_argument("--commit-source", help="SHA du commit des données source")
     a = p.parse_args(argv)
-    manifest = {}
+    manifest = None
     if a.manifest:
+        manifest = {}
         for e in json.loads(Path(a.manifest).read_text(encoding="utf-8"))["extractions"]:
-            manifest[Path(e["fichier"]).name] = e["sha256"]
-    sortie = {"date_execution": date.today().isoformat(), "resultats": []}
+            manifest[Path(e["fichier"]).name] = e.get("sha256")
+    sortie = {"date_execution": date.today().isoformat(), "commit_source": a.commit_source, "resultats": []}
     for f in a.fichiers:
         r = controler(f, manifest)
         r["statut"] = statut(r)
         sortie["resultats"].append(r)
     json.dump(sortie, sys.stdout, ensure_ascii=False, indent=2)
     print()
-    return 1 if any(r["statut"] == "ECHEC" for r in sortie["resultats"]) else 0
+    if any(r["statut"] == "ECHEC" for r in sortie["resultats"]):
+        return 1
+    return 2 if any(r["statut"] == "NON_CONTROLE" for r in sortie["resultats"]) else 0
 
 
 if __name__ == "__main__":
