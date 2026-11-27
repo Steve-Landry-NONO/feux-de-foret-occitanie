@@ -1,0 +1,143 @@
+{
+  "producteur": "Insee",
+  "catalogue": "https://www.data.gouv.fr/datasets/code-officiel-geographique-1",
+  "licence_catalogue": "Licence Ouverte (fr-lo)",
+  "date_collecte_utc": "2026-11-27T20:47:30Z",
+  "mode": "Fichiers officiels locaux",
+  "archives": [
+    {
+      "fichier": "v_commune_2024.csv",
+      "url": "https://www.insee.fr/fr/statistiques/fichier/7766585/v_commune_2024.csv",
+      "url_finale_observee": null,
+      "millesime": 2024,
+      "octets": 3569408,
+      "sha256": "469acd3a616a09cce93d84ad6bde2cbe3ff4cefd813d66db8267affcc7984b7f"
+    },
+    {
+      "fichier": "cog_ensemble_2025_csv.zip",
+      "url": "https://www.insee.fr/fr/statistiques/fichier/8377162/cog_ensemble_2025_csv.zip",
+      "url_finale_observee": null,
+      "millesime": 2025,
+      "octets": 1943027,
+      "sha256": "89329a7fc6669e215f90d557b123a7eb83cb926cdb769946b1a9a8bf19bc12d9"
+    }
+  ],
+  "mouvements": {
+    "fichier": "v_mvt_commune_2025.csv",
+    "sha256": "731fca6b9d330b70d654c3c019f43048df376a90dcb93414641526adc21d8c84",
+    "lignes_nationales": 13534,
+    "lignes_retenues": 26
+  },
+  "sources": [
+    {
+      "fichier": "v_commune_2024.csv",
+      "millesime": 2024,
+      "sha256": "469acd3a616a09cce93d84ad6bde2cbe3ff4cefd813d66db8267affcc7984b7f",
+      "octets": 3569408,
+      "lignes_nationales": 37544,
+      "lignes_nationales_apres_filtre_type": 34935,
+      "colonnes": [
+        "TYPECOM",
+        "COM",
+        "REG",
+        "DEP",
+        "CTCD",
+        "ARR",
+        "TNCC",
+        "NCC",
+        "NCCENR",
+        "LIBELLE",
+        "CAN",
+        "COMPARENT"
+      ],
+      "lignes_occitanie": 4453,
+      "filtre": "REG=76 et TYPECOM=COM"
+    },
+    {
+      "fichier": "v_commune_2025.csv",
+      "millesime": 2025,
+      "sha256": "3f8d2913fb0bdee1f72f54706854dc0cd626ed4089bd5761ec9292db0cb12e7e",
+      "octets": 3569959,
+      "lignes_nationales": 37548,
+      "lignes_nationales_apres_filtre_type": 34875,
+      "colonnes": [
+        "TYPECOM",
+        "COM",
+        "REG",
+        "DEP",
+        "CTCD",
+        "ARR",
+        "TNCC",
+        "NCC",
+        "NCCENR",
+        "LIBELLE",
+        "CAN",
+        "COMPARENT"
+      ],
+      "lignes_occitanie": 4446,
+      "filtre": "REG=76 et TYPECOM=COM"
+    },
+    {
+      "fichier": "v_departement_2025.csv",
+      "millesime": 2025,
+      "sha256": "513900ca23edc682ef9b912d7bfc317129eac3a7d71ff19bc22b40ea4838e6eb",
+      "octets": 6076,
+      "lignes_nationales": 101,
+      "lignes_nationales_apres_filtre_type": 101,
+      "colonnes": [
+        "DEP",
+        "REG",
+        "CHEFLIEU",
+        "TNCC",
+        "NCC",
+        "NCCENR",
+        "LIBELLE"
+      ],
+      "lignes_occitanie": 13,
+      "filtre": "REG=76"
+    }
+  ],
+  "codes_communs": 4445,
+  "ecarts": {
+    "attribut_modifie": 6,
+    "disparu": 8,
+    "apparu": 1
+  },
+  "communes_par_dep_2024": {
+    "09": 326,
+    "11": 433,
+    "12": 285,
+    "30": 351,
+    "31": 586,
+    "32": 461,
+    "34": 342,
+    "46": 313,
+    "48": 152,
+    "65": 469,
+    "66": 226,
+    "81": 314,
+    "82": 195
+  },
+  "communes_par_dep_2025": {
+    "09": 325,
+    "11": 433,
+    "12": 285,
+    "30": 350,
+    "31": 586,
+    "32": 458,
+    "34": 341,
+    "46": 312,
+    "48": 152,
+    "65": 469,
+    "66": 226,
+    "81": 314,
+    "82": 195
+  },
+  "sorties_sha256": {
+    "occitanie_communes_2024.csv": "ffb503b7c783f4268ba46fe0e064493490986d6edb1407cec02030ce24bbe6e3",
+    "occitanie_communes_2025.csv": "65b1e52415d250cb5e5ffbe33edbf63b88173d2bd2b6af1e654021718105c06d",
+    "occitanie_departements_2025.csv": "51a99b758b11e06aad4c5ae4772d157aafb12d7f267558d7ff62892a4289a3e2",
+    "mouvements_communes_2024_2025.csv": "ec43a909aa3a61bdf4405f1fe2595390b89e9a53ce6d655ea3a38b7760aa51f3",
+    "ecarts_communes_2024_2025.csv": "6474bdee490923c89cde704a3b61b7f16ee994aecadfce4e5b365ef8c49489ff"
+  }
+}
