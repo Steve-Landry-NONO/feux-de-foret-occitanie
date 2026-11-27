@@ -1,0 +1,5 @@
+---
+description: Contexte et règles du projet HETIC Feux de forêt
+alwaysApply: true
+---
+Lire et appliquer AGENTS.md. Consulter le ticket réel, README.md et docs/pilotage/PROJECT_STATUS.md avant toute modification. Ne pas confondre main et les branches de travail. Ne pas inventer de preuves ni fusionner automatiquement.

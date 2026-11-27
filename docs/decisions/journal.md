@@ -37,6 +37,34 @@ Revue transmise par Chantal : avis favorable sous réserve des corrections docum
 
 Les commits de correction décrivent l'assistance à la rédaction ; ils ne certifient pas l'appropriation personnelle du texte par un membre. La fusion et la revue finale restent distinctes de cette mise à jour.
 
+## 19 novembre 2026 — Module MD5 KPI et atelier 1
+
+- **Cours examiné :** Bilel Maïz, *Définition de KPIs : mesurer pour décider*, sections 1 à 9 ; atelier « De la décision au premier chiffre » du 19/11/2026, parties A à F.
+- **Exigences :** question de décision complète, dix indicateurs candidats triés avec RACER, GQM et arbre à trois niveaux, trois fiches KPI, deux sources consolidées, cinq années de calcul réel, normalisation, sensibilité, effets pervers.
+- **Proposition à valider collectivement :** arbitrer le seuil d'activation de surveillance renforcée en Haute-Garonne pour 2027 en comparant couverture des jours avec feu et charge d'activation. La question n'est **pas encore figée** ; elle servira aussi à l'oral de décembre.
+- **Document créé :** [atelier 1 — dossier de travail](../kpi/atelier-01-2026-11-19.md).
+- **Non réalisé / non prouvé :** aucun export BDIFF ou météo inspecté ni jointure exécutée dans cette contribution ; aucun résultat chiffré ou test de sensibilité validé ; aucun envoi au professeur effectué.
+- **Échéance :** envoi le 19/11, même inachevé ; noms demandés `Atelier1_KPI_Equipe_Michel_Marine.pdf` et `Atelier1_calcul_Equipe_Michel_Marine.ipynb` ou .xlsx (adapter le numéro de groupe par les noms des cinq membres).
+- **Répartition proposée :** Steve (coordination), Maeva (sources), Chantal (qualité), Stéphane (calcul), Ludovic (arbre et modèle) ; relecture collective.
+
+## 19 novembre 2026 — Mise en œuvre et blocage du calcul réel
+
+**Responsable de la tenue du journal : Steve Landry NONO (coordination).** Cette entrée décrit les actions documentées ; elle ne constitue pas une validation collective.
+
+| Élément | Observation vérifiable | Décision / suite | Responsable proposé | Statut |
+|---|---|---|---|---|
+| Drive de l'atelier | Quatre fichiers déposés : polycopié, énoncé, PDF de travail et notebook ; [dossier](https://drive.google.com/drive/folders/1iMk2890zeldg9ekIcnssBmdgeEZ9YF-J) | Conserver les versions, ne pas confondre brouillon et remise | Steve | Fait |
+| Traçabilité | [Document d'analyse A–F](../kpi/atelier-01-2026-11-19.md), [README](../../README.md) et carte [PIL-08](https://trello.com/c/feST7dYr/) reliés | Relecture par chaque référent | Tous | Fait pour les liens, revue à faire |
+| Données incendies | La BDIFF diffuse les incendies à partir de 2006 ; export CSV/ZIP disponible via filtres de localisation et dates, mais **aucun export Haute-Garonne inspecté dans le projet** | Télécharger le CSV filtré sur département 31 et cinq années complètes ; relever schéma, doublons et exhaustivité | Maeva + Stéphane | Bloqué par l'export |
+| Dénominateur | Jeu de données public « Surface », diffuseur Ecolab, attribution INSEE/IGN, ressource CSV « Surface - commune » (28/01/2026) ; **CSV non téléchargé ni vérifié** | Inspecter code commune, unité, millésime et correspondances ; superficie du territoire ≠ surface forestière | Maeva + Stéphane | À faire |
+| Cinq ans / météo | L'option de comparaison BDIFF + météo n'a pas cinq années communes prouvées | Calcul territorial BDIFF + superficie proposé comme solution de repli pour la partie E ; ne pas le présenter comme preuve du seuil météo | Ludovic + Chantal | Arbitrage collectif requis |
+| Livrables | PDF et notebook de **travail** présents sur Drive ; chiffres réels, contrôle des jointures et exécution non produits | Compléter avec résultats réels ou déclarer explicitement les limites dans la remise du jour | Stéphane + Steve | Incomplet |
+| Envoi professeur | Aucune preuve d'envoi | Confirmer destinataire, numéro du groupe et heure limite ; envoyer même incomplet selon l'énoncé | Steve | Non confirmé |
+
+**Méthode pour les entrées futures :** consigner date, auteur, fait ou preuve, décision, responsable, échéance, statut et lien vers livrable. Ne jamais inscrire « terminé » pour une tâche dont la preuve manque. Les propositions de la coordination restent « à valider » jusqu'à confirmation de l'équipe.
+
+**Références vérifiées :** [aide à l'export BDIFF](https://bdiff.agriculture.gouv.fr/aide/recherche) ; [BDIFF, précautions sur l'exhaustivité](https://bdiff.agriculture.gouv.fr/aide/generalites) ; [jeu « Surface »](https://www.data.gouv.fr/datasets/surface).
+
 ## Mise à jour du 19 novembre 2026 — collecte réelle et modèle de données V0
 
 **Contexte :** après la validation documentaire de la PR #2, la coordination a préparé et exécuté la première collecte publique et les notebooks d'exploration sur la branche de [PR #3](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/pull/3). Les modifications de ce jour sont des travaux techniques de coordination, avec assistance IA ; elles ne remplacent pas les commits ni les validations personnelles des autres membres.
@@ -53,3 +81,7 @@ Les commits de correction décrivent l'assistance à la rédaction ; ils ne cert
 | Faire relire la PR avant intégration dans main | [Issues #4 à #8](https://github.com/Steve-Landry-NONO/feux-de-foret-occitanie/issues), PR #3 prête pour relecture | **Revue attendue, fusion non réalisée** |
 
 **Aucune approbation de Maeva, Chantal, Stéphane ou Ludovic n'est présumée dans ce journal.** Les décisions de modèle et les KPI doivent être finalisés sur preuve après les véritables retours des membres.
+
+## 27 novembre 2026 — Réconciliation technique (#12)
+
+Fusion de main (`0c6cc0b072c0d289ce66db8356e0e139a6524b98`) dans la branche exploratoire (`479e5d91296a5994eaed304678504cdc05fb3a17`) préparée par la coordination avec assistance IA. Les deux documents communs sont réconciliés ; les contributions gouvernance #26, sources #27, qualité #28 et l'atelier KPI sont conservées sans modification. Ce rapprochement ne valide ni les KPI, ni les seuils, ni les données opérationnelles. PR #3 reste soumise à qualification et revue ; PR #29 reste indépendante. PR #30 : collecteur INSEE à réconcilier avant intégration finale.

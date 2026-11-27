@@ -3,7 +3,7 @@
 
 ![Statut](https://img.shields.io/badge/Cadrage-valid%C3%A9-238636) ![Sources](https://img.shields.io/badge/Sources-%C3%A0_v%C3%A9rifier-orange) ![Projet](https://img.shields.io/badge/HETIC-MD5-blue)
 
-> **Projet pédagogique HETIC — Mastère Data & IA, UE01 Stratégie Business Data-Driven (2026–2027).** Encadrement : Marine PROST. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
+> **Projet pédagogique HETIC — Mastère Data & IA, projet transversal à plusieurs modules (2026–2027).** Les références pédagogiques propres à chaque module sont conservées ; la liste des enseignants sera établie ultérieurement. Le commanditaire est celui du cas pédagogique, la **direction du SDIS 31 (Haute-Garonne)** ; il ne s'agit pas d'une mission opérationnelle mandatée par le SDIS.
 
 ## Espaces de travail et suivi
 
@@ -15,6 +15,10 @@
 
 **Convention :** chaque carte technique Trello référence son Issue GitHub ; chaque PR référence l'Issue correspondante. Le dépôt reste la source de vérité pour le code et les livrables versionnés. Ne pas confondre le Drive pédagogique et le Drive collectif.
 
+## Démarrage avec un assistant IA
+
+Lire [AGENTS.md](AGENTS.md), le [guide de contribution](CONTRIBUTING.md), le [contexte projet](docs/pilotage/CONTEXTE.md), l’[état daté](docs/pilotage/PROJECT_STATUS.md), la [roadmap](docs/pilotage/ROADMAP.md) et les [prompts de démarrage](docs/accompagnement/README.md). Les tickets et PR en direct priment sur les instantanés. Onboarding : #19–#24.
+
 ## Sources de données et documentation externe
 
 Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inventaire.md). **Ils désignent des sources candidates ou des pages de documentation, et non des jeux de données déjà validés ou profilés.**
@@ -22,12 +26,21 @@ Les liens ci-dessous proviennent de l'[inventaire des sources](docs/sources/inve
 | Source | Lien | Statut documentaire |
 |---|---|---|
 | BDIFF — incendies de forêts en France | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/base-de-donnees-sur-les-incendies-de-forets-en-france-bdiff) | Métadonnées consultées ; fichiers, dates et grain à vérifier |
-| Archives de la Météo des forêts | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets/informations) | **Trois archives 2024–2026 téléchargées et profilées** ; validité des prévisions à confirmer |
+| Archives de la Météo des forêts | [Fiche data.gouv.fr](https://www.data.gouv.fr/datasets/archives-de-la-meteo-des-forets/informations) | Métadonnées consultées ; couverture effective et schéma à vérifier |
 | Météo des forêts — explication des niveaux | [Météo-France](https://meteofrance.com/meteo-des-forets) | Documentation méthodologique, pas table de faits |
 | Contexte national des feux | [Notre Environnement](https://www.notre-environnement.gouv.fr/themes/risques/article/les-feux-de-forets) | Documentation de contexte |
 | Référentiels INSEE, couverture IGN, moyens SDIS, Gaspar / Prométhée | [Inventaire et points à vérifier](docs/sources/inventaire.md) | URL exacte / accès / usage encore à identifier |
 
-**Point bloquant prioritaire :** le chevauchement temporel entre les observations d'incendies et les archives météo reste à démontrer avant de calculer les indicateurs croisés. Voir [actions de faisabilité A1–A4](docs/suivi/actions-faisabilite.md) et [matrice questions × sources](docs/sources/matrice.md).
+**Point bloquant prioritaire :** les rapprochements exploratoires sont documentés ; leur validation métier et la sémantique des dates restent ouvertes. Voir [actions de faisabilité A1–A4](docs/suivi/actions-faisabilite.md) et [matrice questions × sources](docs/sources/matrice.md).
+
+## Atelier KPI — 19 novembre 2026
+
+**Équipe :** Steve Landry NONO, Maeva QUENUM, Chantal CAMARA, Stéphane DOMI et Ludovic TUEKAM. Aucun numéro de groupe n'est attribué dans les documents de référence ; les rendus sont identifiés par les membres.
+
+- [Polycopié et atelier : dossier de travail A–F](docs/kpi/atelier-01-2026-11-19.md) — **propositions à valider, calculs réels non effectués**.
+- [Journal des décisions](docs/decisions/journal.md) — trace de la séance et des points ouverts.
+- [Dossier Drive de l'atelier](https://drive.google.com/drive/folders/1iMk2890zeldg9ekIcnssBmdgeEZ9YF-J) · [PDF de travail](https://drive.google.com/file/d/1j4hxjy7fNwOo7PNqR98vMszcQa1c3QMd/view?usp=drivesdk) · [Notebook de calcul](https://drive.google.com/file/d/1BLCglG8rLckMRBjhg0h9lfeXwXxPI6pb/view?usp=drivesdk) · [Cours](https://drive.google.com/file/d/18yw2Zou93xKSQ50-SXAaYbuRR_S_3-HL/view?usp=drivesdk) · [Énoncé](https://drive.google.com/file/d/1K7vTtiQt3VEOidCSQe_DkUXvmRlVzEm-/view?usp=drivesdk) · [Drive projet Feux de Forêt](https://drive.google.com/drive/folders/1hmXnuUVU_Uj0LLo5ZTkJaSwenAip6jI2).
+- **À remettre le 19/11 :** `Atelier1_KPI_Equipe_Michel_Marine.pdf` et `Atelier1_calcul_Equipe_Michel_Marine.ipynb` (ou .xlsx), avec les noms des cinq membres. L'atelier est non noté mais doit être transmis même inachevé.
 
 ## Notre mission
 
@@ -91,6 +104,10 @@ Les premiers indicateurs ont été **calculés automatiquement** depuis les arch
 
 **Statut : résultats exploratoires reproductibles, validation finale NON acquise.** Le producteur définit J+1 et J+2, mais l'alias `date` de l'archive versus `Reference_time` de la documentation reste à corroborer ; la provenance HTTPS de BDIFF a une réserve TLS ; les feux du 31 sont trop rares pour une conclusion robuste isolée. Notre dashboard n'est pas un outil opérationnel du SDIS.
 
+## Point de coordination — 27 novembre 2026
+
+Les PR #26 (gouvernance), #27 (sources) et #28 (qualité) ont été intégrées dans main. Voir [revue météo](docs/sources/revue-meteo-haute-garonne.md), [provenance BDIFF](docs/sources/revue-provenance-bdiff.md) et [registre qualité](docs/qualite/registre-regles-qualite.md). Le ticket #14 reste ouvert ; les seuils, la sémantique temporelle et la provenance TLS ne sont pas validés collectivement. La PR #29 dépend de la branche exploratoire ; la PR #30 propose le COG INSEE 2024–2025 et nécessite une réconciliation du collecteur. Les états en direct des issues et PR priment sur cet instantané.
+
 ## Méthode
 
 ```text
@@ -147,7 +164,7 @@ Recommandations argumentées et limites
 
 **Rendu du 17 novembre :** [spécification v1](docs/specification/specification-v1-2026-11-17.md), proposée à la relecture collective. Elle détaille les indicateurs, grains, contrôles et limites ; aucun résultat chiffré n'est produit. La revue de métadonnées ne remplace pas l'examen des fichiers bruts. Les vérifications restantes sont planifiées dans le [suivi A1–A4](docs/suivi/actions-faisabilite.md).
 
-**État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) distinguent les **métadonnées consultées et les sources candidates** ; aucun fichier métier brut n'a encore été vérifié.
+**État documentaire :** les analyses sont les versions de référence du cadrage, attribuées nominativement à leurs responsables ; **elles ont été initialement préparées via le compte de coordination**. Chaque membre doit encore les relire, se les approprier et produire ses propres commits. Le [glossaire](docs/glossaire.md) est un référentiel de travail ; l'[inventaire](docs/sources/inventaire.md) et la [matrice](docs/sources/matrice.md) distinguent les **métadonnées consultées et les sources candidates** ; les premières vérifications de fichiers sont documentées dans les PR #3, #27 et #28, sans validation scientifique globale.
 
 ## Jalons pédagogiques
 
@@ -181,4 +198,4 @@ Ces dates sont les **échéances pédagogiques**, et non des preuves que chaque 
 
 ---
 
-*Projet étudiant — documents de cadrage validés, résultats et données à produire et vérifier.*
+*Projet étudiant — cadrage validé ; résultats exploratoires et qualification progressive des données, sans validation opérationnelle.*
