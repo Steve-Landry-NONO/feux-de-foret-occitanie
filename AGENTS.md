@@ -7,7 +7,8 @@ Projet pédagogique HETIC MD5, SDIS 31 fictif, Occitanie. Langue de travail : fr
 4. Présenter un plan court, les fichiers concernés et les critères de validation avant modification.
 ## Règles
 - Un ticket, une branche atomique, une PR ; pas de push direct sur main, de force push, de merge ni de clôture sans validation humaine.
-- Ne pas produire de commits au nom d'autrui, fabriquer des preuves ou antidater une contribution. Chaque membre doit comprendre et vérifier son travail.
+- Collaboration IA active autorisée par le membre : créer/modifier les fichiers, exécuter les tests, créer une branche, committer, pousser et ouvrir une PR via son compte réellement authentifié, dans les limites des permissions. Aucun besoin de saisir manuellement chaque commande. Vérifier identité et attribution ; ne pas usurper un compte tiers ni masquer l'assistance IA. Le membre relit, comprend et valide son travail ; aucune preuve fabriquée ni contribution antidatée.
+- Commits atomiques en français : titre, ticket, et corps détaillé pour les changements importants (objectif, méthode, tests, résultats, limites). PR en français avec preuves et relecteur humain distinct. Si l'accès réseau ou en écriture manque, utiliser un environnement autorisé (Codex, Claude Code ou Git local), sans contourner les permissions.
 - Ne jamais demander ou committer de secrets, données personnelles non nécessaires ou fichiers sans licence vérifiée.
 - Ne jamais inventer une donnée, un test, un accès ou une approbation. Distinguer vérifié, déclaré, hypothèse, non vérifié. Distinguer zéro et absence de données.
 - Respecter les grains, dates de validité J+1/J+2, cohortes comparables, sources et limites ; pas de recommandation opérationnelle SDIS validée.
