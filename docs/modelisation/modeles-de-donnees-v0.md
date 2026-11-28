@@ -229,3 +229,10 @@ Pour une décision prise le **soir précédent le jour de patrouille**, retenir 
 **Audit exécuté :** [validation_j1_j2_v1.md](../resultats/validation_j1_j2_v1.md) et [script Python](../../scripts/valider_echeances_mdf.py). Le résultat vérifie des **raccords de données**, pas encore un taux de couverture de seuil ou un coût de mobilisation.
 
 **Portée des résultats :** Météo-France précise que la **Météo des forêts est un produit de prévention grand public**, différent de l'assistance opérationnelle apportée aux SIS. Les scénarios Q2–Q3 sont des modèles pédagogiques d'aide à la discussion, **pas une instruction officielle de déclenchement du SDIS 31**.
+
+
+## 8. Complément de formalisation — ticket #6
+
+La proposition détaillée de constellation décisionnelle, avec UML conceptuel, flux, grains, dimensions conformes, historisation, registre des jointures et traçabilité Q1–Q6, est désormais documentée dans [Modèle décisionnel V1 — Ludovic](modele-decisionnel-v1-ludovic.md).
+
+Cette V1 complète le présent modèle V0 sans le remplacer : les éléments non vérifiés restent identifiés comme tels et doivent être relus par l'équipe avant validation.
