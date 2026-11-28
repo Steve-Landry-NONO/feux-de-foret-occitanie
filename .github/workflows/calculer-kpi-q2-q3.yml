@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - docs/notebooks-exploration-v0-2026-11-19
+      - docs/ludovic-modele-kpi
     paths:
       - .github/workflows/calculer-kpi-q2-q3.yml
       - scripts/calculer_scenarios_q2_q3.py
+      - scripts/auditer_intersection_j1_j2.py
       - tests/test_scenarios_q2_q3.py
+      - tests/test_intersection_j1_j2.py
       - scripts/valider_resultats_kpi.py
   workflow_dispatch:
 
@@ -21,14 +24,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: docs/notebooks-exploration-v0-2026-11-19
+          ref: \${{ github.ref }}
           fetch-depth: 0
       - name: Vérifier le moteur et les tests
         run: |
-          python3 -m py_compile scripts/calculer_scenarios_q2_q3.py
+          python3 -m py_compile scripts/calculer_scenarios_q2_q3.py scripts/auditer_intersection_j1_j2.py
           python3 -m unittest discover -s tests -v
       - name: Produire les indicateurs réels
         run: python3 scripts/calculer_scenarios_q2_q3.py
+      - name: Recalculer explicitement les ensembles J+1 et J+2
+        run: python3 scripts/auditer_intersection_j1_j2.py
       - name: Contrôler les invariants des résultats réels
         run: python3 scripts/valider_resultats_kpi.py
       - name: Vérifier les rapports et tables produits
@@ -38,24 +43,28 @@ jobs:
           test -s docs/resultats/jours_feu_et_31.csv
           test -s docs/resultats/kpi_scenarios_q2_q3.md
           test -s docs/resultats/audit_kpi_q2_q3.md
+          test -s docs/resultats/intersection_j1_j2_feux.csv
+          test -s docs/resultats/intersection_j1_j2_feux.md
       - name: Archiver les résultats en artefact CI
         uses: actions/upload-artifact@v4
         with:
-          name: kpi-q2-q3
+          name: kpi-q2-q3-et-preuve-intersection
           path: |
             docs/resultats/kpi_scenarios_q2_q3.csv
             docs/resultats/kpi_scenarios_q2_q3_manifest.json
             docs/resultats/kpi_scenarios_q2_q3.md
             docs/resultats/jours_feu_et_31.csv
             docs/resultats/audit_kpi_q2_q3.md
+            docs/resultats/intersection_j1_j2_feux.csv
+            docs/resultats/intersection_j1_j2_feux.md
           retention-days: 30
-      - name: Committer les preuves sur la branche de revue
+      - name: Committer les preuves sur la branche de travail
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/resultats/kpi_scenarios_q2_q3.csv docs/resultats/kpi_scenarios_q2_q3_manifest.json docs/resultats/kpi_scenarios_q2_q3.md docs/resultats/jours_feu_et_31.csv docs/resultats/audit_kpi_q2_q3.md
+          git add docs/resultats/kpi_scenarios_q2_q3.csv docs/resultats/kpi_scenarios_q2_q3_manifest.json docs/resultats/kpi_scenarios_q2_q3.md docs/resultats/jours_feu_et_31.csv docs/resultats/audit_kpi_q2_q3.md docs/resultats/intersection_j1_j2_feux.csv docs/resultats/intersection_j1_j2_feux.md
           if ! git diff --cached --quiet; then
-            git commit -m "data(kpi) : publier les scénarios reproductibles Q2-Q3"
-            git pull --rebase origin docs/notebooks-exploration-v0-2026-11-19
-            git push origin HEAD:docs/notebooks-exploration-v0-2026-11-19
+            git commit -m "data(kpi) : publier les preuves de cohorte J+1 et J+2"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
           fi
